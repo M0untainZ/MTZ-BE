@@ -1,4 +1,4 @@
-package MTZ.mountainz.security;
+package MTZ.mountainz.global.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -24,7 +24,7 @@ public class WebSecurityConfig {
                 .exceptionHandling();
 
         // jwt사용시 필요없음 STATELESS는 사용자 정보를 가지고 있지 않음
-        // STATEFULL 은 사용자 정보를 DB에 저장을함
+        // STATEFUL 은 사용자 정보를 DB에 저장을함
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.authorizeRequests()
