@@ -25,7 +25,6 @@ public class MemberController {
     public ResponseDto<String> signup(@RequestBody @Valid MemberRequest memberRequest) {
         return memberService.signup(memberRequest);
     }
-
     // 로그인
     @PostMapping("login")
     public ResponseDto<String> login(@RequestBody @Valid LoginRequestDto loginRequestDto, HttpServletResponse response) {
