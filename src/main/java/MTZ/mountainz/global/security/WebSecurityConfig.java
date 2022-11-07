@@ -1,5 +1,7 @@
 package MTZ.mountainz.global.security;
 
+import MTZ.mountainz.global.jwt.JwtAuthFilter;
+import MTZ.mountainz.global.jwt.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +22,7 @@ import java.util.List;
 @EnableWebSecurity // 스프링 Security 지원을 가능하게 함
 @RequiredArgsConstructor // 생성자 주입 어노테이션
 public class WebSecurityConfig {
+    private final JwtUtil jwtUtil;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -67,9 +70,9 @@ public class WebSecurityConfig {
 
         http.authorizeRequests()
                 .antMatchers("/api/signUp").permitAll()
-                .anyRequest().authenticated();
-//                .and()
-//                .addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
+                .anyRequest().authenticated()
+                .and()
+                .addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
