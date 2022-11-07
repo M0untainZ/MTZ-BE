@@ -58,7 +58,7 @@ public class MemberService {
         TokenDto tokenDto = jwtUtil.createAllToken(loginRequestDto.getEmail());
 
         // 리프레쉬 토큰은 DB에서 찾기
-        Optional<RefreshToken> refreshToken = refreshTokenRepository.findByMemberEmail(loginRequestDto.getEmail());
+        Optional<RefreshToken> refreshToken = refreshTokenRepository.findByUserEmail(loginRequestDto.getEmail());
 
         // 리프레쉬토큰 null인지 아닌지 에 따라서
         // 값을 가지고있으면 save
