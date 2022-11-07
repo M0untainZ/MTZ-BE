@@ -1,6 +1,8 @@
 package MTZ.mountainz.domain.member.entity;
 
 import MTZ.mountainz.domain.member.dto.request.MemberRequestDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +11,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,14 +29,17 @@ public class Member {
     @Column(nullable = false)
     private String memberRegion;
 
-    @Column(nullable = false)
-    private int certificationPoint;
+//    @JsonIgnore
+//    @Column(nullable = false)
+//    private int certificationPoint;
+//
+//    @JsonIgnore
+//    @Column(nullable = false)
+//    private int quizPoint;
 
-    @Column(nullable = false)
-    private int quizPoint;
-
-    @Column(nullable = false)
-    private String badgeName;
+//    @JsonIgnore
+//    @Column(nullable = false)
+//    private String badgeName;
 
 
     public Member(MemberRequestDto memberRequestDto){
