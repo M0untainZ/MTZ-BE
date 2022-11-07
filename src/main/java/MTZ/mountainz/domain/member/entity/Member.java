@@ -17,30 +17,26 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(name = "nickName", nullable = false)
     private String nickName;
 
-    @Column(nullable = false)
+    @Column(name = "memberRegion", nullable = false)
     private String memberRegion;
 
-//    @JsonIgnore
-//    @Column(nullable = false)
-//    private int certificationPoint;
-//
-//    @JsonIgnore
-//    @Column(nullable = false)
-//    private int quizPoint;
+    @Column(name = "certificationPoint")
+    private int certificationPoint;
 
-//    @JsonIgnore
-//    @Column(nullable = false)
-//    private String badgeName;
+    @Column(name = "quizPoint")
+    private int quizPoint;
 
+    @Column(name = "badgeName")
+    private String badgeName;
 
     public Member(MemberRequestDto memberRequestDto){
         this.email = memberRequestDto.getEmail();
