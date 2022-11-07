@@ -1,6 +1,6 @@
 package MTZ.mountainz.domain.member.entity;
 
-import MTZ.mountainz.domain.member.dto.request.MemberRequest;
+import MTZ.mountainz.domain.member.dto.request.MemberRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -36,10 +36,10 @@ public class Member {
     private String badgeName;
 
 
-    public Member(MemberRequest memberRequest){
-        this.email = memberRequest.getEmail();
-        this.password = memberRequest.getPassword();
-        this.nickName = memberRequest.getNickName();
-        this.memberRegion = memberRequest.getMemberRegion();
+    public Member(MemberRequestDto memberRequestDto){
+        this.email = memberRequestDto.getEmail();
+        this.password = memberRequestDto.getPassword();
+        this.nickName = memberRequestDto.getNickName();
+        this.memberRegion = memberRequestDto.getMemberRegion();
     }
  }

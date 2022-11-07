@@ -2,7 +2,7 @@ package MTZ.mountainz.domain.member.service;
 
 
 import MTZ.mountainz.domain.member.dto.request.LoginRequestDto;
-import MTZ.mountainz.domain.member.dto.request.MemberRequest;
+import MTZ.mountainz.domain.member.dto.request.MemberRequestDto;
 import MTZ.mountainz.domain.member.entity.Member;
 import MTZ.mountainz.domain.member.entity.RefreshToken;
 import MTZ.mountainz.domain.member.repository.MemberRepository;
@@ -30,13 +30,13 @@ public class MemberService {
     private final RefreshTokenRepository refreshTokenRepository;
 
     @Transactional
-    public ResponseDto<String> signup(MemberRequest memberRequest) {
+    public ResponseDto<String> signup(MemberRequestDto memberRequestDto) {
 
-        if(memberRepository.findByEmail(memberRequest.getEmail()).isPresent()){
+        if(memberRepository.findByEmail(memberRequestDto.getEmail()).isPresent()){
             throw new RequestException(ErrorCode.EMAIL_DUPLICATION_409);
         }
-        memberRequest.setEncodedPwd(passwordEncoder.encode(memberRequest.getPassword()));
-        Member member = new Member(memberRequest);
+        memberRequestDto.setEncodedPwd(passwordEncoder.encode(memberRequestDto.getPassword()));
+        Member member = new Member(memberRequestDto);
 
         memberRepository.save(member);
         return ResponseDto.success("회원가입 완료");

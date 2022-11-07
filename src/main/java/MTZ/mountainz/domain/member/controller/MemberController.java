@@ -2,7 +2,7 @@ package MTZ.mountainz.domain.member.controller;
 
 
 import MTZ.mountainz.domain.member.dto.request.LoginRequestDto;
-import MTZ.mountainz.domain.member.dto.request.MemberRequest;
+import MTZ.mountainz.domain.member.dto.request.MemberRequestDto;
 import MTZ.mountainz.domain.member.service.MemberService;
 import MTZ.mountainz.global.dto.ResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +22,8 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/signup")
-    public ResponseDto<String> signup(@RequestBody @Valid MemberRequest memberRequest) {
-        return memberService.signup(memberRequest);
+    public ResponseDto<String> signup(@RequestBody @Valid MemberRequestDto memberRequestDto) {
+        return memberService.signup(memberRequestDto);
     }
     // 로그인
     @PostMapping("login")
