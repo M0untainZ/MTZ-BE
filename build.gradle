@@ -34,6 +34,7 @@ dependencies {
 	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.2'
 	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.2'
 	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.2'
+	runtimeOnly 'com.h2database:h2'
 
 
 	implementation group: 'org.javassist', name: 'javassist', version: '3.29.0-GA'
