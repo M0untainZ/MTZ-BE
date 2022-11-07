@@ -50,7 +50,7 @@ public class MemberService {
                 () -> new RequestException(ErrorCode.MEMBER_NOT_FOUND_404)
         );
         // 비밀번호 있는지 확인
-        if(passwordEncoder.matches(loginRequestDto.getPassword(), member.getPassword())) {
+        if(!passwordEncoder.matches(loginRequestDto.getPassword(), member.getPassword())) {
             throw new RequestException(ErrorCode.PASSWORD_NOT_FOUND_404);
         }
 
