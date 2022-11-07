@@ -31,7 +31,7 @@ public class JwtUtil {
     private final UserDetailsServiceImpl userDetailsService;
     private final RefreshTokenRepository refreshTokenRepository;
 
-    public static final String ACCESS_TOKEN = "Access_Token";
+    public static final String ACCESS_TOKEN = "Authorization";
     public static final String REFRESH_TOKEN = "Refresh_Token";
     private static final Long ACCESS_TIME = 1000 * 1000L;
     private static final Long REFRESH_TIME = 6000 * 1000L;
@@ -40,7 +40,6 @@ public class JwtUtil {
 
     @Value("${jwt.secret}")
     private String secretKey;
-
     private Key key;
     private final SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 
@@ -64,7 +63,7 @@ public class JwtUtil {
 
         long time = type.equals("Access") ? ACCESS_TIME : REFRESH_TIME;
 
-        return Jwts.builder()
+        return BEARER_TYPE + Jwts.builder()
                 .setSubject(email)
                 .setExpiration(new Date(date.getTime() + time))
                 .setIssuedAt(date)
@@ -95,7 +94,7 @@ public class JwtUtil {
         if(!tokenValidation(token)) return false;
 
         // DB에 저장한 토큰 비교
-        Optional<RefreshToken> refreshToken = refreshTokenRepository.findByUserEmail(getEmailFromToken(token));
+        Optional<RefreshToken> refreshToken = refreshTokenRepository.findByMemberEmail(getEmailFromToken(token));
 
         return refreshToken.isPresent() && token.equals(refreshToken.get().getRefreshToken());
     }
