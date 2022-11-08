@@ -1,4 +1,4 @@
 package MTZ.mountainz.domain.mountain.dto.response;
 
-public class MountainResponse {
+public class MountainResponseDto {
 }
