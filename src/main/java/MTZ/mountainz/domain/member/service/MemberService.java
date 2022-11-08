@@ -32,7 +32,7 @@ public class MemberService {
     @Transactional
     public ResponseDto<String> signup(MemberRequestDto memberRequestDto) {
 
-        if(memberRepository.findByEmail(memberRequestDto.getEmail()).isPresent()){
+        if (memberRepository.findByEmail(memberRequestDto.getEmail()).isPresent()) {
             throw new RequestException(ErrorCode.EMAIL_DUPLICATION_409);
         }
         memberRequestDto.setEncodedPwd(passwordEncoder.encode(memberRequestDto.getPassword()));
@@ -50,7 +50,7 @@ public class MemberService {
                 () -> new RequestException(ErrorCode.MEMBER_NOT_FOUND_404)
         );
         // 비밀번호 있는지 확인
-        if(!passwordEncoder.matches(loginRequestDto.getPassword(), member.getPassword())) {
+        if (!passwordEncoder.matches(loginRequestDto.getPassword(), member.getPassword())) {
             throw new RequestException(ErrorCode.PASSWORD_NOT_FOUND_404);
         }
 
@@ -63,9 +63,9 @@ public class MemberService {
         // 리프레쉬토큰 null인지 아닌지 에 따라서
         // 값을 가지고있으면 save
         // 값이 없으면 newToken 만들어내서 save
-        if(refreshToken.isPresent()) {
+        if (refreshToken.isPresent()) {
             refreshTokenRepository.save(refreshToken.get().updateToken(tokenDto.getRefreshToken()));
-        }else {
+        } else {
             RefreshToken newToken = new RefreshToken(tokenDto.getRefreshToken(), loginRequestDto.getEmail());
             refreshTokenRepository.save(newToken);
         }
@@ -79,5 +79,24 @@ public class MemberService {
     private void setHeader(HttpServletResponse response, TokenDto tokenDto) {
         response.addHeader(JwtUtil.ACCESS_TOKEN, tokenDto.getAccessToken());
         response.addHeader(JwtUtil.REFRESH_TOKEN, tokenDto.getRefreshToken());
+    }
+
+
+    // 이메일 중복 확인
+    public ResponseDto<String> emailConfirm(String email) {
+        if (memberRepository.existsByEmail(email)) {
+            return ResponseDto.success(false, "사용 중인 이메일입니다.");
+        } else {
+            return ResponseDto.success("사용 가능한 이메일입니다.");
+        }
+    }
+
+    // 닉네임 중복 확인
+    public ResponseDto<String> nickNameConfirm(String nickName) {
+        if (memberRepository.existsByNickName(nickName)) {
+            return ResponseDto.success(false, "사용 중인 닉네임입니다.");
+        } else {
+            return ResponseDto.success("사용 가능한 닉네임입니다.");
+        }
     }
 }
