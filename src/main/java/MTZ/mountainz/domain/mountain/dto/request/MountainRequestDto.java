@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MountainRequestDto {
+    private Long id;
     private String mountainName;
     private String mountainRegion;
     private String mountainLevel;
