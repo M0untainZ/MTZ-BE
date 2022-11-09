@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CertificationRequestDto {
+    private Long certificationId;
     private String photo;
 }

@@ -19,6 +19,7 @@ import javax.persistence.*;
 public class Certification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "certification_id", nullable = false)
     private Long id;
 
     @Column(name = "photo", nullable = false)

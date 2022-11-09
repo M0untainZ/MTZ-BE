@@ -71,6 +71,8 @@ public class MemberService {
         }
 
         setHeader(response, tokenDto);
+        // 멤버 뱃지네임에 디폴트로 값을 넣어서 보내달라고함
+//        member.get
 
         return ResponseDto.success(member.getNickName());
     }

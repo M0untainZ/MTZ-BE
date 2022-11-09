@@ -34,7 +34,11 @@ public class CertificationService {
         String[] split = certificationRequestDto.getPhoto().split("/");
         String key = split[split.length-1].trim();
 
+        // S3에서 삭제
         amazonS3Client.deleteObject(bucketName, key);
+
+        // 인증사진 삭제
+        certificationRepositoy.deleteById(certificationRequestDto.getCertificationId());
 
         return ResponseDto.success(key + "를 삭제 완료 했습니다");
     }

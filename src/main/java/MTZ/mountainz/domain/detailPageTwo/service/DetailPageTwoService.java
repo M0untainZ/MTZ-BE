@@ -9,9 +9,7 @@ import MTZ.mountainz.domain.like.likeResponseDto.LikesResponseDto;
 import MTZ.mountainz.domain.like.repository.LikesRepository;
 import MTZ.mountainz.domain.member.entity.Member;
 import MTZ.mountainz.domain.member.repository.MemberRepository;
-import MTZ.mountainz.domain.mountain.entity.Img;
 import MTZ.mountainz.domain.mountain.entity.Mountain;
-import MTZ.mountainz.domain.mountain.repository.ImgRepository;
 import MTZ.mountainz.domain.mountain.repository.MountainRepository;
 import MTZ.mountainz.global.dto.ResponseDto;
 import MTZ.mountainz.global.exception.ErrorCode;
@@ -25,6 +23,7 @@ import com.amazonaws.util.IOUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayInputStream;
@@ -88,6 +87,7 @@ public class DetailPageTwoService {
     }
 
     // 좋아요 체크(입력)
+    @Transactional
     public ResponseDto<?> likeUp(Long mountainId, String email) {
         // 들어온 mountainId와 email 로 좋아요 여부 판단
         Optional<Likes> imsiLike = likesRepository.findByMountainIdAndMemberEmail(mountainId, email);
@@ -121,6 +121,7 @@ public class DetailPageTwoService {
     // 위도, 경도에 따라 범위에 해당하면 -> hide된 버튼 활성화
 
     // 인증하기 버튼
+    @Transactional
     public ResponseDto<?> addCertification(Long mountainId, List<MultipartFile> multipartFile, String email) throws IOException {
         Member member = getMember(email);
         Mountain mountain = mountainRepository.findById(mountainId).orElseThrow(
@@ -147,6 +148,10 @@ public class DetailPageTwoService {
                 certificationRepositoy.save(certification);
             }
         }
+
+        // member에 certificationPoint 3 증가시키기
+        member.updateCertificationPoint(3);
+
         return ResponseDto.success("인증이 완료되었습니다");
     }
 }

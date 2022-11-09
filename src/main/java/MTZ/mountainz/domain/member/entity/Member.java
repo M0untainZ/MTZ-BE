@@ -44,4 +44,7 @@ public class Member {
         this.nickName = memberRequestDto.getNickName();
         this.memberRegion = memberRequestDto.getMemberRegion();
     }
+    public void updateCertificationPoint(int certificationPoint) {
+        this.certificationPoint =certificationPoint;
+    }
  }
