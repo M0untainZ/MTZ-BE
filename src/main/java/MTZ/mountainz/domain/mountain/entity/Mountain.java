@@ -19,6 +19,7 @@ import javax.persistence.*;
 public class Mountain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "mountain_id", nullable = false)
     private Long id;
 
     @Column(name = "mountainName", nullable = false)

@@ -19,6 +19,7 @@ import javax.persistence.*;
 public class Likes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "like_id", nullable = false)
     private Long id;
 
     @JoinColumn(name = "mountain_id", nullable = false)
