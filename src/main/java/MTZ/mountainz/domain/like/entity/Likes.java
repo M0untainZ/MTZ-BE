@@ -1,4 +1,4 @@
-package MTZ.mountainz.domain.certification.entity;
+package MTZ.mountainz.domain.like.entity;
 
 import MTZ.mountainz.domain.member.entity.Member;
 import MTZ.mountainz.domain.mountain.entity.Mountain;
@@ -16,13 +16,10 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Certification {
+public class Likes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "photo", nullable = false)
-    private String photo;
 
     @JoinColumn(name = "mountain_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
@@ -34,8 +31,7 @@ public class Certification {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Member member;
 
-    public Certification(String url, Mountain mountain, Member member) {
-        this.photo = url;
+    public Likes(Mountain mountain, Member member){
         this.mountain = mountain;
         this.member = member;
     }

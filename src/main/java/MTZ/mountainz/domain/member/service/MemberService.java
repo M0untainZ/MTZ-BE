@@ -72,7 +72,7 @@ public class MemberService {
 
         setHeader(response, tokenDto);
 
-        return ResponseDto.success("로그인 성공");
+        return ResponseDto.success(member.getNickName());
     }
 
     // response에 담는 메서드

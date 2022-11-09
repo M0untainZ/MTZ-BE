@@ -21,6 +21,9 @@ public class Mountain {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "mountainName", nullable = false)
+    private String mountainName;
+
     @Column(name = "mountainRegion", nullable = false)
     private String mountainRegion;
 
@@ -45,7 +48,11 @@ public class Mountain {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Member member;
 
+    public Mountain(Long mountainId) {
+        this.id = mountainId;
+    }
     public Mountain(MountainRequestDto mountainRequestDto, Member member) {
+        this.mountainName = mountainRequestDto.getMountainName();
         this.mountainRegion = mountainRequestDto.getMountainRegion();
         this.mountainLevel = mountainRequestDto.getMountainLevel();
         this.mountainSeason = mountainRequestDto.getMountainSeason();

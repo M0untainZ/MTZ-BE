@@ -15,7 +15,10 @@ public enum ErrorCode {
 
     //로그인
     MEMBER_NOT_FOUND_404(HttpStatus.NOT_FOUND, "사용자를 찾을 수 없습니다."),
-    PASSWORD_NOT_FOUND_404(HttpStatus.NOT_FOUND, "비밀번호를 찾을 수 없습니다.");
+    PASSWORD_NOT_FOUND_404(HttpStatus.NOT_FOUND, "비밀번호를 찾을 수 없습니다."),
+
+    //상세페이지2
+    MOUNTAIN_NOT_FOUND_404(HttpStatus.NOT_FOUND, "산을 찾을 수 없습니다.");
 
 
     private final HttpStatus httpStatus;
