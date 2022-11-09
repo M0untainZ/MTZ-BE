@@ -9,4 +9,7 @@ import java.util.List;
 @Repository
 public interface CertificationRepositoy extends JpaRepository<Certification, Long> {
     List<Certification> findAllByMountainId(Long mountainId);
+
+    List<Certification> findByphoto(String mountainId);
+
 }
