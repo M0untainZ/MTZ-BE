@@ -1,14 +1,18 @@
 package MTZ.mountainz.domain.certification.service;
 
 import MTZ.mountainz.domain.certification.dto.request.CertificationRequestDto;
+import MTZ.mountainz.domain.certification.dto.response.CertificationPhotoListResponseDto;
 import MTZ.mountainz.domain.certification.entity.Certification;
 import MTZ.mountainz.domain.certification.repository.CertificationRepositoy;
+import MTZ.mountainz.domain.detailPageOne.dto.response.DetailPageOneResponseDto;
+import MTZ.mountainz.domain.mountain.entity.Mountain;
 import MTZ.mountainz.global.dto.ResponseDto;
 import com.amazonaws.services.s3.AmazonS3Client;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,7 +30,18 @@ public class CertificationService {
         // cetification 테이블 정보 다 불러오기
         List<Certification> certificationList = certificationRepositoy.findAll();
 
-        return ResponseDto.success(certificationList);
+        List<CertificationPhotoListResponseDto> certificationPhotoListResponseDtoList = new ArrayList<>();
+
+        for(Certification certification  : certificationList) {
+            certificationPhotoListResponseDtoList.add(
+                    CertificationPhotoListResponseDto.builder()
+                            .photo(certification.getPhoto())
+                            .nickName(certification.getMember().getNickName())
+                            .build()
+            );
+        }
+
+        return ResponseDto.success(certificationPhotoListResponseDtoList);
     }
 
     // 인증사진 삭제하기

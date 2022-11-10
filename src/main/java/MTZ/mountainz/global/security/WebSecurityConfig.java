@@ -5,6 +5,7 @@ import MTZ.mountainz.global.jwt.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -69,12 +70,19 @@ public class WebSecurityConfig {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.authorizeRequests()
-                .antMatchers("/api/signup").permitAll()
-                .antMatchers("/api/login").permitAll()
-                .antMatchers("/api/emailConfirm").permitAll()
-                .antMatchers("/api/nickNameConfirm").permitAll()
-                .anyRequest().authenticated()
-//                .anyRequest().permitAll()
+//                .antMatchers("/api/signup").permitAll()
+//                .antMatchers("/api/login").permitAll()
+//                .antMatchers("/api/emailConfirm").permitAll()
+//                .antMatchers("/api/nickNameConfirm").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/mountainList/{mountainId}/quiz").authenticated()
+                .antMatchers(HttpMethod.POST,"/api/mountain/{mountainId}/like").authenticated()
+                .antMatchers(HttpMethod.POST,"/api/mountain/{mountainId}/certification").authenticated()
+                .antMatchers(HttpMethod.GET,"/api/photoList").authenticated()
+                .antMatchers(HttpMethod.DELETE,"/api/photoList/sakje").authenticated()
+                .antMatchers(HttpMethod.GET,"/api/myPageList").authenticated()
+                .antMatchers(HttpMethod.PUT,"/api/myPageSujung").authenticated()
+//                .anyRequest().authenticated()
+                .anyRequest().permitAll()
                 .and()
                 .addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
 
