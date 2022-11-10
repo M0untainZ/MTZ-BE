@@ -54,7 +54,7 @@ public class DetailPageTwoService {
     }
 
     // 상세페이지2 정보 불러오기
-    public ResponseDto<?> detailPageTwoList(Long mountainId, String email) {
+    public ResponseDto<?> detailPageTwoList(Long mountainId) {
         Mountain mountain = mountainRepository.findById(mountainId).orElseThrow(
                 () -> new RequestException(ErrorCode.MOUNTAIN_NOT_FOUND_404)
         );

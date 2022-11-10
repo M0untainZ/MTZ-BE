@@ -35,9 +35,9 @@ public class MainPageService {
 
         //TOP 3명만 불러오기
 //        Member member = memberRepository.findById(id).orElseThrow(()-> new RequestException(ErrorCode.MEMBER_NOT_FOUND_404));
-//        List<Member> topList = memberRepository.findByCertifiCationPointGreaterThanOrderByCertifiCationPointDesc(0);
-//        if(topList.size()>3) topList =topList.subList(0,3);
-//        List<String> topMembers =topList.stream().map(Member::getNickName).collect(Collectors.toList());
+        List<Member> topList = memberRepository.findByCertificationPointGreaterThanOrderByCertificationPointDesc(0);
+        if(topList.size()>3) topList =topList.subList(0,3);
+        List<String> topMembers =topList.stream().map(Member::getNickName).collect(Collectors.toList());
 
         //인증 사진 리스트
         List<Certification> photoList = certificationRepositoy.findAll();

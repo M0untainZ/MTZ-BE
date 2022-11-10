@@ -22,7 +22,7 @@ public class CertificationService {
     private String bucketName;
 
     // 인증 페이지에 인증사진 불러오기
-    public ResponseDto<?> certificationList(String email) {
+    public ResponseDto<?> certificationList() {
         // cetification 테이블 정보 다 불러오기
         List<Certification> certificationList = certificationRepositoy.findAll();
 
