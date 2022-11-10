@@ -18,10 +18,10 @@ public class Quiz {
     @Column(name = "quiz_id", nullable = false)
     private Long id;
 
-    @Column(name = "quiz_id", nullable = false)
+    @Column(name = "quiz_question", nullable = false)
     private Long quizQuestion;
 
-    @Column(name = "quiz_id", nullable = false)
+    @Column(name = "quiz_answer", nullable = false)
     private String quizAnswer;
 
 

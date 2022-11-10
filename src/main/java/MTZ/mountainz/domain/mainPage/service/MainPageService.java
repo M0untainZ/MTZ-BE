@@ -10,9 +10,10 @@ import MTZ.mountainz.domain.member.repository.MemberRepository;
 import MTZ.mountainz.domain.mountain.dto.response.MountainListDto;
 import MTZ.mountainz.domain.mountain.entity.Mountain;
 import MTZ.mountainz.domain.mountain.repository.MountainRepository;
+import MTZ.mountainz.domain.tag.dto.TagResponseDto;
+import MTZ.mountainz.domain.tag.entity.Tag;
+import MTZ.mountainz.domain.tag.repository.TagRepository;
 import MTZ.mountainz.global.dto.ResponseDto;
-import MTZ.mountainz.global.exception.ErrorCode;
-import MTZ.mountainz.global.exception.RequestException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +29,7 @@ public class MainPageService {
     private final MemberRepository memberRepository;
     private final MountainRepository mountainRepository;
     private final CertificationRepositoy certificationRepositoy;
+    private final TagRepository tagRepository;
 
     //메인 페이지 정보 불러오기
     @Transactional(readOnly = true)
@@ -37,6 +39,19 @@ public class MainPageService {
         List<Member> topList = memberRepository.findByCertificationPointGreaterThanOrderByCertificationPointDesc(0);
         if(topList.size()>3) topList =topList.subList(0,3);
         List<String> topMembers =topList.stream().map(Member::getNickName).collect(Collectors.toList());
+
+        //태그 리스트
+        List<Tag> imsiTagList = tagRepository.findAll();
+        List<TagResponseDto> addTagList = new ArrayList<>();
+
+        for(Tag imsiTag : imsiTagList) {
+            addTagList.add(
+                    TagResponseDto.builder()
+                            .tag(imsiTag.getTagName())
+                            .tagImg(imsiTag.getTagImg())
+                            .build()
+            );
+        }
 
         //인증 사진 리스트
         List<Certification> photoList = certificationRepositoy.findAll();
@@ -53,6 +68,7 @@ public class MainPageService {
                 MainPageResponseDto.builder()
                         .topMembers(topMembers)
                         .certificationPhoto(certificationPhotoList)
+                        .tagList(addTagList)
                         .build()
         );
 
