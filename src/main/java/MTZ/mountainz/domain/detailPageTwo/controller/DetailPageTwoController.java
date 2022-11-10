@@ -21,8 +21,8 @@ public class DetailPageTwoController {
 
     // 상세페이지2 정보 불러오기
     @GetMapping("/mountain/{mountainId}")
-    public ResponseDto<?> detailPageTwoList(@PathVariable Long mountainId, @AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
-        return detailPageTwoService.detailPageTwoList(mountainId, userDetailsImpl.getMember().getEmail());
+    public ResponseDto<?> detailPageTwoList(@PathVariable Long mountainId) {
+        return detailPageTwoService.detailPageTwoList(mountainId);
     }
 
     // 좋아요 체크(입력)

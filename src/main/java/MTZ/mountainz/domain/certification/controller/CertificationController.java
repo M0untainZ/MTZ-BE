@@ -17,8 +17,8 @@ public class CertificationController {
 
     // 인증 페이지에 인증사진 불러오기
     @GetMapping("/photoList")
-    public ResponseDto<?> certificationList (@AuthenticationPrincipal UserDetailsImpl userDetailsImpl){
-        return certificationService.certificationList(userDetailsImpl.getMember().getEmail());
+    public ResponseDto<?> certificationList (){
+        return certificationService.certificationList();
     }
 
     // 인증사진 삭제하기
