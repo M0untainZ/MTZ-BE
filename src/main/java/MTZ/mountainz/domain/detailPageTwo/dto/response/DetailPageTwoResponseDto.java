@@ -1,6 +1,5 @@
 package MTZ.mountainz.domain.detailPageTwo.dto.response;
 
-import MTZ.mountainz.domain.certification.entity.Certification;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,7 +11,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class detailPageTwoResponseDto {
+public class DetailPageTwoResponseDto {
     private String mountainName;
     private String mountainRegion;
     private String mountainLevel;

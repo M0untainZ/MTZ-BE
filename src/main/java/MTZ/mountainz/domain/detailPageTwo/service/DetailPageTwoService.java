@@ -3,7 +3,7 @@ package MTZ.mountainz.domain.detailPageTwo.service;
 import MTZ.mountainz.domain.certification.entity.Certification;
 import MTZ.mountainz.domain.certification.repository.CertificationRepositoy;
 import MTZ.mountainz.domain.detailPageTwo.dto.response.CertificationResponseDto;
-import MTZ.mountainz.domain.detailPageTwo.dto.response.detailPageTwoResponseDto;
+import MTZ.mountainz.domain.detailPageTwo.dto.response.DetailPageTwoResponseDto;
 import MTZ.mountainz.domain.like.entity.Likes;
 import MTZ.mountainz.domain.like.likeResponseDto.LikesResponseDto;
 import MTZ.mountainz.domain.like.repository.LikesRepository;
@@ -74,7 +74,7 @@ public class DetailPageTwoService {
         }
 
         return ResponseDto.success(
-                detailPageTwoResponseDto.builder()
+                DetailPageTwoResponseDto.builder()
                         .mountainName(mountain.getMountainName())
                         .mountainRegion(mountain.getMountainRegion())
                         .mountainLevel(mountain.getMountainLevel())

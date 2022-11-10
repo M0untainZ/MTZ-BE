@@ -46,6 +46,6 @@ public class Member {
         this.memberRegion = memberRequestDto.getMemberRegion();
     }
     public void updateCertificationPoint(int certificationPoint) {
-        this.certificationPoint =certificationPoint;
+        this.certificationPoint += certificationPoint;
     }
  }
