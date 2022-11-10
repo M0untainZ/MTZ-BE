@@ -1,13 +1,9 @@
 package MTZ.mountainz.domain.mainPage.controller;
 
-
 import MTZ.mountainz.domain.mainPage.service.MainPageService;
-import MTZ.mountainz.domain.member.dto.request.MemberRequestDto;
 import MTZ.mountainz.global.dto.ResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,7 +17,6 @@ public class MainPageController {
     @GetMapping("/main")
     public ResponseDto<?> getMain() {
         return mainPageService.getMain();
-
     }
     //지역별 산 목록 불러오기
     @GetMapping("/mountainRegionList/{mountainRegion}")
@@ -33,7 +28,6 @@ public class MainPageController {
     public ResponseDto<?> getLevelList(@PathVariable String mountainLevel) {
         return mainPageService.getLevelList(mountainLevel);
     }
-
     //태그 관련 목록 불러오기(계절)
     @GetMapping("/mountainSeasonList/{mountainSeason}")
     public ResponseDto<?> getSeasonList(@PathVariable String mountainSeason) {

@@ -10,11 +10,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @Builder
-public class certificationPhotoListDto {
+public class CertificationPhotoListDto {
     private String photo;
 
-    public static certificationPhotoListDto of(Certification certification) {
-        return certificationPhotoListDto.builder()
+    public static CertificationPhotoListDto of(Certification certification) {
+        return CertificationPhotoListDto.builder()
                 .photo(certification.getPhoto())
                 .build();
     }
