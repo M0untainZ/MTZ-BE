@@ -17,35 +17,9 @@ import java.util.List;
 @Getter
 @Builder
 public class MainPageResponseDto {
-    //member
-    private Long id;
-    private String email;
-    private String nickName;
-    private String memberRegion;
-    private String badgeName;
-    //mountain
-    private String mountainRegion;
-    private String mountainLevel;
-    private String mountainSeason;
-    private String mountainName;
-    private String mountainImg;
-    //certification
+
     private List<String> topMembers;
     private List<CertificationResponseDto> certificationPhoto;
     private List<TagResponseDto> tagList;
 
-//    public static MainPageResponseDto of(Member member, Mountain mountain, Certification certification) {
-//        return MainPageResponseDto.builder()
-//                .id(member.getId())
-//                .email(member.getEmail())
-//                .nickName(member.getNickName())
-//                .memberRegion(member.getMemberRegion())
-//                .badgeName(member.getBadgeName())
-//                .mountainRegion(mountain.getMountainRegion())
-//                .mountainLevel(mountain.getMountainLevel())
-//                .mountainSeason(mountain.getMountainSeason())
-//                .mountainName(mountain.getMountainName())
-//                .mountainImg(mountain.getMountainImg())
-//                .build();
-//    }
 }
