@@ -1,15 +1,21 @@
 package MTZ.mountainz.domain.badge.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-import MTZ.mountainz.domain.member.entity.Member;
-import MTZ.mountainz.domain.mountain.entity.Mountain;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import javax.persistence.*;
+import MTZ.mountainz.domain.member.entity.Member;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
@@ -17,29 +23,27 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Badge {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "badge_id", nullable = false)
+	private Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "badge_id", nullable = false)
-    private Long id;
+	@JoinColumn(name = "member_id", nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private Member member;
 
-    @JoinColumn(name = "member_id", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Member member;
+	@Column(name = "badgeContent", nullable = false)
+	private String badgeContent;
 
-    @Column(name = "badgeContent", nullable = false)
-    private String badgeContent;
+	public Badge(Long badgeId) {
+		this.id = badgeId;
+	}
 
-
-    public Badge(Long badgeId) {
-        this.id = badgeId;
-    }
-
-    public Badge(Member member){
-        this.member = member;
-        this.badgeContent = badgeContent;
-    }
+	public Badge(Member member) {
+		this.member = member;
+		this.badgeContent = badgeContent;
+	}
 }
 
 

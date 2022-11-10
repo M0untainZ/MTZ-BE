@@ -1,6 +1,5 @@
 package MTZ.mountainz.domain.member.dto.request;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class NickNameConfirmDto {
-    String nickName;
+	String nickName;
 
 }

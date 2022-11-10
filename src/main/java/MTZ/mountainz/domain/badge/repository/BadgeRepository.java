@@ -1,13 +1,14 @@
 package MTZ.mountainz.domain.badge.repository;
 
-import MTZ.mountainz.domain.badge.entity.Badge;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import MTZ.mountainz.domain.badge.entity.Badge;
 
 @Repository
 public interface BadgeRepository extends JpaRepository<Badge, Long> {
 
-    List<Badge> findAllBymemberId(Long memberId);
+	List<Badge> findAllBymemberId(Long memberId);
 }

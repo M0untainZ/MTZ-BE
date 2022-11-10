@@ -1,4 +1,4 @@
-package MTZ.mountainz.domain.tag.dto;
+package MTZ.mountainz.domain.member.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TagResponseDto {
-	private String tag;
-	private String tagImg;
+public class LoginResponseDto {
+	private String nickName;
+	private String badgeName;
 }
