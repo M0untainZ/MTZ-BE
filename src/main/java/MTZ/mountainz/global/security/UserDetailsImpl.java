@@ -14,6 +14,10 @@ public class UserDetailsImpl implements UserDetails {
         return this.member;
     }
 
+    public Member getNickName() {
+        return this.getNickName();
+    }
+
     public void setMember(Member member) {
         this.member = member;
     }
