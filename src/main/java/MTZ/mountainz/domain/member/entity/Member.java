@@ -1,6 +1,8 @@
 package MTZ.mountainz.domain.member.entity;
 
 import MTZ.mountainz.domain.member.dto.request.MemberRequestDto;
+import MTZ.mountainz.domain.myPage.dto.MyPageRequestDto;
+import MTZ.mountainz.domain.myPage.dto.MyPageResponseDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,6 +41,9 @@ public class Member {
     @Column(name = "badgeName")
     private String badgeName;
 
+    @Column(name = "profilePhoto")
+    private String profilePhoto;
+
     public Member(MemberRequestDto memberRequestDto){
         this.email = memberRequestDto.getEmail();
         this.password = memberRequestDto.getPassword();
@@ -48,4 +53,14 @@ public class Member {
     public void updateCertificationPoint(int certificationPoint) {
         this.certificationPoint += certificationPoint;
     }
+
+
+    public void update(MyPageRequestDto myPageRequestDto) {
+        this.profilePhoto = myPageRequestDto.getProfilePhoto();
+        this.nickName = myPageRequestDto.getNickName();
+        this.memberRegion = myPageRequestDto.getMemberRegion();
+        this.badgeName = myPageRequestDto.getMemberBadgeName();
+    }
  }
+
+
