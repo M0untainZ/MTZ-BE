@@ -4,6 +4,7 @@ import MTZ.mountainz.domain.certification.entity.Certification;
 import MTZ.mountainz.domain.detailPageTwo.dto.response.CertificationResponseDto;
 import MTZ.mountainz.domain.member.entity.Member;
 import MTZ.mountainz.domain.mountain.entity.Mountain;
+import MTZ.mountainz.domain.tag.dto.TagResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,6 +32,7 @@ public class MainPageResponseDto {
     //certification
     private List<String> topMembers;
     private List<CertificationResponseDto> certificationPhoto;
+    private List<TagResponseDto> tagList;
 
 //    public static MainPageResponseDto of(Member member, Mountain mountain, Certification certification) {
 //        return MainPageResponseDto.builder()
