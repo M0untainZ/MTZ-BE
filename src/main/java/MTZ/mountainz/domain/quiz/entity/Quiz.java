@@ -21,11 +21,11 @@ public class Quiz {
 	@Column(name = "quiz_id", nullable = false)
 	private Long id;
 
-	@Column(name = "quiz_question", nullable = false)
-	private Long quizQuestion;
+	@Column(name = "question", nullable = false)
+	private Long question;
 
-	@Column(name = "quiz_answer", nullable = false)
-	private String quizAnswer;
+	@Column(name = "answer", nullable = false)
+	private String answer;
 
 	public Quiz(Long quizId) {
 		this.id = quizId;

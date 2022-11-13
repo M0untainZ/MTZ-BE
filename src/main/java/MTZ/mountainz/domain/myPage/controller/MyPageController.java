@@ -21,7 +21,7 @@ public class MyPageController {
 	private final MyPageService myPageService;
 
 	//마이 페이지 정보 불러오기
-	@GetMapping("/myPageList")
+	@GetMapping("/myPages")
 	public ResponseDto<?> getMyPageList(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
 		return myPageService.getMyPageList(userDetailsImpl.getMember().getEmail());
 	}

@@ -18,13 +18,13 @@ public class CertificationController {
 	private final CertificationService certificationService;
 
 	// 인증 페이지에 인증사진 불러오기
-	@GetMapping("/photoList")
+	@GetMapping("/photos")
 	public ResponseDto<?> certificationList() {
 		return certificationService.certificationList();
 	}
 
 	// 인증사진 삭제하기
-	@DeleteMapping("/photoList/sakje")
+	@DeleteMapping("/photos/sakje")
 	public ResponseDto<?> certificationSakje(@RequestBody CertificationRequestDto certificationRequestDto) {
 		return certificationService.certificationSakje(certificationRequestDto);
 	}

@@ -39,8 +39,8 @@ public class MyPageService {
 			MyPageResponseDto.builder()
 				.profilePhoto(member.getProfilePhoto())
 				.nickName(member.getNickName())
-				.MemberRegion(member.getMemberRegion())
-				.memberBadgeList(badgeRepository.findAllBymemberId(member.getId()))
+				.region(member.getRegion())
+				.badgeList(badgeRepository.findAllByMemberId(member.getId()))
 				.build()
 		);
 	}

@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import MTZ.mountainz.domain.detailPageOne.dto.request.FilterRequestDto;
+import MTZ.mountainz.domain.detailPageOne.dto.request.KeywordRequestDto;
 import MTZ.mountainz.domain.detailPageOne.dto.response.DetailPageOneResponseDto;
 import MTZ.mountainz.domain.like.repository.LikesRepository;
 import MTZ.mountainz.domain.mountain.entity.Mountain;
@@ -27,9 +30,9 @@ public class DetailPageOneService {
 		for (Mountain mountain : mountainList) {
 			detailPageOneResponseDtoList.add(
 				DetailPageOneResponseDto.builder()
-					.mountainName(mountain.getMountainName())
-					.mountainImg(mountain.getMountainImg())
-					.mountainQuiz(mountain.getMountainQuiz())
+					.name(mountain.getName())
+					.img(mountain.getImg())
+					.quiz(mountain.getQuiz())
 					// 산 id를 받아서 좋아요 수 반환해서 산 좋아요 count에 + 해주기
 					.mountainLikeTotal(likesRepository.countAllByMountainId(mountain.getId()))
 					.build()
@@ -37,5 +40,27 @@ public class DetailPageOneService {
 		}
 
 		return ResponseDto.success(detailPageOneResponseDtoList);
+	}
+
+	// 퀴즈풀기
+	// public ResponseDto<?> solveQuiz(QuizRequestDto quizRequestDto, String email) {
+	//
+	// }
+
+	// 키워드 검색 (산이름만 추후 queryDSL로 전체 조회할 예정)
+	@Transactional
+	public ResponseDto<?> getKeywordSearch(KeywordRequestDto keywordRequestDto) {
+		List<Mountain> mountainSearchList = mountainRepository.findByName(keywordRequestDto.getKeyword());
+		return ResponseDto.success(mountainSearchList);
+	}
+
+	// 필터 검색 (원하는 값이 나오지않았다 queryDSL로 리팩토링 할 것)
+	@Transactional
+	public ResponseDto<?> getFilterSearch(FilterRequestDto filterRequestDto) {
+		List<Mountain> mountainFilterList = mountainRepository.findByRegionAndSeasonAndLevelAndTime(
+			filterRequestDto.getRegion(), filterRequestDto.getSeason(),
+			filterRequestDto.getLevel(), filterRequestDto.getTime()
+		);
+		return ResponseDto.success(mountainFilterList);
 	}
 }

@@ -23,21 +23,21 @@ public class MainPageController {
 	}
 
 	//지역별 산 목록 불러오기
-	@GetMapping("/mountainRegionList/{mountainRegion}")
-	public ResponseDto<?> getRegionList(@PathVariable String mountainRegion) {
-		return mainPageService.getRegionList(mountainRegion);
+	@GetMapping("/mountains/{region}")
+	public ResponseDto<?> getRegionList(@PathVariable String region) {
+		return mainPageService.getRegionList(region);
 	}
 
 	//태그 관련 목록 불러오기(난이도)
-	@GetMapping("/mountainLevelList/{mountainLevel}")
-	public ResponseDto<?> getLevelList(@PathVariable String mountainLevel) {
-		return mainPageService.getLevelList(mountainLevel);
+	@GetMapping("/mountains/{level}")
+	public ResponseDto<?> getLevelList(@PathVariable String level) {
+		return mainPageService.getLevelList(level);
 	}
 
 	//태그 관련 목록 불러오기(계절)
-	@GetMapping("/mountainSeasonList/{mountainSeason}")
-	public ResponseDto<?> getSeasonList(@PathVariable String mountainSeason) {
-		return mainPageService.getSeasonList(mountainSeason);
+	@GetMapping("/mountains/{season}")
+	public ResponseDto<?> getSeasonList(@PathVariable String season) {
+		return mainPageService.getSeasonList(season);
 	}
 }
 

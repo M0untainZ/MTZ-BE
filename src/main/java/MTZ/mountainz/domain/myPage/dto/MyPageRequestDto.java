@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MyPageRequestDto {
 
-    String profilePhoto;
-    String nickName;
-    String memberRegion;
-    String memberBadgeName;
+	String profilePhoto;
+	String nickName;
+	String region;
+	String badgeName;
 }

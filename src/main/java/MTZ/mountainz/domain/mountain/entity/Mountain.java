@@ -30,26 +30,26 @@ public class Mountain {
 	@Column(name = "mountain_id", nullable = false)
 	private Long id;
 
-	@Column(name = "mountainName", nullable = false)
-	private String mountainName;
+	@Column(name = "name", nullable = false)
+	private String name;
 
-	@Column(name = "mountainRegion", nullable = false)
-	private String mountainRegion;
+	@Column(name = "region", nullable = false)
+	private String region;
 
-	@Column(name = "mountainLevel", nullable = false)
-	private String mountainLevel;
+	@Column(name = "level", nullable = false)
+	private String level;
 
-	@Column(name = "mountainSeason", nullable = false)
-	private String mountainSeason;
+	@Column(name = "season", nullable = false)
+	private String season;
 
-	@Column(name = "mountainTime", nullable = false)
-	private String mountainTime;
+	@Column(name = "time", nullable = false)
+	private String time;
 
-	@Column(name = "mountainQuiz")
-	private String mountainQuiz;
+	@Column(name = "quiz")
+	private String quiz;
 
-	@Column(name = "mountainImg", nullable = false)
-	private String mountainImg;
+	@Column(name = "img", nullable = false)
+	private String img;
 
 	@Column(name = "latitude")
 	private String latitude;
@@ -68,13 +68,13 @@ public class Mountain {
 	}
 
 	public Mountain(MountainRequestDto mountainRequestDto, Member member) {
-		this.mountainName = mountainRequestDto.getMountainName();
-		this.mountainRegion = mountainRequestDto.getMountainRegion();
-		this.mountainLevel = mountainRequestDto.getMountainLevel();
-		this.mountainSeason = mountainRequestDto.getMountainSeason();
-		this.mountainTime = mountainRequestDto.getMountainTime();
-		this.mountainQuiz = mountainRequestDto.getMountainQuiz();
-		this.mountainImg = mountainRequestDto.getMountainImg();
+		this.name = mountainRequestDto.getName();
+		this.region = mountainRequestDto.getRegion();
+		this.level = mountainRequestDto.getLevel();
+		this.season = mountainRequestDto.getSeason();
+		this.time = mountainRequestDto.getTime();
+		this.quiz = mountainRequestDto.getQuiz();
+		this.img = mountainRequestDto.getImg();
 		this.member = member;
 	}
 }

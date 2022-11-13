@@ -1,19 +1,17 @@
-package MTZ.mountainz.domain.mountain.dto.request;
+package MTZ.mountainz.domain.detailPageOne.dto.request;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MountainRequestDto {
-	private Long id;
-	private String name;
+public class FilterRequestDto {
 	private String region;
-	private String level;
 	private String season;
+	private String level;
 	private String time;
-	private String quiz;
-	private String img;
 }

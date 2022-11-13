@@ -23,11 +23,11 @@ public class Tag {
 	@Column(name = "tag_id", nullable = false)
 	private Long id;
 
-	@Column(name = "tag_name", nullable = false)
-	private String tagName;
+	@Column(name = "name", nullable = false)
+	private String name;
 
-	@Column(name = "tag_img", nullable = false)
-	private String tagImg;
+	@Column(name = "img", nullable = false)
+	private String img;
 
 	public Tag(Long tagId) {
 		this.id = tagId;

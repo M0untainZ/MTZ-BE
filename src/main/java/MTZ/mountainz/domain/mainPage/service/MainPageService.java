@@ -48,8 +48,8 @@ public class MainPageService {
 		for (Tag imsiTag : imsiTagList) {
 			addTagList.add(
 				TagResponseDto.builder()
-					.tag(imsiTag.getTagName())
-					.tagImg(imsiTag.getTagImg())
+					.name(imsiTag.getName())
+					.img(imsiTag.getImg())
 					.build()
 			);
 		}
@@ -77,17 +77,17 @@ public class MainPageService {
 
 	//지역별 산 목록 불러오기
 	@Transactional(readOnly = true)
-	public ResponseDto<?> getRegionList(String mountainRegion) {
+	public ResponseDto<?> getRegionList(String region) {
 		// 해당 산의 지역 찾기
-		List<Mountain> mountainList = mountainRepository.findByMountainRegion(mountainRegion);
+		List<Mountain> mountainList = mountainRepository.findByRegion(region);
 		List<MountainListDto> mountainRegionList = new ArrayList<>();
 
 		for (Mountain imsiMountain : mountainList) {
 			mountainRegionList.add(
 				MountainListDto.builder()
-					.mountainImg(imsiMountain.getMountainImg())
-					.mountainName(imsiMountain.getMountainName())
-					.mountainRegion(imsiMountain.getMountainRegion())
+					.img(imsiMountain.getImg())
+					.name(imsiMountain.getName())
+					.region(imsiMountain.getRegion())
 					.build()
 			);
 		}
@@ -96,17 +96,17 @@ public class MainPageService {
 
 	//태그 관련 목록 불러오기(난이도)
 	@Transactional(readOnly = true)
-	public ResponseDto<?> getLevelList(String mountainLevel) {
+	public ResponseDto<?> getLevelList(String level) {
 		// 해당 산의 난이도 찾기
-		List<Mountain> mountainList = mountainRepository.findByMountainLevel(mountainLevel); //산 리스트에서 레벨 목록 뽑기
+		List<Mountain> mountainList = mountainRepository.findByLevel(level); //산 리스트에서 레벨 목록 뽑기
 		List<MountainListDto> mountainLevelList = new ArrayList<>();
 
 		for (Mountain imsiLevel : mountainList) {
 			mountainLevelList.add(
 				MountainListDto.builder()
-					.mountainImg(imsiLevel.getMountainImg())
-					.mountainName(imsiLevel.getMountainName())
-					.mountainLevel(imsiLevel.getMountainLevel())
+					.img(imsiLevel.getImg())
+					.name(imsiLevel.getName())
+					.level(imsiLevel.getLevel())
 					.build()
 			);
 		}
@@ -115,17 +115,17 @@ public class MainPageService {
 
 	//태그 관련 목록 불러오기(계절)
 	@Transactional(readOnly = true)
-	public ResponseDto<?> getSeasonList(String mountainSeason) {
+	public ResponseDto<?> getSeasonList(String season) {
 		// 해당 산의 계절 찾기
-		List<Mountain> mountainList = mountainRepository.findByMountainSeason(mountainSeason); //산 리스트에서 계절 목록 뽑기
+		List<Mountain> mountainList = mountainRepository.findBySeason(season); //산 리스트에서 계절 목록 뽑기
 		List<MountainListDto> mountainSeasonList = new ArrayList<>();
 
 		for (Mountain imsiSeason : mountainList) {
 			mountainSeasonList.add(
 				MountainListDto.builder()
-					.mountainImg(imsiSeason.getMountainImg())
-					.mountainName(imsiSeason.getMountainName())
-					.mountainSeason(imsiSeason.getMountainSeason())
+					.img(imsiSeason.getImg())
+					.name(imsiSeason.getName())
+					.season(imsiSeason.getSeason())
 					.build()
 			);
 		}

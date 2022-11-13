@@ -10,11 +10,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MountainResponseDto {
-    private String mountainName;
-    private String mountainRegion;
-    private String mountainLevel;
-    private String mountainSeason;
-    private String mountainTime;
-    private String mountainQuiz;
-    private String mountainImg;
+	private String name;
+	private String region;
+	private String level;
+	private String season;
+	private String time;
+	private String quiz;
+	private String img;
 }

@@ -10,9 +10,14 @@ import MTZ.mountainz.domain.mountain.entity.Mountain;
 @Repository
 public interface MountainRepository extends JpaRepository<Mountain, Long> {
 
-	List<Mountain> findByMountainRegion(String mountainRegion);
+	List<Mountain> findByRegion(String region);
 
-	List<Mountain> findByMountainLevel(String mountainLevel);
+	List<Mountain> findByLevel(String level);
 
-	List<Mountain> findByMountainSeason(String mountainSeason);
+	List<Mountain> findBySeason(String season);
+
+	List<Mountain> findByName(String name);
+
+	List<Mountain> findByRegionAndSeasonAndLevelAndTime(
+		String region, String season, String level, String time);
 }

@@ -71,12 +71,12 @@ public class WebSecurityConfig {
 
 		http.authorizeRequests()
 
-			.antMatchers(HttpMethod.POST, "/api/mountainList/{mountainId}/quiz").authenticated()
+			.antMatchers(HttpMethod.POST, "/api/mountains/{mountainId}/quiz").authenticated()
 			.antMatchers(HttpMethod.POST, "/api/mountain/{mountainId}/like").authenticated()
 			.antMatchers(HttpMethod.POST, "/api/mountain/{mountainId}/certification").authenticated()
-			.antMatchers(HttpMethod.GET, "/api/photoList").authenticated()
-			.antMatchers(HttpMethod.DELETE, "/api/photoList/sakje").authenticated()
-			.antMatchers(HttpMethod.GET, "/api/myPageList").authenticated()
+			.antMatchers(HttpMethod.GET, "/api/photos").authenticated()
+			.antMatchers(HttpMethod.DELETE, "/api/photos/sakje").authenticated()
+			.antMatchers(HttpMethod.GET, "/api/myPages").authenticated()
 			.antMatchers(HttpMethod.PUT, "/api/myPageSujung").authenticated()
 
 			.anyRequest().permitAll()

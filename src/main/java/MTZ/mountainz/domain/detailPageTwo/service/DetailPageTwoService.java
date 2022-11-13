@@ -77,12 +77,12 @@ public class DetailPageTwoService {
 
 		return ResponseDto.success(
 			DetailPageTwoResponseDto.builder()
-				.mountainName(mountain.getMountainName())
-				.mountainRegion(mountain.getMountainRegion())
-				.mountainLevel(mountain.getMountainLevel())
-				.mountainSeason(mountain.getMountainSeason())
-				.mountainTime(mountain.getMountainTime())
-				.mountainQuiz(mountain.getMountainQuiz())
+				.name(mountain.getName())
+				.region(mountain.getRegion())
+				.level(mountain.getLevel())
+				.season(mountain.getSeason())
+				.time(mountain.getTime())
+				.quiz(mountain.getQuiz())
 				.certificatedMountainList(certificationResponseDtoList)
 				.latitude(mountain.getLatitude())
 				.longitude(mountain.getLongitude())

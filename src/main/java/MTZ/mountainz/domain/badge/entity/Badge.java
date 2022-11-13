@@ -33,8 +33,8 @@ public class Badge {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Member member;
 
-	@Column(name = "badgeContent", nullable = false)
-	private String badgeContent;
+	@Column(name = "content", nullable = false)
+	private String content;
 
 	public Badge(Long badgeId) {
 		this.id = badgeId;
@@ -42,7 +42,7 @@ public class Badge {
 
 	public Badge(Member member) {
 		this.member = member;
-		this.badgeContent = badgeContent;
+		this.content = content;
 	}
 }
 

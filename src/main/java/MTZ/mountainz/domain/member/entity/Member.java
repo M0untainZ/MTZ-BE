@@ -31,8 +31,8 @@ public class Member {
 	@Column(name = "nickName", nullable = false)
 	private String nickName;
 
-	@Column(name = "memberRegion", nullable = false)
-	private String memberRegion;
+	@Column(name = "region", nullable = false)
+	private String region;
 
 	@Column(name = "certificationPoint")
 	private int certificationPoint;
@@ -50,7 +50,7 @@ public class Member {
 		this.email = memberRequestDto.getEmail();
 		this.password = memberRequestDto.getPassword();
 		this.nickName = memberRequestDto.getNickName();
-		this.memberRegion = memberRequestDto.getMemberRegion();
+		this.region = memberRequestDto.getRegion();
 	}
 
 	public void updateCertificationPoint(int certificationPoint) {
@@ -60,8 +60,8 @@ public class Member {
 	public void update(MyPageRequestDto myPageRequestDto) {
 		this.profilePhoto = myPageRequestDto.getProfilePhoto();
 		this.nickName = myPageRequestDto.getNickName();
-		this.memberRegion = myPageRequestDto.getMemberRegion();
-		this.badgeName = myPageRequestDto.getMemberBadgeName();
+		this.region = myPageRequestDto.getRegion();
+		this.badgeName = myPageRequestDto.getBadgeName();
 	}
 }
 

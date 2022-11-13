@@ -25,15 +25,15 @@ public class MemberRequestDto {
 	private String nickName;
 
 	@NotBlank(message = "지역은 필수 입력 값 입니다.")
-	private String memberRegion;
+	private String region;
 
 	public MemberRequestDto(String email, String password, String passwordConfirm, String nickName,
-		String memberRegion) {
+		String region) {
 		this.email = email;
 		this.password = password;
 		this.passwordConfirm = passwordConfirm;
 		this.nickName = nickName;
-		this.memberRegion = memberRegion;
+		this.region = region;
 	}
 
 	public void setEncodedPwd(String encodedPwd) {

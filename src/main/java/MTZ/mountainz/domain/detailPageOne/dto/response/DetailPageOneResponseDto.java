@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DetailPageOneResponseDto {
-	private String mountainName;
-	private String mountainQuiz;
-	private String mountainImg;
+	private String name;
+	private String quiz;
+	private String img;
 	private Long mountainLikeTotal;
 }

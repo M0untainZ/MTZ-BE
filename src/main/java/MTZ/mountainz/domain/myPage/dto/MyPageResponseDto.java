@@ -16,6 +16,6 @@ public class MyPageResponseDto {
 
 	String profilePhoto;
 	String nickName;
-	String MemberRegion;
-	List<Badge> memberBadgeList;
+	String region;
+	List<Badge> badgeList;
 }
