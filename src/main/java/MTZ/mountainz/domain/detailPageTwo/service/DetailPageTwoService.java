@@ -150,6 +150,9 @@ public class DetailPageTwoService {
 
 				Certification certification = new Certification(imgUrl, mountain, member);
 
+				// 사진이 null 이면 NOT_FOUND
+
+				// 사진이 있을때 save
 				certificationRepositoy.save(certification);
 			}
 		}

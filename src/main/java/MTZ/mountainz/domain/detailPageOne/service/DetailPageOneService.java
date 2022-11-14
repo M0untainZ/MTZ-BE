@@ -50,17 +50,19 @@ public class DetailPageOneService {
 	// 키워드 검색 (산이름만 추후 queryDSL로 전체 조회할 예정)
 	@Transactional
 	public ResponseDto<?> getKeywordSearch(KeywordRequestDto keywordRequestDto) {
-		List<Mountain> mountainSearchList = mountainRepository.findByName(keywordRequestDto.getKeyword());
+		// List<Mountain> mountainSearchList = mountainRepository.findByName(keywordRequestDto.getKeyword());
+		List<Mountain> mountainSearchList = mountainRepository.findByKeyword(keywordRequestDto.getKeyword());
 		return ResponseDto.success(mountainSearchList);
 	}
 
 	// 필터 검색 (원하는 값이 나오지않았다 queryDSL로 리팩토링 할 것)
 	@Transactional
 	public ResponseDto<?> getFilterSearch(FilterRequestDto filterRequestDto) {
-		List<Mountain> mountainFilterList = mountainRepository.findByRegionAndSeasonAndLevelAndTime(
-			filterRequestDto.getRegion(), filterRequestDto.getSeason(),
-			filterRequestDto.getLevel(), filterRequestDto.getTime()
-		);
+		// List<Mountain> mountainFilterList = mountainRepository.findByRegionAndSeasonAndLevelAndTime(
+		// 	filterRequestDto.getRegion(), filterRequestDto.getSeason(),
+		// 	filterRequestDto.getLevel(), filterRequestDto.getTime()
+		// );
+		List<Mountain> mountainFilterList = mountainRepository.findByMountainFilter(filterRequestDto);
 		return ResponseDto.success(mountainFilterList);
 	}
 }
