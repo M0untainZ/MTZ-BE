@@ -74,12 +74,11 @@ public class MemberService {
 
 		setHeader(response, tokenDto);
 
-		// 지역도 같이 넘기기
-
 		return ResponseDto.success(
 			LoginResponseDto.builder()
 				.nickName(member.getNickName())
 				.badgeName(member.getBadgeName())
+				.region(member.getRegion())
 				.build()
 		);
 	}

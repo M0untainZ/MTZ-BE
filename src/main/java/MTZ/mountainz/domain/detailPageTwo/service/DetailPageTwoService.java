@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -56,6 +57,7 @@ public class DetailPageTwoService {
 	}
 
 	// 상세페이지2 정보 불러오기
+	@Cacheable(value = "Mountain", key = "#mountainId", cacheManager = "redisCacheManager")
 	public ResponseDto<?> detailPageTwoList(Long mountainId) {
 		Mountain mountain = mountainRepository.findById(mountainId).orElseThrow(
 			() -> new RequestException(ErrorCode.MOUNTAIN_NOT_FOUND_404)

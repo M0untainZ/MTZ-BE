@@ -28,7 +28,7 @@ public class MainPageService {
 
 	private final MemberRepository memberRepository;
 	private final MountainRepository mountainRepository;
-	private final CertificationRepository certificationRepositoy;
+	private final CertificationRepository certificationRepository;
 	private final TagRepository tagRepository;
 
 	//메인 페이지 정보 불러오기
@@ -55,7 +55,7 @@ public class MainPageService {
 		}
 
 		//인증 사진 리스트
-		List<Certification> photoList = certificationRepositoy.findAll();
+		List<Certification> photoList = certificationRepository.findAll();
 		List<CertificationResponseDto> certificationPhotoList = new ArrayList<>();
 
 		for (Certification imsiPhoto : photoList) {

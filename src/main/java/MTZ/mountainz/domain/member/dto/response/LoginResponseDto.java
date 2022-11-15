@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 public class LoginResponseDto {
 	private String nickName;
 	private String badgeName;
+	private String region;
 }

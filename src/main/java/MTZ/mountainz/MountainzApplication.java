@@ -2,8 +2,10 @@ package MTZ.mountainz;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication
+@EnableCaching
 public class MountainzApplication {
 
 	public static void main(String[] args) {
