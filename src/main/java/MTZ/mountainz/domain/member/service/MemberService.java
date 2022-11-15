@@ -49,11 +49,11 @@ public class MemberService {
 	public ResponseDto<LoginResponseDto> login(LoginRequestDto loginRequestDto, HttpServletResponse response) {
 		// 이메일 있는지 확인
 		Member member = memberRepository.findByEmail(loginRequestDto.getEmail()).orElseThrow(
-			() -> new RequestException(ErrorCode.MEMBER_NOT_FOUND_404)
+			() -> new RequestException(ErrorCode.LOGIN_NOT_FOUND_404)
 		);
 		// 비밀번호 있는지 확인
 		if (!passwordEncoder.matches(loginRequestDto.getPassword(), member.getPassword())) {
-			throw new RequestException(ErrorCode.PASSWORD_NOT_FOUND_404);
+			throw new RequestException(ErrorCode.LOGIN_NOT_FOUND_404);
 		}
 
 		// 엑세스토콘, 리프레쉬토큰 생성
