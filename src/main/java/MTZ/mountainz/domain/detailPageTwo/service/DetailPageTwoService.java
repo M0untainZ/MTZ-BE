@@ -18,7 +18,7 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.util.IOUtils;
 
 import MTZ.mountainz.domain.certification.entity.Certification;
-import MTZ.mountainz.domain.certification.repository.CertificationRepositoy;
+import MTZ.mountainz.domain.certification.repository.CertificationRepository;
 import MTZ.mountainz.domain.detailPageTwo.dto.response.CertificationResponseDto;
 import MTZ.mountainz.domain.detailPageTwo.dto.response.DetailPageTwoResponseDto;
 import MTZ.mountainz.domain.like.entity.Likes;
@@ -38,7 +38,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class DetailPageTwoService {
 	private final MountainRepository mountainRepository;
-	private final CertificationRepositoy certificationRepositoy;
+	private final CertificationRepository certificationRepository;
 	private final LikesRepository likesRepository;
 	private final MemberRepository memberRepository;
 
@@ -63,7 +63,7 @@ public class DetailPageTwoService {
 
 		// 해당 산의 정보 불러오기
 		// 해당 산의 인증이미지들 불러와서 객체로 담기
-		List<Certification> certificationList = certificationRepositoy.findAllByMountainId(mountainId);
+		List<Certification> certificationList = certificationRepository.findAllByMountainId(mountainId);
 		// certification 객체를 담는 리스트 생성
 		List<CertificationResponseDto> certificationResponseDtoList = new ArrayList<>();
 		// 이미지 url(photo) 만 뽑은 responseDto 형태로 리스트 담기
@@ -153,7 +153,7 @@ public class DetailPageTwoService {
 				// 사진이 null 이면 NOT_FOUND
 
 				// 사진이 있을때 save
-				certificationRepositoy.save(certification);
+				certificationRepository.save(certification);
 			}
 		}
 

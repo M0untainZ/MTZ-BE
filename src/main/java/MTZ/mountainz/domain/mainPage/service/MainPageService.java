@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import MTZ.mountainz.domain.certification.entity.Certification;
-import MTZ.mountainz.domain.certification.repository.CertificationRepositoy;
+import MTZ.mountainz.domain.certification.repository.CertificationRepository;
 import MTZ.mountainz.domain.detailPageTwo.dto.response.CertificationResponseDto;
 import MTZ.mountainz.domain.mainPage.dto.MainPageResponseDto;
 import MTZ.mountainz.domain.member.entity.Member;
@@ -28,7 +28,7 @@ public class MainPageService {
 
 	private final MemberRepository memberRepository;
 	private final MountainRepository mountainRepository;
-	private final CertificationRepositoy certificationRepositoy;
+	private final CertificationRepository certificationRepositoy;
 	private final TagRepository tagRepository;
 
 	//메인 페이지 정보 불러오기

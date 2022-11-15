@@ -9,4 +9,5 @@ public interface MountainRepositoryCustom {
 	List<Mountain> findByKeyword(String keyword);
 
 	List<Mountain> findByMountainFilter(FilterRequestDto filterRequestDto);
+
 }

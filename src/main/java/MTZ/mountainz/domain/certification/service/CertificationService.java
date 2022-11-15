@@ -3,6 +3,8 @@ package MTZ.mountainz.domain.certification.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import MTZ.mountainz.domain.certification.dto.request.PhotoFilterRequestDto;
+import MTZ.mountainz.domain.certification.dto.response.CertificationFilterResponseDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -11,14 +13,15 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import MTZ.mountainz.domain.certification.dto.request.CertificationRequestDto;
 import MTZ.mountainz.domain.certification.dto.response.CertificationPhotoListResponseDto;
 import MTZ.mountainz.domain.certification.entity.Certification;
-import MTZ.mountainz.domain.certification.repository.CertificationRepositoy;
+import MTZ.mountainz.domain.certification.repository.CertificationRepository;
 import MTZ.mountainz.global.dto.ResponseDto;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class CertificationService {
-	private final CertificationRepositoy certificationRepositoy;
+	private final CertificationRepository certificationRepository;
+
 
 	private final AmazonS3Client amazonS3Client;
 
@@ -28,7 +31,7 @@ public class CertificationService {
 	// 인증 페이지에 인증사진 불러오기
 	public ResponseDto<?> certificationList() {
 		// cetification 테이블 정보 다 불러오기
-		List<Certification> certificationList = certificationRepositoy.findAll();
+		List<Certification> certificationList = certificationRepository.findAll();
 
 		List<CertificationPhotoListResponseDto> certificationPhotoListResponseDtoList = new ArrayList<>();
 
@@ -53,8 +56,15 @@ public class CertificationService {
 		amazonS3Client.deleteObject(bucketName, key);
 
 		// 인증사진 삭제
-		certificationRepositoy.deleteById(certificationRequestDto.getCertificationId());
+		certificationRepository.deleteById(certificationRequestDto.getCertificationId());
 
 		return ResponseDto.success(key + "를 삭제 완료 했습니다");
+	}
+
+	//인증사진 필터 검색
+	public ResponseDto<?> getPhotoSearch(PhotoFilterRequestDto photoFilterRequestDto) {
+
+		List<CertificationFilterResponseDto> photosList = certificationRepository.findByPhotosFilter(photoFilterRequestDto);
+		return ResponseDto.success(photosList);
 	}
 }
