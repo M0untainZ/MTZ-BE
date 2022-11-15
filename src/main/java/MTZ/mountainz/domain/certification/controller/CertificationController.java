@@ -1,5 +1,7 @@
 package MTZ.mountainz.domain.certification.controller;
 
+import MTZ.mountainz.domain.certification.dto.request.PhotoFilterRequestDto;
+import MTZ.mountainz.domain.detailPageOne.dto.request.FilterRequestDto;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,5 +30,9 @@ public class CertificationController {
 	public ResponseDto<?> certificationSakje(@RequestBody CertificationRequestDto certificationRequestDto) {
 		return certificationService.certificationSakje(certificationRequestDto);
 	}
-
+	//인증사진 필터 검색
+	@GetMapping("/photos/filter")
+	public ResponseDto<?> getPhotoSearch(@RequestBody PhotoFilterRequestDto photoFilterRequestDto) {
+		return certificationService.getPhotoSearch(photoFilterRequestDto);
+	}
 }
