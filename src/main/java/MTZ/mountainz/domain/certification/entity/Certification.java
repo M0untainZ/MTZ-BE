@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Certification {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "certification_id", nullable = false)
 	private Long id;
 

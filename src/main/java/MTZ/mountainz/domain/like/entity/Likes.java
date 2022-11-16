@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Likes {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "like_id", nullable = false)
 	private Long id;
 

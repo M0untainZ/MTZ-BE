@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Mountain {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "mountain_id", nullable = false)
 	private Long id;
 
@@ -52,10 +52,10 @@ public class Mountain {
 	private String img;
 
 	@Column(name = "latitude")
-	private String latitude;
+	private String latitude;    // 위도
 
 	@Column(name = "longitude")
-	private String longitude;
+	private String longitude;    // 경도
 
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)

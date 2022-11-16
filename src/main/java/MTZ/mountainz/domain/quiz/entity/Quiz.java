@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class Quiz {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "quiz_id", nullable = false)
 	private Long id;
 

@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 public class CertificationPhotoListResponseDto {
 	private String photo;
 	private String nickName;
+	private String name;
 }

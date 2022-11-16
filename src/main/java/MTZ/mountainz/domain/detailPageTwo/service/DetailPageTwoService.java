@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -57,7 +57,7 @@ public class DetailPageTwoService {
 	}
 
 	// 상세페이지2 정보 불러오기
-	@Cacheable(value = "Mountain", key = "#mountainId", cacheManager = "redisCacheManager")
+	// @Cacheable(value = "Mountain", key = "#mountainId", cacheManager = "redisCacheManager")
 	public ResponseDto<?> detailPageTwoList(Long mountainId) {
 		Mountain mountain = mountainRepository.findById(mountainId).orElseThrow(
 			() -> new RequestException(ErrorCode.MOUNTAIN_NOT_FOUND_404)
@@ -80,11 +80,11 @@ public class DetailPageTwoService {
 		return ResponseDto.success(
 			DetailPageTwoResponseDto.builder()
 				.name(mountain.getName())
+				.img(mountain.getImg())
 				.region(mountain.getRegion())
 				.level(mountain.getLevel())
 				.season(mountain.getSeason())
 				.time(mountain.getTime())
-				.quiz(mountain.getQuiz())
 				.certificatedMountainList(certificationResponseDtoList)
 				.latitude(mountain.getLatitude())
 				.longitude(mountain.getLongitude())
@@ -152,10 +152,17 @@ public class DetailPageTwoService {
 
 				Certification certification = new Certification(imgUrl, mountain, member);
 
-				// 사진이 null 이면 NOT_FOUND
+				System.out.println("certi : " + certification);
+
+				// if (certification == null) {
+				// 	return ResponseDto.fail(HttpStatus.NOT_FOUND, "사진을 넣어주세요");
+				// }
 
 				// 사진이 있을때 save
 				certificationRepository.save(certification);
+			} else {
+				// 사진이 null 이면 NOT_FOUND
+				return ResponseDto.fail(HttpStatus.NOT_FOUND, "사진을 넣어주세요");
 			}
 		}
 

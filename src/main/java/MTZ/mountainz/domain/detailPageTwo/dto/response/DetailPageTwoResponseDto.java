@@ -13,11 +13,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DetailPageTwoResponseDto {
 	private String name;
+	private String img;
 	private String region;
 	private String level;
 	private String season;
 	private String time;
-	private String quiz;
 	private List<CertificationResponseDto> certificatedMountainList;
 	private String latitude;
 	private String longitude;
