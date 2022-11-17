@@ -108,9 +108,9 @@ public class DetailPageTwoService {
 			correctLike = false;
 		} else {
 			// like가 없으면 등록
+			correctLike = true;
 			Likes likes = new Likes(mountain, member);
 			likesRepository.save(likes);
-			correctLike = true;
 		}
 
 		// 해당 산의 총 좋아요 갯수
@@ -118,8 +118,8 @@ public class DetailPageTwoService {
 
 		return ResponseDto.success(
 			LikesResponseDto.builder()
-				.countLike(countLike)
 				.correctLike(correctLike)
+				.countLike(countLike)
 				.build()
 		);
 	}
@@ -151,12 +151,6 @@ public class DetailPageTwoService {
 				imgUrl = amazonS3Client.getUrl(bucketName, fileName).toString();
 
 				Certification certification = new Certification(imgUrl, mountain, member);
-
-				System.out.println("certi : " + certification);
-
-				// if (certification == null) {
-				// 	return ResponseDto.fail(HttpStatus.NOT_FOUND, "사진을 넣어주세요");
-				// }
 
 				// 사진이 있을때 save
 				certificationRepository.save(certification);

@@ -34,6 +34,10 @@ public class DetailPageOneService {
 					.name(mountain.getName())
 					.img(mountain.getImg())
 					.quiz(mountain.getQuiz())
+					.region(mountain.getRegion())
+					.season(mountain.getSeason())
+					.level(mountain.getLevel())
+					.time(mountain.getTime())
 					// 산 id를 받아서 좋아요 수 반환해서 산 좋아요 count에 + 해주기
 					.mountainLikeTotal(likesRepository.countAllByMountainId(mountain.getId()))
 					.build()

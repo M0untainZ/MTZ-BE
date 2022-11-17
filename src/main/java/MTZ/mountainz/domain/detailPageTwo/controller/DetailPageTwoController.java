@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import MTZ.mountainz.domain.detailPageTwo.service.DetailPageTwoService;
+import MTZ.mountainz.domain.member.repository.MemberRepository;
 import MTZ.mountainz.global.dto.ResponseDto;
 import MTZ.mountainz.global.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api")
 public class DetailPageTwoController {
 	private final DetailPageTwoService detailPageTwoService;
+	private final MemberRepository memberRepository;
 
 	// 상세페이지2 정보 불러오기
 	@GetMapping("/mountain/{mountainId}")

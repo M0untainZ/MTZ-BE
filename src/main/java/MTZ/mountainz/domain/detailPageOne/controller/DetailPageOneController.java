@@ -1,6 +1,7 @@
 package MTZ.mountainz.domain.detailPageOne.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,13 +32,13 @@ public class DetailPageOneController {
 	// }
 
 	// 키워드 검색 (산이름만 추후 queryDSL로 전체 조회할 예정)
-	@GetMapping("/mountains/search")
+	@PostMapping("/mountains/search")
 	public ResponseDto<?> getKeywordSearch(@RequestBody KeywordRequestDto keywordRequestDto) {
 		return detailPageOneService.getKeywordSearch(keywordRequestDto);
 	}
 
 	// 필터 검색
-	@GetMapping("/mountains/filter")
+	@PostMapping("/mountains/filter")
 	public ResponseDto<?> getFilterSearch(@RequestBody FilterRequestDto filterRequestDto) {
 		return detailPageOneService.getFilterSearch(filterRequestDto);
 	}

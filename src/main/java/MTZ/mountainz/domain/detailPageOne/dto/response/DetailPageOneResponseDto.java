@@ -14,4 +14,9 @@ public class DetailPageOneResponseDto {
 	private String quiz;
 	private String img;
 	private Long mountainLikeTotal;
+	// 지역, 계절, 난이도, 소요시간
+	private String region;
+	private String season;
+	private String level;
+	private String time;
 }

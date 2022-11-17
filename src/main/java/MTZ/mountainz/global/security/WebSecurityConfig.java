@@ -78,7 +78,8 @@ public class WebSecurityConfig {
 			.antMatchers(HttpMethod.DELETE, "/api/photos/sakje").authenticated()
 			.antMatchers(HttpMethod.GET, "/api/myPages").authenticated()
 			.antMatchers(HttpMethod.PUT, "/api/myPageSujung").authenticated()
-
+			// .antMatchers(HttpMethod.GET, "/api//mountain/{mountainId}").authenticated()
+			
 			.anyRequest().permitAll()
 			.and()
 			.addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
