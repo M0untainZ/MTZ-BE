@@ -58,10 +58,26 @@ public class DetailPageTwoService {
 
 	// 상세페이지2 정보 불러오기
 	// @Cacheable(value = "Mountain", key = "#mountainId", cacheManager = "redisCacheManager")
-	public ResponseDto<?> detailPageTwoList(Long mountainId) {
+	public ResponseDto<?> detailPageTwoList(Long mountainId, String email) {
 		Mountain mountain = mountainRepository.findById(mountainId).orElseThrow(
 			() -> new RequestException(ErrorCode.MOUNTAIN_NOT_FOUND_404)
 		);
+
+		Optional<Likes> imsiLike = likesRepository.findByMountainIdAndMemberEmail(mountainId, email);
+		// Member member = new Member(email);
+
+		// 해당 산의 좋아요 true/false
+		boolean correctLike;
+		if (imsiLike.isPresent()) {
+			// like 가 존재하면 삭제
+			correctLike = true;
+		} else {
+			// like가 없으면 등록
+			correctLike = false;
+		}
+		// 숫자 보내기
+
+		System.out.println("correctLike : " + correctLike);
 
 		// 해당 산의 정보 불러오기
 		// 해당 산의 인증이미지들 불러와서 객체로 담기
@@ -88,6 +104,7 @@ public class DetailPageTwoService {
 				.certificatedMountainList(certificationResponseDtoList)
 				.latitude(mountain.getLatitude())
 				.longitude(mountain.getLongitude())
+				.correctLike(correctLike)
 				.build()
 		);
 	}

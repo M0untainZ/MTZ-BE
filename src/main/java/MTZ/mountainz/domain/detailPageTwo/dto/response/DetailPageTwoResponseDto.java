@@ -21,4 +21,5 @@ public class DetailPageTwoResponseDto {
 	private List<CertificationResponseDto> certificatedMountainList;
 	private String latitude;
 	private String longitude;
+	private boolean correctLike;
 }

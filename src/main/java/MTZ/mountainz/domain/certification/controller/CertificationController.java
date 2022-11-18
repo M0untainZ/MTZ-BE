@@ -1,6 +1,7 @@
 package MTZ.mountainz.domain.certification.controller;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,7 +12,6 @@ import MTZ.mountainz.domain.certification.dto.request.CertificationRequestDto;
 import MTZ.mountainz.domain.certification.dto.request.PhotoFilterRequestDto;
 import MTZ.mountainz.domain.certification.service.CertificationService;
 import MTZ.mountainz.global.dto.ResponseDto;
-import MTZ.mountainz.global.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -22,8 +22,8 @@ public class CertificationController {
 
 	// 인증 페이지에 인증사진 불러오기
 	@GetMapping("/photos")
-	public ResponseDto<?> certificationList(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
-		return certificationService.certificationList(userDetailsImpl.getMember().getEmail());
+	public ResponseDto<?> certificationList(@AuthenticationPrincipal UserDetails userDetails) {
+		return certificationService.certificationList(userDetails.getUsername());
 	}
 
 	// 인증사진 삭제하기

@@ -1,5 +1,10 @@
 package MTZ.mountainz.global.security;
 
+import java.util.Collections;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,9 +27,22 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			() -> new RuntimeException("Not Found Account")
 		);
 
-		UserDetailsImpl userDetails = new UserDetailsImpl();
-		userDetails.setMember(member);
+		// Member member = memberRepository.findByEmail(email).orElse(new Member("guest@naver.com"));
 
-		return userDetails;
+		// UserDetailsImpl userDetails = new UserDetailsImpl();
+		// userDetails.setMember(member);
+
+		// return userDetails;
+		return createUserDetails(member);
+	}
+
+	private UserDetails createUserDetails(MTZ.mountainz.domain.member.entity.Member member) {
+		GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("member");
+
+		return new User(
+			member.getEmail(),
+			member.getPassword(),
+			Collections.singleton(grantedAuthority)
+		);
 	}
 }

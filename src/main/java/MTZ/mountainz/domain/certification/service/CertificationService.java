@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.amazonaws.services.s3.AmazonS3Client;
 
@@ -63,9 +64,18 @@ public class CertificationService {
 	}
 
 	// 인증사진 삭제하기
+	@Transactional
 	public ResponseDto<?> certificationSakje(CertificationRequestDto certificationRequestDto) {
 		String[] split = certificationRequestDto.getPhoto().split("/");
 		String key = split[split.length - 1].trim();
+
+		Certification certification = certificationRepository.findById(certificationRequestDto.getCertificationId())
+			.orElseThrow(
+				() -> new RequestException(ErrorCode.MEMBER_NOT_FOUND_404)
+			);
+
+		// member에 certificationPoint 3 감소시키기
+		certification.getMember().deleteCertificationPoint(3);
 
 		// S3에서 삭제
 		amazonS3Client.deleteObject(bucketName, key);

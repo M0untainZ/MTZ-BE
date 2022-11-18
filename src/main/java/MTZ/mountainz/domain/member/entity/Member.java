@@ -53,8 +53,16 @@ public class Member {
 		this.region = memberRequestDto.getRegion();
 	}
 
+	public Member(String email) {
+		this.email = email;
+	}
+
 	public void updateCertificationPoint(int certificationPoint) {
 		this.certificationPoint += certificationPoint;
+	}
+
+	public void deleteCertificationPoint(int certificationPoint) {
+		this.certificationPoint -= certificationPoint;
 	}
 
 	public void update(MyPageRequestDto myPageRequestDto) {
