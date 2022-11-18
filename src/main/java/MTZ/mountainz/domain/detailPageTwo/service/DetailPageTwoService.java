@@ -75,9 +75,11 @@ public class DetailPageTwoService {
 			// like가 없으면 등록
 			correctLike = false;
 		}
-		// 숫자 보내기
 
 		System.out.println("correctLike : " + correctLike);
+
+		// 해당 산의 총 좋아요 갯수
+		Long countLike = likesRepository.countAllByMountainId(mountainId);
 
 		// 해당 산의 정보 불러오기
 		// 해당 산의 인증이미지들 불러와서 객체로 담기
@@ -105,6 +107,7 @@ public class DetailPageTwoService {
 				.latitude(mountain.getLatitude())
 				.longitude(mountain.getLongitude())
 				.correctLike(correctLike)
+				.countLike(countLike)
 				.build()
 		);
 	}

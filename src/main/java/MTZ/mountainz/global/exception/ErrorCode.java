@@ -19,7 +19,10 @@ public enum ErrorCode {
 	LOGIN_NOT_FOUND_404(HttpStatus.NOT_FOUND, "아이디 또는 비밀번호를 잘못 입력했습니다."),
 
 	//상세페이지2
-	MOUNTAIN_NOT_FOUND_404(HttpStatus.NOT_FOUND, "산을 찾을 수 없습니다.");
+	MOUNTAIN_NOT_FOUND_404(HttpStatus.NOT_FOUND, "산을 찾을 수 없습니다."),
+
+	//인증페이지
+	CERTIFICATION_NOT_FOUND_404(HttpStatus.NOT_FOUND, "인증사진을 찾을 수 없습니다");
 
 	private final HttpStatus httpStatus;
 	private final String message;

@@ -22,4 +22,5 @@ public class DetailPageTwoResponseDto {
 	private String latitude;
 	private String longitude;
 	private boolean correctLike;
+	private Long countLike;
 }

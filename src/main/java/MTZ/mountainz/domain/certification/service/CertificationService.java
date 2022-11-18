@@ -71,7 +71,7 @@ public class CertificationService {
 
 		Certification certification = certificationRepository.findById(certificationRequestDto.getCertificationId())
 			.orElseThrow(
-				() -> new RequestException(ErrorCode.MEMBER_NOT_FOUND_404)
+				() -> new RequestException(ErrorCode.CERTIFICATION_NOT_FOUND_404)
 			);
 
 		// member에 certificationPoint 3 감소시키기
