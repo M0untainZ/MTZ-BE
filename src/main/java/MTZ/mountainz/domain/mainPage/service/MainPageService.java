@@ -57,6 +57,9 @@ public class MainPageService {
 		//인증 사진 리스트
 		List<Certification> photoList = certificationRepository.findAll();
 		List<CertificationResponseDto> certificationPhotoList = new ArrayList<>();
+//		if (photoZ.size() > 10)
+//			photoZ = photoZ.subList(0, 10);
+//		List<String> photoList = photoZ.stream().map(Certification::getPhoto).collect(Collectors.toList());
 
 		for (Certification imsiPhoto : photoList) {
 			certificationPhotoList.add(
