@@ -2,6 +2,8 @@ package MTZ.mountainz.domain.member.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,11 +48,15 @@ public class Member {
 	@Column(name = "profilePhoto")
 	private String profilePhoto;
 
-	public Member(MemberRequestDto memberRequestDto) {
+	@Enumerated(EnumType.STRING)
+	private Authority authority;
+
+	public Member(MemberRequestDto memberRequestDto, Authority authority) {
 		this.email = memberRequestDto.getEmail();
 		this.password = memberRequestDto.getPassword();
 		this.nickName = memberRequestDto.getNickName();
 		this.region = memberRequestDto.getRegion();
+		this.authority = authority;
 	}
 
 	public Member(String email) {

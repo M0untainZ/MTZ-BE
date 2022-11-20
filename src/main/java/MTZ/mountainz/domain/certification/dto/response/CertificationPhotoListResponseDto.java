@@ -13,4 +13,5 @@ public class CertificationPhotoListResponseDto {
 	private String photo;
 	private String nickName;
 	private String name;
+	private String region;
 }

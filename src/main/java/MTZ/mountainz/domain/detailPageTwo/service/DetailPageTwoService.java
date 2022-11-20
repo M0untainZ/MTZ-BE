@@ -69,14 +69,10 @@ public class DetailPageTwoService {
 		// 해당 산의 좋아요 true/false
 		boolean correctLike;
 		if (imsiLike.isPresent()) {
-			// like 가 존재하면 삭제
 			correctLike = true;
 		} else {
-			// like가 없으면 등록
 			correctLike = false;
 		}
-
-		System.out.println("correctLike : " + correctLike);
 
 		// 해당 산의 총 좋아요 갯수
 		Long countLike = likesRepository.countAllByMountainId(mountainId);
@@ -124,8 +120,8 @@ public class DetailPageTwoService {
 		boolean correctLike;
 		if (imsiLike.isPresent()) {
 			// like 가 존재하면 삭제
-			likesRepository.delete(imsiLike.get());
 			correctLike = false;
+			likesRepository.delete(imsiLike.get());
 		} else {
 			// like가 없으면 등록
 			correctLike = true;

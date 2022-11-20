@@ -67,6 +67,7 @@ public class DetailPageOneService {
 		// 	filterRequestDto.getRegion(), filterRequestDto.getSeason(),
 		// 	filterRequestDto.getLevel(), filterRequestDto.getTime()
 		// );
+		// 상세1의 모든 정보 넣어 보내기 res
 		List<Mountain> mountainFilterList = mountainRepository.findByMountainFilter(filterRequestDto);
 		return ResponseDto.success(mountainFilterList);
 	}

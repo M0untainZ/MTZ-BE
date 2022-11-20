@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import MTZ.mountainz.domain.member.dto.request.LoginRequestDto;
 import MTZ.mountainz.domain.member.dto.request.MemberRequestDto;
 import MTZ.mountainz.domain.member.dto.response.LoginResponseDto;
+import MTZ.mountainz.domain.member.entity.Authority;
 import MTZ.mountainz.domain.member.entity.Member;
 import MTZ.mountainz.domain.member.entity.RefreshToken;
 import MTZ.mountainz.domain.member.repository.MemberRepository;
@@ -38,7 +39,7 @@ public class MemberService {
 			throw new RequestException(ErrorCode.EMAIL_DUPLICATION_409);
 		}
 		memberRequestDto.setEncodedPwd(passwordEncoder.encode(memberRequestDto.getPassword()));
-		Member member = new Member(memberRequestDto);
+		Member member = new Member(memberRequestDto, Authority.ROLE_USER);
 
 		memberRepository.save(member);
 		return ResponseDto.success("회원가입 완료");
@@ -79,6 +80,7 @@ public class MemberService {
 				.nickName(member.getNickName())
 				.badgeName(member.getBadgeName())
 				.region(member.getRegion())
+				.authority(member.getAuthority())
 				.build()
 		);
 	}

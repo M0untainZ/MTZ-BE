@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import MTZ.mountainz.domain.member.entity.Authority;
 import MTZ.mountainz.domain.member.entity.RefreshToken;
 import MTZ.mountainz.domain.member.repository.RefreshTokenRepository;
 import MTZ.mountainz.global.dto.TokenDto;
@@ -37,10 +38,11 @@ public class JwtUtil {
 	private final UserDetailsServiceImpl userDetailsService;
 	private final RefreshTokenRepository refreshTokenRepository;
 
+	private static final String AUTHORITIES_KEY = "auth";
 	public static final String ACCESS_TOKEN = "Authorization";
 	public static final String REFRESH_TOKEN = "Refresh_Token";
-	private static final Long ACCESS_TIME = 100000 * 100000L;
-	private static final Long REFRESH_TIME = 6000 * 1000L;
+	private static final long ACCESS_TIME = 1000 * 60 * 60 * 24;
+	private static final long REFRESH_TIME = 1000 * 60 * 60 * 24 * 7;
 
 	public static final String BEARER_TYPE = "Bearer ";
 
@@ -75,6 +77,7 @@ public class JwtUtil {
 
 		return BEARER_TYPE + Jwts.builder()
 			.setSubject(email)
+			.claim(AUTHORITIES_KEY, Authority.ROLE_USER.toString())
 			.setExpiration(new Date(date.getTime() + time))
 			.setIssuedAt(date)
 			.signWith(key, signatureAlgorithm)

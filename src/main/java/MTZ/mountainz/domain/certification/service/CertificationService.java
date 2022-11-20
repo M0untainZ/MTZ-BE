@@ -56,6 +56,7 @@ public class CertificationService {
 					.photo(certification.getPhoto())
 					.nickName(certification.getMember().getNickName())
 					.name(certification.getMountain().getName())
+					.region(certification.getMountain().getRegion())
 					.build()
 			);
 		}
