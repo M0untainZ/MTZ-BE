@@ -53,6 +53,7 @@ public class CertificationService {
 		for (Certification certification : certificationList) {
 			certificationPhotoListResponseDtoList.add(
 				CertificationPhotoListResponseDto.builder()
+					.certificationId(certification.getId())
 					.photo(certification.getPhoto())
 					.nickName(certification.getMember().getNickName())
 					.name(certification.getMountain().getName())

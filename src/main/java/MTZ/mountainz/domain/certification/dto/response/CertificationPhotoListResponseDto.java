@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CertificationPhotoListResponseDto {
+	private Long certificationId;
 	private String photo;
 	private String nickName;
 	private String name;
