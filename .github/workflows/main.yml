@@ -2,9 +2,9 @@ name: Java CI TEST with Gradle
 
 on:
   push:
-    branches: [ "pyeongyeon" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "pyeongyeon" ]
+    branches: [ "master" ]
 
 env:
   RESOURCE_PATH: ./src/main/resources/application.yml
