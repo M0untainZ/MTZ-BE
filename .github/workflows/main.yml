@@ -6,12 +6,9 @@ on:
   pull_request:
     branches: [ "pyeongyeon" ]
 
-permissions:
-  contents: read
-
 env:
   RESOURCE_PATH: ./src/main/resources/application.yml
-  PROJECT_NAME: CICDTEST
+  PROJECT_NAME: MOUNTAINZ
   # Database
   DB_URL: ${{ secrets.DB_URL }}
   DB_USERNAME: ${{ secrets.DB_USERNAME }}
@@ -23,7 +20,13 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
   S3_REGION: ${{ secrets.S3_REGION }}
+  AWS_REGION: ap-northeast-2
+  # CODE_DEPLOY
+  APPLICATION_NAME: ${{ secrets.APPLICATION_NAME }}
+  DEPLOY_GROUP_NAME: ${{ secrets.DEPLOY_GROUP_NAME }}
 
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -60,29 +63,36 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew clean build
 
-      #      # 전송할 파일을 담을 디렉토리 생성
-      #      - name: Make Directory for deliver
-      #        run: mkdir deploy
+      # 전송할 파일을 담을 디렉토리 생성
+      - name: Make Directory for deliver
+        run: mkdir deploy
 
-      #      # Jar 파일 Copy
-      #      - name: Copy Jar
-      #        run: cp ./build/libs/*.jar ./deploy/
+      # Jar 파일 Copy
+      - name: Copy Jar
+        run: cp ./build/libs/*.jar ./deploy/
 
-      #      # appspec.yml Copy
-      #      - name: Copy appspec
-      #        run: cp ./appspec.yml ./deploy/
+      # appspec.yml Copy
+      - name: Copy appspec
+        run: cp ./appspec.yml ./deploy/
 
-      #      # script file Copy
-      #      - name: Copy shell
-      #        run: cp ./scripts/* ./deploy/
-      #
-      #      # 압축파일 형태로 전달
-      #      - name: Make zip file
-      #        run: zip -r -qq -j ./$PROJECT_NAME.zip ./deploy
+      # script file Copy
+      - name: Copy shell
+        run: cp ./scripts/* ./deploy/
+
+      # 압축파일 형태로 전달
+      - name: Make zip file
+        run: zip -r -qq -j ./$PROJECT_NAME.zip ./deploy
 
       # S3 Bucket으로 copy
-#      - name: Deliver to AWS S3
-#        env:
-#          AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
-#          AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
-#        run: aws s3 cp --region $S3_REGION --acl private ./$PROJECT_NAME.zip s3://$S3_BUCKET_NAME/
+      - name: Deliver to AWS S3
+        env:
+          AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
+        run: aws s3 cp --region $S3_REGION --acl private ./$PROJECT_NAME.zip s3://$S3_BUCKET_NAME/
+
+      # Deploy
+      - name: Deploy
+        env:
+          AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
+        run: aws deploy create-deployment --application-name $APPLICATION_NAME --deployment-group-name $DEPLOY_GROUP_NAME --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=$PROJECT_NAME.zip --region $S3_REGION

@@ -60,7 +60,7 @@ public class DetailPageOneService {
 		return ResponseDto.success(mountainSearchList);
 	}
 
-	// 필터 검색 (원하는 값이 나오지않았다 queryDSL로 리팩토링 할 것)
+	// 필터 검색
 	@Transactional
 	public ResponseDto<?> getFilterSearch(FilterRequestDto filterRequestDto) {
 		// List<Mountain> mountainFilterList = mountainRepository.findByRegionAndSeasonAndLevelAndTime(
