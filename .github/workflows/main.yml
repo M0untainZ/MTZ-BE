@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ "master" ]
 
+permissions:
+  contents: read
+
 env:
   RESOURCE_PATH: ./src/main/resources/application.yml
   PROJECT_NAME: MOUNTAINZ
@@ -24,9 +27,6 @@ env:
   # CODE_DEPLOY
   APPLICATION_NAME: ${{ secrets.APPLICATION_NAME }}
   DEPLOY_GROUP_NAME: ${{ secrets.DEPLOY_GROUP_NAME }}
-
-permissions:
-  contents: read
 
 jobs:
   build:
