@@ -2,15 +2,9 @@ name: Java CI TEST with Gradle
 
 on:
   push:
-<<<<<<< HEAD
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-=======
     branches: [ "pyeongyeon" ]
   pull_request:
     branches: [ "pyeongyeon" ]
->>>>>>> master
 
 permissions:
   contents: read
