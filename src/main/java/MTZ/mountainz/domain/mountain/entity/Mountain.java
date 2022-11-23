@@ -51,11 +51,8 @@ public class Mountain {
 	@Column(name = "img", nullable = false)
 	private String img;
 
-	@Column(name = "latitude")
-	private String latitude;    // 위도
-
-	@Column(name = "longitude")
-	private String longitude;    // 경도
+	@Column(name = "juso")
+	private String juso;
 
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)

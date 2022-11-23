@@ -1,4 +1,4 @@
-package MTZ.mountainz.domain.queryDSL;
+package MTZ.mountainz.global.queryDSL;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

@@ -3,7 +3,7 @@ package MTZ.mountainz.domain.myPage.controller;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +27,7 @@ public class MyPageController {
 	}
 
 	//마이 페이지 수정
-	@PutMapping("/myPageSujung")
+	@PatchMapping("/myPageSujung")
 	public ResponseDto<?> updateMyPage(@RequestBody MyPageRequestDto myPageRequestDto,
 		@AuthenticationPrincipal UserDetails userDetails) {
 		return myPageService.updateMyPage(myPageRequestDto, userDetails.getUsername());

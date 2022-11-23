@@ -1,4 +1,4 @@
-package MTZ.mountainz.domain.queryDSL;
+package MTZ.mountainz.global.queryDSL;
 
 import static MTZ.mountainz.domain.mountain.entity.QMountain.*;
 

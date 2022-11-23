@@ -19,8 +19,7 @@ public class DetailPageTwoResponseDto {
 	private String season;
 	private String time;
 	private List<CertificationResponseDto> certificatedMountainList;
-	private String latitude;
-	private String longitude;
+	private String juso;
 	private boolean correctLike;
 	private Long countLike;
 }
