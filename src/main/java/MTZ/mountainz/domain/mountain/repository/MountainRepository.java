@@ -15,4 +15,6 @@ public interface MountainRepository extends JpaRepository<Mountain, Long>, Mount
 	List<Mountain> findByLevel(String level);
 
 	List<Mountain> findBySeason(String season);
+
+	List<Mountain> findByTime(String time);
 }

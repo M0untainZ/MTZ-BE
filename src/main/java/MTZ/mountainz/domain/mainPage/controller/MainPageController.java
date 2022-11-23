@@ -39,5 +39,12 @@ public class MainPageController {
 	public ResponseDto<?> getSeasonList(@PathVariable String season) {
 		return mainPageService.getSeasonList(season);
 	}
+
+	//태그 관련 목록 불러오기(시간)
+	@GetMapping("/mountains/{time}")
+	public ResponseDto<?> getTimeList(@PathVariable String time) {
+		return mainPageService.getTimeList(time);
+	}
+
 }
 

@@ -17,15 +17,17 @@ public class MountainListDto {
 	private String level;
 	private String season;
 	private String img;
+	private String time;
 
 	public static MountainListDto of(Mountain mountain) {
 		return MountainListDto.builder()
-			.id(mountain.getId())
-			.name(mountain.getName())
-			.region(mountain.getRegion())
-			.level(mountain.getLevel())
-			.season(mountain.getSeason())
-			.img(mountain.getImg())
-			.build();
+				.id(mountain.getId())
+				.name(mountain.getName())
+				.region(mountain.getRegion())
+				.level(mountain.getLevel())
+				.season(mountain.getSeason())
+				.img(mountain.getImg())
+				.time(mountain.getTime())
+				.build();
 	}
 }
