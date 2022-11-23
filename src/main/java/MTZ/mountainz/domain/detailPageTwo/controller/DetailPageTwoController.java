@@ -47,8 +47,6 @@ public class DetailPageTwoController {
 		return detailPageTwoService.likeUp(mountainId, userDetails.getUsername());
 	}
 
-	// 위도, 경도에 따라 범위에 해당하면 -> hide된 버튼 활성화
-
 	// 인증하기 버튼
 	@PostMapping("/mountain/{mountainId}/certification")
 	public ResponseDto<?> addCertification(@PathVariable Long mountainId,
