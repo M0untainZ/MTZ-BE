@@ -134,5 +134,23 @@ public class MainPageService {
 		}
 		return ResponseDto.success(mountainSeasonList);
 	}
+	//태그 관련 목록 불러오기(시간)
+	@Transactional(readOnly = true)
+	public ResponseDto<?> getTimeList(String time) {
+		// 해당 산의 시간 찾기
+		List<Mountain> mountainList = mountainRepository.findByTime(time); //산 리스트에서 시간 목록 뽑기
+		List<MountainListDto> mountainTimeList = new ArrayList<>();
+
+		for (Mountain imsiTime : mountainList) {
+			mountainTimeList.add(
+					MountainListDto.builder()
+							.img(imsiTime.getImg())
+							.name(imsiTime.getName())
+							.time(imsiTime.getTime())
+							.build()
+			);
+		}
+		return ResponseDto.success(mountainTimeList);
+	}
 }
 
