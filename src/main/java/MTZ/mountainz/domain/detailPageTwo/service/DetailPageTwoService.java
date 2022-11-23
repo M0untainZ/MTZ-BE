@@ -138,8 +138,6 @@ public class DetailPageTwoService {
 		);
 	}
 
-	// 위도, 경도에 따라 범위에 해당하면 -> hide된 버튼 활성화
-
 	// 인증하기 버튼
 	@Transactional
 	public ResponseDto<?> addCertification(Long mountainId, List<MultipartFile> multipartFile, String email) throws
