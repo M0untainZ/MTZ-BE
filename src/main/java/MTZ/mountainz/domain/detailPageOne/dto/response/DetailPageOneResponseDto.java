@@ -20,6 +20,6 @@ public class DetailPageOneResponseDto {
 	private String level;
 	private String time;
 	private String test;
-	private String juso;
+	// private String juso;
 	// private String name2;
 }
