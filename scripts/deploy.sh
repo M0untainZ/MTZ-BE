@@ -1,5 +1,5 @@
 #!/bin/bash
-BUILD_JAR=$(ls /home/ubuntu/app/deploy/port1-*.jar)
+BUILD_JAR=$(ls /home/ubuntu/app/deploy/mountainz-*.jar)
 JAR_NAME=$(basename $BUILD_JAR)
 echo "> build 파일명: $JAR_NAME" >> /home/ubuntu/app/deploy/deploy.log
 
