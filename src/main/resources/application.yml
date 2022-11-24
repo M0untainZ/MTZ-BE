@@ -65,8 +65,8 @@ server:
 cloud:
   aws:
     credentials:
-      accessKey: ${BUCKET_ACCESS_KEY}
-      secretKey: ${BUCKET_SECRET_KEY}
+      accessKey:
+      secretKey:
     s3:
       bucket: ${BUCKET_NAME}
     region:
