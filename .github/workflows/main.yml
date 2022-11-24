@@ -51,8 +51,8 @@ jobs:
           spring.datasource.username: ${{ env.DB_USERNAME }}
           spring.datasource.password: ${{ env.DB_PASSWORD }}
           jwt.secretKey: ${{ env.JWT_SECRET_KEY }}
-          #          cloud.aws.credentials.access-key: ${{ env.AWS_ACCESS_KEY_ID }}
-          #          cloud.aws.credentials.secret-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          cloud.aws.credentials.access-key: ${{ env.AWS_ACCESS_KEY_ID }}
+          cloud.aws.credentials.secret-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
           cloud.aws.s3.bucket: ${{ env.S3_BUCKET_NAME }}
           cloud.aws.region.static: ${{ env.S3_REGION }}
 

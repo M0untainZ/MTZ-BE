@@ -1,17 +1,17 @@
 spring:
   # mysql aws
-  #  datasource:
-  #    driver-class-name: com.mysql.cj.jdbc.Driver
-  #    url: ${DB_URL}
-  #    username: ${DB_USERNAME}
-  #    password: ${DB_PASSWORD}
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
 
   # h2 local
-  datasource:
-    url: jdbc:h2:mem:testdb;MODE=MYSQL
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
+  #  datasource:
+  #    url: jdbc:h2:mem:testdb;MODE=MYSQL
+  #    driver-class-name: org.h2.Driver
+  #    username: sa
+  #    password:
 
   # mysql local
   #  datasource:
@@ -65,8 +65,8 @@ server:
 cloud:
   aws:
     credentials:
-      accessKey: ${BUCKET_ACCESS_KEY}
-      secretKey: ${BUCKET_SECRET_ACCESS_KEY}
+      access-key:
+      secret-key:
     s3:
       bucket: ${BUCKET_NAME}
     region:
