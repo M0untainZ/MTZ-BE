@@ -11,7 +11,7 @@ permissions:
 
 env:
   RESOURCE_PATH: ./src/main/resources/application.yml
-  PROJECT_NAME: MOUNTAINZ
+  PROJECT_NAME: mountainz
   # Database
   DB_URL: ${{ secrets.DB_URL }}
   DB_USERNAME: ${{ secrets.DB_USERNAME }}
