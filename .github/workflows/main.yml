@@ -22,6 +22,8 @@ env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+  S3_BUCKET_ACCESS_KEY: ${{ secrets.S3_BUCKET_ACCESS_KEY }}
+  S3_BUCKET_SECRET_KEY: ${{ secrets.S3_BUCKET_SECRET_KEY }}
   S3_REGION: ${{ secrets.S3_REGION }}
   AWS_REGION: ap-northeast-2
   # CODE_DEPLOY
@@ -54,6 +56,8 @@ jobs:
           cloud.aws.credentials.access-key: ${{ env.AWS_ACCESS_KEY_ID }}
           cloud.aws.credentials.secret-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
           cloud.aws.s3.bucket: ${{ env.S3_BUCKET_NAME }}
+          cloud.aws.s3.bucket.access-key: ${{ env.S3_BUCKET_ACCESS_KEY }}
+          cloud.aws.s3.bucket.secret-key: ${{ env.S3_BUCKET_SECRET_KEY }}
           cloud.aws.region.static: ${{ env.S3_REGION }}
 
       - name: Grant execute permission for gradlew
