@@ -15,5 +15,5 @@ permissions:
 hooks:
   ApplicationStart:
     - location: deploy.sh
-      timeout: 300
+      timeout: 60
       runas: ubuntu
