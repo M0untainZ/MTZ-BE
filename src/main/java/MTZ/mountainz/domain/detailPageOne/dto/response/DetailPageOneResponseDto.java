@@ -19,7 +19,7 @@ public class DetailPageOneResponseDto {
 	private String season;
 	private String level;
 	private String time;
-	// private String test;
+	private String test;
 	// private String juso;
 	// private String name2;
 }

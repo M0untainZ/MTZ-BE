@@ -38,7 +38,7 @@ public class DetailPageOneService {
 					.season(mountain.getSeason())
 					.level(mountain.getLevel())
 					.time(mountain.getTime())
-					// .test(mountain.getJuso())
+					.test(mountain.getJuso())
 					// .juso(mountain.getJuso())
 					// .name2(mountain.getName())
 					// 산 id를 받아서 좋아요 수 반환해서 산 좋아요 count에 + 해주기
