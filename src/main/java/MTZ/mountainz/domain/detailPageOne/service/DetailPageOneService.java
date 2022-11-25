@@ -31,6 +31,7 @@ public class DetailPageOneService {
 		for (Mountain mountain : mountainList) {
 			detailPageOneResponseDtoList.add(
 				DetailPageOneResponseDto.builder()
+					.id(mountain.getId())
 					.name(mountain.getName())
 					.img(mountain.getImg())
 					.quiz(mountain.getQuiz())
@@ -57,7 +58,25 @@ public class DetailPageOneService {
 	public ResponseDto<?> getKeywordSearch(KeywordRequestDto keywordRequestDto) {
 		// List<Mountain> mountainSearchList = mountainRepository.findByName(keywordRequestDto.getKeyword());
 		List<Mountain> mountainSearchList = mountainRepository.findByKeyword(keywordRequestDto.getKeyword());
-		return ResponseDto.success(mountainSearchList);
+		List<DetailPageOneResponseDto> detailPageOneResponseDtoList = new ArrayList<>();
+		for (Mountain mountain : mountainSearchList) {
+			detailPageOneResponseDtoList.add(
+				DetailPageOneResponseDto.builder()
+					.id(mountain.getId())
+					.name(mountain.getName())
+					.img(mountain.getImg())
+					.quiz(mountain.getQuiz())
+					.region(mountain.getRegion())
+					.season(mountain.getSeason())
+					.level(mountain.getLevel())
+					.time(mountain.getTime())
+					// 산 id를 받아서 좋아요 수 반환해서 산 좋아요 count에 + 해주기
+					.mountainLikeTotal(likesRepository.countAllByMountainId(mountain.getId()))
+					.build()
+			);
+		}
+
+		return ResponseDto.success(detailPageOneResponseDtoList);
 	}
 
 	// 필터 검색
@@ -69,6 +88,25 @@ public class DetailPageOneService {
 		// );
 		// 상세1의 모든 정보 넣어 보내기 res
 		List<Mountain> mountainFilterList = mountainRepository.findByMountainFilter(filterRequestDto);
-		return ResponseDto.success(mountainFilterList);
+		List<DetailPageOneResponseDto> detailPageOneResponseDtoList = new ArrayList<>();
+
+		for (Mountain mountain : mountainFilterList) {
+			detailPageOneResponseDtoList.add(
+				DetailPageOneResponseDto.builder()
+					.id(mountain.getId())
+					.name(mountain.getName())
+					.img(mountain.getImg())
+					.quiz(mountain.getQuiz())
+					.region(mountain.getRegion())
+					.season(mountain.getSeason())
+					.level(mountain.getLevel())
+					.time(mountain.getTime())
+					// 산 id를 받아서 좋아요 수 반환해서 산 좋아요 count에 + 해주기
+					.mountainLikeTotal(likesRepository.countAllByMountainId(mountain.getId()))
+					.build()
+			);
+		}
+		
+		return ResponseDto.success(detailPageOneResponseDtoList);
 	}
 }

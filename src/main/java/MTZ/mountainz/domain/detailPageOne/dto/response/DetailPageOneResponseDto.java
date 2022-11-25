@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DetailPageOneResponseDto {
+	private Long id;
 	private String name;
 	private String quiz;
 	private String img;
