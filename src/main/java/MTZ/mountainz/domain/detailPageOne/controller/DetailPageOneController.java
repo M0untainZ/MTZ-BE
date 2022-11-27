@@ -24,13 +24,6 @@ public class DetailPageOneController {
 		return detailPageOneService.detailPageOneList();
 	}
 
-	// 퀴즈풀기
-	// @PostMapping("/mountainList/{mountainId}/quiz")
-	// public ResponseDto<?> solveQuiz(@RequestBody QuizRequestDto quizRequestDto,
-	// 	@AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
-	// 	return DetailPageOneService.solveQuiz(quizRequestDto, userDetailsImpl.getMember().getEmail());
-	// }
-
 	// 키워드 검색 (산이름만 추후 queryDSL로 전체 조회할 예정)
 	@PostMapping("/mountains/search")
 	public ResponseDto<?> getKeywordSearch(@RequestBody KeywordRequestDto keywordRequestDto) {

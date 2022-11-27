@@ -49,11 +49,6 @@ public class DetailPageOneService {
 		return ResponseDto.success(detailPageOneResponseDtoList);
 	}
 
-	// 퀴즈풀기
-	// public ResponseDto<?> solveQuiz(QuizRequestDto quizRequestDto, String email) {
-	//
-	// }
-
 	// 키워드 검색 (산이름만 추후 queryDSL로 전체 조회할 예정)
 	@Transactional
 	public ResponseDto<?> getKeywordSearch(KeywordRequestDto keywordRequestDto) {
