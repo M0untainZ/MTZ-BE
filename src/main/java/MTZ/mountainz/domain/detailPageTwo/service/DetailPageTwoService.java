@@ -56,7 +56,7 @@ public class DetailPageTwoService {
 		return member;
 	}
 
-	// test6
+	// test7
 
 	// 상세페이지2 정보 불러오기
 	// @Cacheable(value = "Mountain", key = "#mountainId", cacheManager = "redisCacheManager")
