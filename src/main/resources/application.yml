@@ -41,6 +41,9 @@ spring:
     level:
       org.hibernate.SQL: debug
       org.hibernate.type: trace
+    slack:
+      webhook-uri:
+    config: classpath:logback-spring.xml
 
   mvc:
     pathmatch:

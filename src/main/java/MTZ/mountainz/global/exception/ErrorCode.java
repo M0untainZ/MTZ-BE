@@ -20,6 +20,7 @@ public enum ErrorCode {
 
 	//상세페이지2
 	MOUNTAIN_NOT_FOUND_404(HttpStatus.NOT_FOUND, "산을 찾을 수 없습니다."),
+	IMAGE_NOT_FOUND_404(HttpStatus.NOT_FOUND, "이미지를 찾을 수 없습니다."),
 
 	//인증페이지
 	CERTIFICATION_NOT_FOUND_404(HttpStatus.NOT_FOUND, "인증사진을 찾을 수 없습니다");

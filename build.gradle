@@ -63,6 +63,12 @@ dependencies {
 
     //redis
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+    // img resize
+    implementation 'org.imgscalr:imgscalr-lib:4.2'
+
+    // slack webhook logging
+    implementation("com.github.maricn:logback-slack-appender:1.6.1")
 }
 
 
