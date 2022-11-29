@@ -3,6 +3,7 @@ package MTZ.mountainz.domain.detailPageOne.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class DetailPageOneService {
 
 	// pageable test2
 	// 상세페이지1 정보 불러오기
-	// @Cacheable(value = "Mountain", key = "'detailOnePageAll'", cacheManager = "redisCacheManager")
+	@Cacheable(value = "Mountain", key = "'detailOnePageAll'", cacheManager = "redisCacheManager")
 	public ResponseDto<?> detailPageOneList(Pageable pageable) {
 		// 산목록에서 이름, 산이미지, 산퀴즈 true/false
 		Page<Mountain> mountainList = mountainRepository.findByMountainAll(pageable);
