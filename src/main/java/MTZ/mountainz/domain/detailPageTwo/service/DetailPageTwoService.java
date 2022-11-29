@@ -57,7 +57,6 @@ public class DetailPageTwoService {
 	}
 
 	// 상세페이지2 정보 불러오기
-	// @Cacheable(value = "Mountain", key = "#mountainId", cacheManager = "redisCacheManager")
 	public ResponseDto<?> detailPageTwoList(Long mountainId, String email) {
 		Mountain mountain = mountainRepository.findById(mountainId).orElseThrow(
 			() -> new RequestException(ErrorCode.MOUNTAIN_NOT_FOUND_404)

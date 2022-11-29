@@ -1,5 +1,6 @@
 package MTZ.mountainz.domain.mainPage.controller;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,25 +24,29 @@ public class MainPageController {
 	}
 
 	//지역별 산 목록 불러오기
-	@GetMapping("/mountains/{region}")
+	@Cacheable(value = "Mountain", key = "'tagRegion'", cacheManager = "redisCacheManager")
+	@GetMapping("/mountains/region/{region}")
 	public ResponseDto<?> getRegionList(@PathVariable String region) {
 		return mainPageService.getRegionList(region);
 	}
 
 	//태그 관련 목록 불러오기(난이도)
-	@GetMapping("/mountains/{level}")
+	@Cacheable(value = "Mountain", key = "'tagLevel'", cacheManager = "redisCacheManager")
+	@GetMapping("/mountains/level/{level}")
 	public ResponseDto<?> getLevelList(@PathVariable String level) {
 		return mainPageService.getLevelList(level);
 	}
 
 	//태그 관련 목록 불러오기(계절)
-	@GetMapping("/mountains/{season}")
+	@Cacheable(value = "Mountain", key = "'tagSeason'", cacheManager = "redisCacheManager")
+	@GetMapping("/mountains/season/{season}")
 	public ResponseDto<?> getSeasonList(@PathVariable String season) {
 		return mainPageService.getSeasonList(season);
 	}
 
 	//태그 관련 목록 불러오기(시간)
-	@GetMapping("/mountains/{time}")
+	@Cacheable(value = "Mountain", key = "'tagTime'", cacheManager = "redisCacheManager")
+	@GetMapping("/mountains/time/{time}")
 	public ResponseDto<?> getTimeList(@PathVariable String time) {
 		return mainPageService.getTimeList(time);
 	}
