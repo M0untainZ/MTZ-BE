@@ -3,6 +3,7 @@ package MTZ.mountainz.domain.certification.repository;
 import java.util.List;
 
 import MTZ.mountainz.domain.certification.dto.request.PhotoFilterRequestDto;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

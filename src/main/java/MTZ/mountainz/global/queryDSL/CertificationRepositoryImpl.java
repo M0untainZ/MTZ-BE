@@ -4,6 +4,10 @@ import static MTZ.mountainz.domain.certification.entity.QCertification.*;
 
 import java.util.List;
 
+import MTZ.mountainz.domain.certification.entity.Certification;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import com.querydsl.core.types.Projections;
@@ -20,6 +24,20 @@ import lombok.RequiredArgsConstructor;
 public class CertificationRepositoryImpl implements CertificationRepositoryCustom {
 
 	private final JPAQueryFactory jpaQueryFactory;
+
+	@Override
+	public Page<Certification> findByCertificationAll(Pageable pageable) {
+
+		List<Certification> certifications = jpaQueryFactory.selectFrom(certification)
+				.limit(pageable.getPageSize())
+				.offset(pageable.getOffset())
+				.fetch();
+
+		long totalSize = jpaQueryFactory.selectFrom(certification)
+				.fetch().size();
+
+		return new PageImpl<>(certifications, pageable, totalSize);
+	}
 
 	@Override
 	public List<CertificationFilterResponseDto> findByPhotosFilter(PhotoFilterRequestDto photoFilterRequestDto) {

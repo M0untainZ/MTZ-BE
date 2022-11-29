@@ -1,5 +1,7 @@
 package MTZ.mountainz.domain.certification.controller;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +20,8 @@ public class CertificationController {
 
 	// 인증 페이지에 인증사진 불러오기
 	@GetMapping("/photos")
-	public ResponseDto<?> certificationList(@AuthenticationPrincipal UserDetails userDetails) {
-		return certificationService.certificationList(userDetails.getUsername());
+	public ResponseDto<?> certificationList(@PageableDefault(size = 12) Pageable pageable, @AuthenticationPrincipal UserDetails userDetails) {
+		return certificationService.certificationList(userDetails.getUsername(), pageable);
 	}
 
 	// 인증사진 삭제하기

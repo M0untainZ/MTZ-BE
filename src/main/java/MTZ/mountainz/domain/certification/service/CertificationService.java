@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,11 +44,11 @@ public class CertificationService {
 	}
 
 	// 인증 페이지에 인증사진 불러오기
-	public ResponseDto<?> certificationList(String email) {
+	public ResponseDto<?> certificationList(String email, Pageable pageable) {
 		Member member = getMember(email);
 
 		// cetification 테이블 정보 다 불러오기
-		List<Certification> certificationList = certificationRepository.findAll();
+		Page<Certification> certificationList = certificationRepository.findByCertificationAll(pageable);
 
 		List<CertificationPhotoListResponseDto> certificationPhotoListResponseDtoList = new ArrayList<>();
 
