@@ -4,6 +4,9 @@ import static MTZ.mountainz.domain.mountain.entity.QMountain.*;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -19,6 +22,19 @@ import lombok.RequiredArgsConstructor;
 public class MountainRepositoryImpl implements MountainRepositoryCustom {
 
 	private final JPAQueryFactory jpaQueryFactory;
+
+	@Override
+	public Page<Mountain> findByMountainAll(Pageable pageable) {
+
+		List<Mountain> mountains = jpaQueryFactory.selectFrom(mountain)
+			.limit(pageable.getPageSize())
+			.fetch();
+
+		long totalSize = jpaQueryFactory.selectFrom(mountain)
+			.fetch().size();
+
+		return new PageImpl<>(mountains, pageable, totalSize);
+	}
 
 	@Override
 	public List<Mountain> findByKeyword(String keyword) {

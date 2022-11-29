@@ -1,5 +1,7 @@
 package MTZ.mountainz.domain.detailPageOne.controller;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,8 +22,8 @@ public class DetailPageOneController {
 
 	// 상세페이지1 정보 불러오기
 	@GetMapping("/mountains")
-	public ResponseDto<?> detailPageOneList() {
-		return detailPageOneService.detailPageOneList();
+	public ResponseDto<?> detailPageOneList(@PageableDefault(size = 12) Pageable pageable) {
+		return detailPageOneService.detailPageOneList(pageable);
 	}
 
 	// 키워드 검색 (산이름만 추후 queryDSL로 전체 조회할 예정)
