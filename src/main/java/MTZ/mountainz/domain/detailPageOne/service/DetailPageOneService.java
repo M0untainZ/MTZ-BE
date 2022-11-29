@@ -24,7 +24,6 @@ public class DetailPageOneService {
 	private final MountainRepository mountainRepository;
 	private final LikesRepository likesRepository;
 
-	// pageable test3
 	// 상세페이지1 정보 불러오기
 	@Cacheable(value = "Mountain", key = "'detailOnePageAll'", cacheManager = "redisCacheManager")
 	public ResponseDto<?> detailPageOneList(Pageable pageable) {
