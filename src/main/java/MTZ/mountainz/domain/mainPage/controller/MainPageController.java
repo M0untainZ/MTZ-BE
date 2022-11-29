@@ -1,5 +1,6 @@
 package MTZ.mountainz.domain.mainPage.controller;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ public class MainPageController {
 
 	//메인 페이지 정보 불러오기
 	@GetMapping("/main")
+	@ApiOperation(value = "메인 페이지 정보 불러오기", notes = "메인 페이지 정보 불러오기 API")
 	public ResponseDto<?> getMain() {
 		return mainPageService.getMain();
 	}
@@ -26,6 +28,7 @@ public class MainPageController {
 	//지역별 산 목록 불러오기
 	@Cacheable(value = "Mountain", key = "'tagRegion'", cacheManager = "redisCacheManager")
 	@GetMapping("/mountains/region/{region}")
+	@ApiOperation(value = "지역별 산 목록 불러오기", notes = "지역별 산 목록 불러오기 API")
 	public ResponseDto<?> getRegionList(@PathVariable String region) {
 		return mainPageService.getRegionList(region);
 	}
@@ -33,6 +36,7 @@ public class MainPageController {
 	//태그 관련 목록 불러오기(난이도)
 	@Cacheable(value = "Mountain", key = "'tagLevel'", cacheManager = "redisCacheManager")
 	@GetMapping("/mountains/level/{level}")
+	@ApiOperation(value = "태그 관련 목록 불러오기(난이도)", notes = "태그 관련 목록 불러오기(난이도) API")
 	public ResponseDto<?> getLevelList(@PathVariable String level) {
 		return mainPageService.getLevelList(level);
 	}
@@ -40,6 +44,7 @@ public class MainPageController {
 	//태그 관련 목록 불러오기(계절)
 	@Cacheable(value = "Mountain", key = "'tagSeason'", cacheManager = "redisCacheManager")
 	@GetMapping("/mountains/season/{season}")
+	@ApiOperation(value = "태그 관련 목록 불러오기(계절)", notes = "태그 관련 목록 불러오기(계절) API")
 	public ResponseDto<?> getSeasonList(@PathVariable String season) {
 		return mainPageService.getSeasonList(season);
 	}
@@ -47,6 +52,7 @@ public class MainPageController {
 	//태그 관련 목록 불러오기(시간)
 	@Cacheable(value = "Mountain", key = "'tagTime'", cacheManager = "redisCacheManager")
 	@GetMapping("/mountains/time/{time}")
+	@ApiOperation(value = "태그 관련 목록 불러오기(시간)", notes = "태그 관련 목록 불러오기(시간) API")
 	public ResponseDto<?> getTimeList(@PathVariable String time) {
 		return mainPageService.getTimeList(time);
 	}

@@ -3,6 +3,7 @@ package MTZ.mountainz.domain.detailPageTwo.controller;
 import java.io.IOException;
 import java.util.List;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.Authentication;
@@ -31,6 +32,7 @@ public class DetailPageTwoController {
 
 	// 상세페이지2 정보 불러오기
 	@GetMapping("/mountain/{mountainId}")
+	@ApiOperation(value = "상세페이지2 정보 불러오기", notes = "상세페이지2 정보 불러오기 API")
 	public ResponseDto<?> detailPageTwoList(@PathVariable Long mountainId) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		System.out.println("확인용 name : " + authentication.getName());
@@ -44,6 +46,7 @@ public class DetailPageTwoController {
 
 	// 좋아요 체크(입력)
 	@PostMapping("/mountain/{mountainId}/like")
+	@ApiOperation(value = "좋아요 체크(입력)", notes = "좋아요 체크(입력) API")
 	public ResponseDto<?> likeUp(@PathVariable Long mountainId,
 		@AuthenticationPrincipal UserDetails userDetails) {
 		return detailPageTwoService.likeUp(mountainId, userDetails.getUsername());
@@ -51,6 +54,7 @@ public class DetailPageTwoController {
 
 	// 인증하기 버튼
 	@PostMapping("/mountain/{mountainId}/certification")
+	@ApiOperation(value = "인증하기 버튼", notes = "인증하기 버튼 API")
 	public ResponseDto<?> addCertification(@PathVariable Long mountainId,
 		@RequestPart(required = false, value = "photo") List<MultipartFile> multipartFile,
 		@AuthenticationPrincipal UserDetails userDetails) throws IOException {
