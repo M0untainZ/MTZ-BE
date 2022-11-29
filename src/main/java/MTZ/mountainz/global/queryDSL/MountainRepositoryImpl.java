@@ -28,6 +28,7 @@ public class MountainRepositoryImpl implements MountainRepositoryCustom {
 
 		List<Mountain> mountains = jpaQueryFactory.selectFrom(mountain)
 			.limit(pageable.getPageSize())
+			.offset(pageable.getOffset())
 			.fetch();
 
 		long totalSize = jpaQueryFactory.selectFrom(mountain)
