@@ -45,8 +45,6 @@ public class DetailPageTwoService {
 
 	private final AmazonS3Client amazonS3Client;
 
-	private static final int IMAGE_WIDTH = 800;
-
 	@Value("${cloud.aws.s3.bucket}")
 	private String bucketName;
 
@@ -161,23 +159,8 @@ public class DetailPageTwoService {
 				objectMetadata.setContentLength(bytes.length);
 				ByteArrayInputStream byteArrayIs = new ByteArrayInputStream(bytes);
 
-				// BufferedImage image = resizeImage(file, IMAGE_WIDTH);
-				// String contentType = file.getContentType();
-				// ObjectMetadata objectMetadata = new ObjectMetadata();
-				//
-				// ByteArrayInputStream inputStream = imageToInputStream(image, contentType, objectMetadata);
-				//
-				// PutObjectRequest putObjectRequest = new PutObjectRequest(
-				// 	bucketName,
-				// 	fileName,
-				// 	inputStream,
-				// 	objectMetadata
-				// );
-
 				amazonS3Client.putObject(new PutObjectRequest(bucketName, fileName, byteArrayIs, objectMetadata)
 					.withCannedAcl(CannedAccessControlList.PublicRead));
-
-				// amazonS3Client.putObject(putObjectRequest);
 
 				imgUrl = amazonS3Client.getUrl(bucketName, fileName).toString();
 
@@ -237,41 +220,4 @@ public class DetailPageTwoService {
 				.build()
 		);
 	}
-
-	// image resize
-	// private BufferedImage resizeImage(MultipartFile multipartFile, int targetWidth) throws IOException {
-	// 	BufferedImage bufferedImage = ImageIO.read(multipartFile.getInputStream());
-	//
-	// 	if (bufferedImage == null) {
-	// 		throw new RequestException(ErrorCode.IMAGE_NOT_FOUND_404);
-	// 	}
-	//
-	// 	if (bufferedImage.getWidth() < targetWidth) {
-	// 		return bufferedImage;
-	// 	}
-	//
-	// 	return Scalr.resize(bufferedImage, Scalr.Method.QUALITY, targetWidth);
-	// }
-
-	// image to InputStream
-	// private ByteArrayInputStream imageToInputStream(BufferedImage bufferedImage, String contentType,
-	// 	ObjectMetadata objectMetadata) throws IOException {
-	// 	String fileExtension = contentType.split("/")[1];
-	//
-	// 	ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-	// 	ImageIO.write(bufferedImage, fileExtension, byteArrayOutputStream);
-	//
-	// 	objectMetadata.setContentType(contentType);
-	// 	objectMetadata.setContentLength(byteArrayOutputStream.size());
-
-	// ObjectMetadata objectMetadata = new ObjectMetadata();
-	// objectMetadata.setContentType(file.getContentType());
-	//
-	// byte[] bytes = IOUtils.toByteArray(file.getInputStream());
-	// objectMetadata.setContentLength(bytes.length);
-	// ByteArrayInputStream byteArrayIs = new ByteArrayInputStream(bytes);
-
-	// 	return new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
-	// }
-
 }

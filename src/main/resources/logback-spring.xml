@@ -8,7 +8,7 @@
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </layout>
         <username>서버 알림</username>
-        <iconEmoji>:grapes:</iconEmoji>
+        <iconEmoji>:cool-doge:</iconEmoji>
         <colorCoding>true</colorCoding>
     </appender>
     <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
