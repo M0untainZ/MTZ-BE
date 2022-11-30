@@ -28,6 +28,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+      dialect: org.hibernate.dialect.MySQL8InnoDBDialect
       #      ddl-auto: create
   #      ddl-auto: none
   properties:
@@ -42,7 +43,7 @@ spring:
       org.hibernate.SQL: debug
       org.hibernate.type: trace
     slack:
-      webhook-uri:
+      webhook-uri: ${SLACK_WEBHOOK_URI}
     config: classpath:logback-spring.xml
 
   mvc:

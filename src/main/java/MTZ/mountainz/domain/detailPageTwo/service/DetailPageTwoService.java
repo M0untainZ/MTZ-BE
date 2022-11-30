@@ -1,17 +1,11 @@
 package MTZ.mountainz.domain.detailPageTwo.service;
 
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
-import javax.imageio.ImageIO;
-
-import org.imgscalr.Scalr;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -19,8 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.util.IOUtils;
 
 import MTZ.mountainz.domain.certification.entity.Certification;
 import MTZ.mountainz.domain.certification.repository.CertificationRepository;
@@ -36,6 +32,7 @@ import MTZ.mountainz.domain.mountain.repository.MountainRepository;
 import MTZ.mountainz.global.dto.ResponseDto;
 import MTZ.mountainz.global.exception.ErrorCode;
 import MTZ.mountainz.global.exception.RequestException;
+import MTZ.mountainz.global.s3.CommonUtils;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -154,33 +151,33 @@ public class DetailPageTwoService {
 
 		for (MultipartFile file : multipartFile) {
 			if (!file.isEmpty()) {
-				// String fileName = CommonUtils.buildFileName(file.getOriginalFilename());
-				String fileName = UUID.randomUUID().toString();
+				String fileName = CommonUtils.buildFileName(file.getOriginalFilename());
+				// String fileName = UUID.randomUUID().toString();
 
-				// ObjectMetadata objectMetadata = new ObjectMetadata();
-				// objectMetadata.setContentType(file.getContentType());
-				//
-				// byte[] bytes = IOUtils.toByteArray(file.getInputStream());
-				// objectMetadata.setContentLength(bytes.length);
-				// ByteArrayInputStream byteArrayIs = new ByteArrayInputStream(bytes);
-
-				BufferedImage image = resizeImage(file, IMAGE_WIDTH);
-				String contentType = file.getContentType();
 				ObjectMetadata objectMetadata = new ObjectMetadata();
+				objectMetadata.setContentType(file.getContentType());
 
-				ByteArrayInputStream inputStream = imageToInputStream(image, contentType, objectMetadata);
-		
-				PutObjectRequest putObjectRequest = new PutObjectRequest(
-					bucketName,
-					fileName,
-					inputStream,
-					objectMetadata
-				);
+				byte[] bytes = IOUtils.toByteArray(file.getInputStream());
+				objectMetadata.setContentLength(bytes.length);
+				ByteArrayInputStream byteArrayIs = new ByteArrayInputStream(bytes);
 
-				// amazonS3Client.putObject(new PutObjectRequest(bucketName, fileName, byteArrayIs, objectMetadata)
-				// 	.withCannedAcl(CannedAccessControlList.PublicRead));
+				// BufferedImage image = resizeImage(file, IMAGE_WIDTH);
+				// String contentType = file.getContentType();
+				// ObjectMetadata objectMetadata = new ObjectMetadata();
+				//
+				// ByteArrayInputStream inputStream = imageToInputStream(image, contentType, objectMetadata);
+				//
+				// PutObjectRequest putObjectRequest = new PutObjectRequest(
+				// 	bucketName,
+				// 	fileName,
+				// 	inputStream,
+				// 	objectMetadata
+				// );
 
-				amazonS3Client.putObject(putObjectRequest);
+				amazonS3Client.putObject(new PutObjectRequest(bucketName, fileName, byteArrayIs, objectMetadata)
+					.withCannedAcl(CannedAccessControlList.PublicRead));
+
+				// amazonS3Client.putObject(putObjectRequest);
 
 				imgUrl = amazonS3Client.getUrl(bucketName, fileName).toString();
 
@@ -242,39 +239,39 @@ public class DetailPageTwoService {
 	}
 
 	// image resize
-	private BufferedImage resizeImage(MultipartFile multipartFile, int targetWidth) throws IOException {
-		BufferedImage bufferedImage = ImageIO.read(multipartFile.getInputStream());
-
-		if (bufferedImage == null) {
-			throw new RequestException(ErrorCode.IMAGE_NOT_FOUND_404);
-		}
-
-		if (bufferedImage.getWidth() < targetWidth) {
-			return bufferedImage;
-		}
-
-		return Scalr.resize(bufferedImage, Scalr.Method.QUALITY, targetWidth);
-	}
+	// private BufferedImage resizeImage(MultipartFile multipartFile, int targetWidth) throws IOException {
+	// 	BufferedImage bufferedImage = ImageIO.read(multipartFile.getInputStream());
+	//
+	// 	if (bufferedImage == null) {
+	// 		throw new RequestException(ErrorCode.IMAGE_NOT_FOUND_404);
+	// 	}
+	//
+	// 	if (bufferedImage.getWidth() < targetWidth) {
+	// 		return bufferedImage;
+	// 	}
+	//
+	// 	return Scalr.resize(bufferedImage, Scalr.Method.QUALITY, targetWidth);
+	// }
 
 	// image to InputStream
-	private ByteArrayInputStream imageToInputStream(BufferedImage bufferedImage, String contentType,
-		ObjectMetadata objectMetadata) throws IOException {
-		String fileExtension = contentType.split("/")[1];
+	// private ByteArrayInputStream imageToInputStream(BufferedImage bufferedImage, String contentType,
+	// 	ObjectMetadata objectMetadata) throws IOException {
+	// 	String fileExtension = contentType.split("/")[1];
+	//
+	// 	ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+	// 	ImageIO.write(bufferedImage, fileExtension, byteArrayOutputStream);
+	//
+	// 	objectMetadata.setContentType(contentType);
+	// 	objectMetadata.setContentLength(byteArrayOutputStream.size());
 
-		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-		ImageIO.write(bufferedImage, fileExtension, byteArrayOutputStream);
+	// ObjectMetadata objectMetadata = new ObjectMetadata();
+	// objectMetadata.setContentType(file.getContentType());
+	//
+	// byte[] bytes = IOUtils.toByteArray(file.getInputStream());
+	// objectMetadata.setContentLength(bytes.length);
+	// ByteArrayInputStream byteArrayIs = new ByteArrayInputStream(bytes);
 
-		objectMetadata.setContentType(contentType);
-		objectMetadata.setContentLength(byteArrayOutputStream.size());
-
-		// ObjectMetadata objectMetadata = new ObjectMetadata();
-		// objectMetadata.setContentType(file.getContentType());
-		//
-		// byte[] bytes = IOUtils.toByteArray(file.getInputStream());
-		// objectMetadata.setContentLength(bytes.length);
-		// ByteArrayInputStream byteArrayIs = new ByteArrayInputStream(bytes);
-
-		return new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
-	}
+	// 	return new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
+	// }
 
 }
