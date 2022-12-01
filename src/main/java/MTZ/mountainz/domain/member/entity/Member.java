@@ -63,6 +63,7 @@ public class Member {
 	}
 
 	public Member(String kakaoId, String password, String nickName, String region, Authority authority) {
+		this.email = kakaoId;
 		this.kakaoId = kakaoId;
 		this.password = password;
 		this.nickName = nickName;
