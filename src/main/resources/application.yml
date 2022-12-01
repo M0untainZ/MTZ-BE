@@ -84,7 +84,7 @@ cloud:
       max-request-size: 10MB
 
 jwt:
-  secret: ${JWT_SECRET_KEY}
+  secret:
 
 kakao:
   client-id:
