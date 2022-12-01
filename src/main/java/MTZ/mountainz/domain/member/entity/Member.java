@@ -60,6 +60,7 @@ public class Member {
 		this.nickName = memberRequestDto.getNickName();
 		this.region = memberRequestDto.getRegion();
 		this.authority = authority;
+		this.kakaoId = null;
 	}
 
 	public Member(String kakaoId, String password, String nickName, String region, Authority authority) {
