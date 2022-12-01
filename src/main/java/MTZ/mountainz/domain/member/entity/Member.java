@@ -48,6 +48,9 @@ public class Member {
 	@Column(name = "profilePhoto")
 	private String profilePhoto;
 
+	@Column(unique = true)
+	private String kakaoId;
+
 	@Enumerated(EnumType.STRING)
 	private Authority authority;
 
@@ -56,6 +59,14 @@ public class Member {
 		this.password = memberRequestDto.getPassword();
 		this.nickName = memberRequestDto.getNickName();
 		this.region = memberRequestDto.getRegion();
+		this.authority = authority;
+	}
+
+	public Member(String kakaoId, String password, String nickName, String region, Authority authority) {
+		this.kakaoId = kakaoId;
+		this.password = password;
+		this.nickName = nickName;
+		this.region = region;
 		this.authority = authority;
 	}
 

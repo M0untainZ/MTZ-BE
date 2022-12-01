@@ -12,6 +12,8 @@ import MTZ.mountainz.domain.member.entity.Member;
 public interface MemberRepository extends JpaRepository<Member, Long> {
 	Optional<Member> findByEmail(String email);
 
+	Optional<Member> findByKakaoId(String kakaoId);
+
 	boolean existsByEmail(String email);
 
 	boolean existsByNickName(String nickname);
