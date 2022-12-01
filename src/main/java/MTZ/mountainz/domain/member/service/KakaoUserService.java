@@ -38,9 +38,9 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class KakaoUserService {
-	@Value("${kakao.client-id}")
+	@Value("${Kakao.client-id}")
 	String clientId;
-	@Value("${kakao.redirect-uri}")
+	@Value("${Kakao.redirect-uri}")
 	String redirectUri;
 
 	private final PasswordEncoder passwordEncoder;
