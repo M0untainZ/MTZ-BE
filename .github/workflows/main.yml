@@ -18,6 +18,9 @@ env:
   DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
   # JWT Secret
   JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
+  # OAUTH
+  KAKAO_CLIENT_ID: ${{ secrets.KAKAO_CLIENT_ID }}
+  KAKAO_REDIRECT_URL: ${{ secrets.KAKAO_REDIRECT_URL }}
   # AWS S3
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -53,6 +56,8 @@ jobs:
           spring.datasource.username: ${{ env.DB_USERNAME }}
           spring.datasource.password: ${{ env.DB_PASSWORD }}
           jwt.secretKey: ${{ env.JWT_SECRET_KEY }}
+          kakao.client-id: ${{ env.KAKAO_CLIENT_ID }}
+          kakao.redirect-uri: ${{ env.KAKAO_REDIRECT_URL }}
           cloud.aws.credentials.access-key: ${{ env.AWS_ACCESS_KEY_ID }}
           cloud.aws.credentials.secret-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
           cloud.aws.s3.bucket: ${{ env.S3_BUCKET_NAME }}
