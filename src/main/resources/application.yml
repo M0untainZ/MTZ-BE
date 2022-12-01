@@ -84,8 +84,8 @@ cloud:
       max-request-size: 10MB
 
 jwt:
-  secret: c3ByaW5nLWJvb3Qtc2VjdXJpdHktand0LXR1dG9yaWFsLWppd29vbi1zcHJpbmctYm9vdC1zZWN1cml0eS1qd3QtdHV0b3JpYWwK
+  secret: ${JWT_SECRET_KEY}
 
-Kakao:
+kakao:
   client-id:
   redirect-uri:

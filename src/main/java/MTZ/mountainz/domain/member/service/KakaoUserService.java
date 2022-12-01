@@ -38,16 +38,10 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class KakaoUserService {
-	@Value("${Kakao.client-id}")
+	@Value("${kakao.client-id}")
 	String clientId;
-	@Value("${Kakao.redirect-uri}")
+	@Value("${kakao.redirect-uri}")
 	String redirectUri;
-	// @Value("${kakao.authorization-grant-type}")
-	// String authorization_code;
-	// @Value("${kakao.token-uri}")
-	// String tokenUri;
-	// @Value("${kakao.user-info-uri}")
-	// String userInfoUri;
 
 	private final PasswordEncoder passwordEncoder;
 	private final MemberRepository memberRepository;
@@ -66,7 +60,7 @@ public class KakaoUserService {
 		Member kakaoUser = signupKakaoUser(kakaoUserInfo);
 
 		// 4. 강제 로그인 처리
-		Authentication authentication = forceLogin(kakaoUser);
+		forceLogin(kakaoUser);
 
 		// 5. response Header 에 JWT 토큰 추가
 		TokenDto tokenDto = jwtUtil.createAllToken(kakaoUserInfo.getId().toString());
