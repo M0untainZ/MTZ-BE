@@ -1,12 +1,11 @@
 package MTZ.mountainz.domain.myPage.service;
 
-import MTZ.mountainz.domain.badge.repository.MemberBadgeRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import MTZ.mountainz.domain.badge.repository.MemberBadgeRepository;
 import MTZ.mountainz.domain.member.entity.Member;
 import MTZ.mountainz.domain.member.repository.MemberRepository;
-import MTZ.mountainz.domain.member.service.MemberService;
 import MTZ.mountainz.domain.myPage.dto.MyPageRequestDto;
 import MTZ.mountainz.domain.myPage.dto.MyPageResponseDto;
 import MTZ.mountainz.global.dto.ResponseDto;
@@ -20,7 +19,6 @@ public class MyPageService {
 
 	private final MemberRepository memberRepository;
 	private final MemberBadgeRepository memberBadgeRepository;
-	private final MemberService memberService;
 
 	private Member getMember(String email) {
 		Member member = memberRepository.findByEmail(email).orElseThrow(
