@@ -44,7 +44,7 @@ public class MyPageService {
 			memberBadgeResponseDtoList.add(
 				MemberBadgeResponseDto.builder()
 					.id(memberBadge.getBadge().getId())
-					.title(memberBadge.getBadge().getTitle())
+					.badgeName(memberBadge.getBadge().getBadgeName())
 					.content(memberBadge.getBadge().getContent())
 					.img(memberBadge.getBadge().getImg())
 					.openTime(memberBadge.getOpenTime())

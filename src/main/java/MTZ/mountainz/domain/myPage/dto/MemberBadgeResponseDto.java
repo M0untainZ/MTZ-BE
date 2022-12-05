@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class MemberBadgeResponseDto {
 	Long id;
-	String title;
+	String badgeName;
 	String content;
 	String img;
 	String openTime;

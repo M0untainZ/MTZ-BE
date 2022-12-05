@@ -130,7 +130,7 @@ public class DetailPageTwoService {
 			likesRepository.save(likes);
 		}
 
-//		Member memberCert= memberRepository.findByCertificationPoint(member.getId());
+//		Likes = memberRepository.findByCertificationPoint(member.getId());
 //		// 3회 인증
 //		if(memberCert.equals(9)){
 //			Badge badge = badgeRepository.findById(2L).orElseThrow(
@@ -196,13 +196,13 @@ public class DetailPageTwoService {
 		// member에 certificationPoint 3 증가시키기
 		member.updateCertificationPoint(3);
 
-		Member memberCert= memberRepository.findByCertificationPoint(member.getId());
-		// 3회 인증
-		if(memberCert.equals(9)){
-		Badge badge = badgeRepository.findById(2L).orElseThrow(
-				() -> new IllegalArgumentException()
-		);}
-		memberRepository.save(member);
+//		Member memberCert= memberRepository.findByCertificationPoint(member.getId());
+//		// 3회 인증
+//		if(memberCert.equals(9)){
+//		Badge badge = badgeRepository.findById(2L).orElseThrow(
+//				() -> new IllegalArgumentException()
+//		);}
+//		memberRepository.save(member);
 		// 6회 인증
 //		if(memberCert == 18)
 //		Badge badge = badgeRepository.findById(3L).orElseThrow(
