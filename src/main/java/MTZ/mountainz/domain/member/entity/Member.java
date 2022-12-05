@@ -60,15 +60,14 @@ public class Member {
 		this.kakaoId = null;
 	}
 
-	public Member(Long id, String kakaoId, String password, String nickName, String region, Authority authority, int certificationPoint) {
-		this.id = id;
+	public Member(String kakaoId, String password, String nickName, String region, Authority authority) {
 		this.email = kakaoId;
 		this.kakaoId = kakaoId;
 		this.password = password;
 		this.nickName = nickName;
 		this.region = region;
 		this.authority = authority;
-		this.certificationPoint = certificationPoint;
+
 	}
 
 	public Member(String email) {
