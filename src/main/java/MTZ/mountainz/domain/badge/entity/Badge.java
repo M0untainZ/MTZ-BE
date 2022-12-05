@@ -21,6 +21,9 @@ public class Badge {
 	@Column(name = "badge_id", nullable = false)
 	private Long id;
 
+	@Column(name = "title", nullable = false)
+	private String title;
+
 	@Column(name = "content", nullable = false)
 	private String content;
 
@@ -31,7 +34,8 @@ public class Badge {
 		this.id = badgeId;
 	}
 
-	public Badge(String content, String img) {
+	public Badge(String title, String content, String img) {
+		this.title = title;
 		this.content = content;
 		this.img = img;
 	}
