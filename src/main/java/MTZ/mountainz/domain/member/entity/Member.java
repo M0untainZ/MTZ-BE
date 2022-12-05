@@ -39,9 +39,6 @@ public class Member {
 	@Column(name = "certificationPoint")
 	private int certificationPoint;
 
-	@Column(name = "quizPoint")
-	private int quizPoint;
-
 	@Column(name = "badgeName")
 	private String badgeName;
 
