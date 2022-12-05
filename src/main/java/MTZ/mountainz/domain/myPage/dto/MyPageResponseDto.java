@@ -2,7 +2,7 @@ package MTZ.mountainz.domain.myPage.dto;
 
 import java.util.List;
 
-import MTZ.mountainz.domain.badge.entity.Badge;
+import MTZ.mountainz.domain.badge.entity.MemberBadge;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,5 +23,5 @@ public class MyPageResponseDto {
 	@ApiModelProperty(example = "유저 지역")
 	String region;
 	@ApiModelProperty(example = "뱃지 목록")
-	List<Badge> badgeList;
+	List<MemberBadge> badgeList;
 }

@@ -1,9 +1,9 @@
 package MTZ.mountainz.domain.myPage.service;
 
+import MTZ.mountainz.domain.badge.repository.MemberBadgeRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import MTZ.mountainz.domain.badge.repository.BadgeRepository;
 import MTZ.mountainz.domain.member.entity.Member;
 import MTZ.mountainz.domain.member.repository.MemberRepository;
 import MTZ.mountainz.domain.member.service.MemberService;
@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class MyPageService {
 
 	private final MemberRepository memberRepository;
-	private final BadgeRepository badgeRepository;
+	private final MemberBadgeRepository memberBadgeRepository;
 	private final MemberService memberService;
 
 	private Member getMember(String email) {
@@ -40,7 +40,7 @@ public class MyPageService {
 				.profilePhoto(member.getProfilePhoto())
 				.nickName(member.getNickName())
 				.region(member.getRegion())
-				.badgeList(badgeRepository.findAllByMemberId(member.getId()))
+				.badgeList(memberBadgeRepository.findAllByMemberId(member.getId()))
 				.build()
 		);
 	}

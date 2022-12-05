@@ -45,9 +45,6 @@ public class Mountain {
 	@Column(name = "time", nullable = false)
 	private String time;
 
-	@Column(name = "quiz")
-	private String quiz;
-
 	@Column(name = "img", nullable = false)
 	private String img;
 
@@ -70,7 +67,6 @@ public class Mountain {
 		this.level = mountainRequestDto.getLevel();
 		this.season = mountainRequestDto.getSeason();
 		this.time = mountainRequestDto.getTime();
-		this.quiz = mountainRequestDto.getQuiz();
 		this.img = mountainRequestDto.getImg();
 		this.member = member;
 	}
