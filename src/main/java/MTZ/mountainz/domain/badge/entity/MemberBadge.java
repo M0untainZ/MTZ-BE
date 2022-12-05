@@ -9,21 +9,17 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class MemberBadge {
+
+    LocalDateTime date = LocalDateTime.now();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,6 +38,11 @@ public class MemberBadge {
     private Member member;
 
     @DateTimeFormat
-    private LocalDateTime openTime; // 뱃지 생성 날짜
+    private String openTime; // 뱃지 획득 시간
 
+    public void createDate(Badge badge, Member member) {
+        this.openTime = date.format(DateTimeFormatter.ISO_DATE);
+        this.badge = badge;
+        this.member = member;
+    }
 }
