@@ -1,11 +1,16 @@
 package MTZ.mountainz.domain.myPage.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import MTZ.mountainz.domain.badge.entity.MemberBadge;
 import MTZ.mountainz.domain.badge.repository.MemberBadgeRepository;
 import MTZ.mountainz.domain.member.entity.Member;
 import MTZ.mountainz.domain.member.repository.MemberRepository;
+import MTZ.mountainz.domain.myPage.dto.MemberBadgeResponseDto;
 import MTZ.mountainz.domain.myPage.dto.MyPageRequestDto;
 import MTZ.mountainz.domain.myPage.dto.MyPageResponseDto;
 import MTZ.mountainz.global.dto.ResponseDto;
@@ -33,12 +38,26 @@ public class MyPageService {
 
 		Member member = getMember(email);
 
+		List<MemberBadge> memberBadgeList = memberBadgeRepository.findAllByMemberId(member.getId());
+		List<MemberBadgeResponseDto> memberBadgeResponseDtoList = new ArrayList<>();
+		for (MemberBadge memberBadge : memberBadgeList) {
+			memberBadgeResponseDtoList.add(
+				MemberBadgeResponseDto.builder()
+					.id(memberBadge.getBadge().getId())
+					.title(memberBadge.getBadge().getTitle())
+					.content(memberBadge.getBadge().getContent())
+					.img(memberBadge.getBadge().getImg())
+					.openTime(memberBadge.getOpenTime())
+					.build()
+			);
+		}
+
 		return ResponseDto.success(
 			MyPageResponseDto.builder()
 				.profilePhoto(member.getProfilePhoto())
 				.nickName(member.getNickName())
 				.region(member.getRegion())
-				.badgeList(memberBadgeRepository.findAllByMemberId(member.getId()))
+				.badgeList(memberBadgeResponseDtoList)
 				.build()
 		);
 	}

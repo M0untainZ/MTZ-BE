@@ -18,10 +18,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import MTZ.mountainz.domain.member.entity.Member;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Builder
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
