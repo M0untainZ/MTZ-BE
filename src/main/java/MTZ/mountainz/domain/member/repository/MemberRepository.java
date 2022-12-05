@@ -19,4 +19,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 	boolean existsByNickName(String nickname);
 
 	List<Member> findByCertificationPointGreaterThanOrderByCertificationPointDesc(int i);
+
+	Member findByCertificationPoint(Long id);
+
 }

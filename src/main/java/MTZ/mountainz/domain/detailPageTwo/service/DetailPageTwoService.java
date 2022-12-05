@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import MTZ.mountainz.domain.badge.entity.Badge;
+import MTZ.mountainz.domain.badge.entity.MemberBadge;
+import MTZ.mountainz.domain.badge.repository.BadgeRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -42,6 +45,7 @@ public class DetailPageTwoService {
 	private final CertificationRepository certificationRepository;
 	private final LikesRepository likesRepository;
 	private final MemberRepository memberRepository;
+	private final BadgeRepository badgeRepository;
 
 	private final AmazonS3Client amazonS3Client;
 
@@ -126,6 +130,21 @@ public class DetailPageTwoService {
 			likesRepository.save(likes);
 		}
 
+//		Member memberCert= memberRepository.findByCertificationPoint(member.getId());
+//		// 3회 인증
+//		if(memberCert.equals(9)){
+//			Badge badge = badgeRepository.findById(2L).orElseThrow(
+//					() -> new IllegalArgumentException()
+//			);}
+//		memberRepository.save(member);
+//		// 6회 인증
+//		if (memberCert >= 18)
+//
+//			Badge badge = badgeRepository.findById(3L).orElseThrow(
+//					() -> new IllegalArgumentException()
+//			);
+
+
 		// 해당 산의 총 좋아요 갯수
 		Long countLike = likesRepository.countAllByMountainId(mountainId);
 
@@ -176,6 +195,28 @@ public class DetailPageTwoService {
 
 		// member에 certificationPoint 3 증가시키기
 		member.updateCertificationPoint(3);
+
+		Member memberCert= memberRepository.findByCertificationPoint(member.getId());
+		// 3회 인증
+		if(memberCert.equals(9)){
+		Badge badge = badgeRepository.findById(2L).orElseThrow(
+				() -> new IllegalArgumentException()
+		);}
+		memberRepository.save(member);
+		// 6회 인증
+//		if(memberCert == 18)
+//		Badge badge = badgeRepository.findById(3L).orElseThrow(
+//				() -> new IllegalArgumentException()
+//		);
+//		memberRepository.save(member);
+//		//memberbadgerep에 save
+		// 9회 인증
+//		if(memberCert == 27)
+//
+//		Badge badge = badgeRepository.findById(4L).orElseThrow(
+//				() -> new IllegalArgumentException()
+//		);
+//		memberRepository.save(member);
 
 		// response 추가
 		Optional<Likes> imsiLike = likesRepository.findByMountainIdAndMemberEmail(mountainId, email);
