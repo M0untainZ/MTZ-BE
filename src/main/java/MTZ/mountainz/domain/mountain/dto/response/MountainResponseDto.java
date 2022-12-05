@@ -22,8 +22,6 @@ public class MountainResponseDto {
 	private String season;
 	@ApiModelProperty(example = "산 이미지")
 	private String img;
-	@ApiModelProperty(example = "산 퀴즈")
-	private String quiz;
 	@ApiModelProperty(example = "산 등반 시간")
 	private String time;
 

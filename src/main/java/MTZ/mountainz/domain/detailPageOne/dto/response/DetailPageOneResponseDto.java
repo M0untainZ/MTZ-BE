@@ -18,9 +18,6 @@ public class DetailPageOneResponseDto {
 	@ApiModelProperty(example = "산 이름")
 	private String name;
 
-	@ApiModelProperty(example = "산 퀴즈")
-	private String quiz;
-
 	@ApiModelProperty(example = "산 사진")
 	private String img;
 

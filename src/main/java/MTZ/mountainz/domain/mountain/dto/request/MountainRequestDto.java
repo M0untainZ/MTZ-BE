@@ -14,6 +14,5 @@ public class MountainRequestDto {
 	private String level;
 	private String season;
 	private String time;
-	private String quiz;
 	private String img;
 }
