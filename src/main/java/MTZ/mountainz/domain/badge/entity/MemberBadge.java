@@ -45,7 +45,7 @@ public class MemberBadge {
 	@DateTimeFormat
 	private String openTime; // 뱃지 획득 시간
 
-	public void createDate(Badge badge, Member member) {
+	public MemberBadge(Badge badge, Member member) {
 		LocalDateTime date = LocalDateTime.now();
 		this.openTime = date.format(DateTimeFormatter.ISO_DATE);
 		this.badge = badge;

@@ -8,6 +8,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import MTZ.mountainz.domain.badge.entity.Badge;
+import MTZ.mountainz.domain.badge.entity.MemberBadge;
+import MTZ.mountainz.domain.badge.repository.BadgeRepository;
+import MTZ.mountainz.domain.badge.repository.MemberBadgeRepository;
 import MTZ.mountainz.domain.member.dto.request.LoginRequestDto;
 import MTZ.mountainz.domain.member.dto.request.MemberRequestDto;
 import MTZ.mountainz.domain.member.dto.response.LoginResponseDto;
@@ -31,6 +35,8 @@ public class MemberService {
 	private final PasswordEncoder passwordEncoder;
 	private final MemberRepository memberRepository;
 	private final RefreshTokenRepository refreshTokenRepository;
+	private final MemberBadgeRepository memberBadgeRepository;
+	private final BadgeRepository badgeRepository;
 
 	@Transactional
 	public ResponseDto<String> signup(MemberRequestDto memberRequestDto) {
@@ -42,6 +48,11 @@ public class MemberService {
 		Member member = new Member(memberRequestDto, Authority.ROLE_USER);
 
 		memberRepository.save(member);
+		Badge badge = badgeRepository.findById(1L).orElseThrow(
+			() -> new IllegalArgumentException()
+		);
+
+		memberBadgeRepository.save(new MemberBadge(badge, member));
 		return ResponseDto.success("회원가입 완료");
 	}
 
