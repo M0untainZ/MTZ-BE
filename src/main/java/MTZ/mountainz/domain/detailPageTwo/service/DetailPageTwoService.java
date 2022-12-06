@@ -9,6 +9,7 @@ import java.util.Optional;
 import MTZ.mountainz.domain.badge.entity.Badge;
 import MTZ.mountainz.domain.badge.entity.MemberBadge;
 import MTZ.mountainz.domain.badge.repository.BadgeRepository;
+import MTZ.mountainz.domain.badge.repository.MemberBadgeRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -46,6 +47,7 @@ public class DetailPageTwoService {
 	private final LikesRepository likesRepository;
 	private final MemberRepository memberRepository;
 	private final BadgeRepository badgeRepository;
+	private final MemberBadgeRepository memberBadgeRepository;
 
 	private final AmazonS3Client amazonS3Client;
 
@@ -130,13 +132,13 @@ public class DetailPageTwoService {
 			likesRepository.save(likes);
 		}
 
-//		Likes = memberRepository.findByCertificationPoint(member.getId());
-//		// 3회 인증
-//		if(memberCert.equals(9)){
-//			Badge badge = badgeRepository.findById(2L).orElseThrow(
-//					() -> new IllegalArgumentException()
-//			);}
-//		memberRepository.save(member);
+		//좋아요 레포에서 memberId로 된 like 뽑기
+		Likes memberLike = likesRepository.countAllByMemberId(member);
+		// 그 객체의 카운트가 3이면 뱃지 주기
+		if(memberLike.equals(3)){
+			Badge badge = badgeRepository.findById(5L).orElseThrow(
+					() -> new IllegalArgumentException()
+			);}
 //		// 6회 인증
 //		if (memberCert >= 18)
 //

@@ -2,6 +2,7 @@ package MTZ.mountainz.domain.like.repository;
 
 import java.util.Optional;
 
+import MTZ.mountainz.domain.member.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,4 +15,5 @@ public interface LikesRepository extends JpaRepository<Likes, Long> {
 	// 숫자 반환 산 아이디에 해당하는 like
 	Long countAllByMountainId(Long mountainId);
 
+	Likes countAllByMemberId(Member member);
 }
