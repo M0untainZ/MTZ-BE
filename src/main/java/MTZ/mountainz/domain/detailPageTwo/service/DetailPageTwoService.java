@@ -132,7 +132,7 @@ public class DetailPageTwoService {
 			likesRepository.save(likes);
 		}
 		//좋아요 레포에서 memberId로 된 like 뽑기
-		Long memberLike = likesRepository.countAllByMemberId(memberId);
+		Long memberLike = likesRepository.countAllByMemberId(member.getId());
 		System.out.println("memberLike 확인"+ memberLike);
 		System.out.println("memberLike 3L 확인"+memberLike.equals(3L));
 		// 그 객체의 카운트가 3이면 뱃지 주기
