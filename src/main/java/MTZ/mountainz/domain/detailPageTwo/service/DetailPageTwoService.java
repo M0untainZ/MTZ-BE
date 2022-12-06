@@ -6,10 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import MTZ.mountainz.domain.badge.entity.Badge;
-import MTZ.mountainz.domain.badge.entity.MemberBadge;
-import MTZ.mountainz.domain.badge.repository.BadgeRepository;
-import MTZ.mountainz.domain.badge.repository.MemberBadgeRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -22,6 +18,10 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.util.IOUtils;
 
+import MTZ.mountainz.domain.badge.entity.Badge;
+import MTZ.mountainz.domain.badge.entity.MemberBadge;
+import MTZ.mountainz.domain.badge.repository.BadgeRepository;
+import MTZ.mountainz.domain.badge.repository.MemberBadgeRepository;
 import MTZ.mountainz.domain.certification.entity.Certification;
 import MTZ.mountainz.domain.certification.repository.CertificationRepository;
 import MTZ.mountainz.domain.detailPageTwo.dto.response.CertificationResponseDto;
@@ -134,9 +134,9 @@ public class DetailPageTwoService {
 		//좋아요 레포에서 memberId로 된 like 뽑기
 		Long memberLike = likesRepository.countAllByMemberId(memberId);
 		// 그 객체의 카운트가 3이면 뱃지 주기
-		if (memberLike.equals(3)) {
+		if (memberLike.equals(3L)) {
 			Badge badge = badgeRepository.findById(5L).orElseThrow(
-					() -> new IllegalArgumentException()
+				() -> new IllegalArgumentException()
 			);
 			memberBadgeRepository.save(new MemberBadge(badge, member));
 		}
@@ -144,10 +144,10 @@ public class DetailPageTwoService {
 		Long countLike = likesRepository.countAllByMountainId(mountainId);
 
 		return ResponseDto.success(
-				LikesResponseDto.builder()
-						.correctLike(correctLike)
-						.countLike(countLike)
-						.build()
+			LikesResponseDto.builder()
+				.correctLike(correctLike)
+				.countLike(countLike)
+				.build()
 		);
 	}
 
@@ -191,27 +191,27 @@ public class DetailPageTwoService {
 		// member에 certificationPoint 3 증가시키기
 		member.updateCertificationPoint(3);
 
-//		Member memberCert= memberRepository.findByCertificationPoint(member.getId());
-//		// 3회 인증
-//		if(memberCert.equals(9)){
-//		Badge badge = badgeRepository.findById(2L).orElseThrow(
-//				() -> new IllegalArgumentException()
-//		);}
-//		memberRepository.save(member);
+		//		Member memberCert= memberRepository.findByCertificationPoint(member.getId());
+		//		// 3회 인증
+		//		if(memberCert.equals(9)){
+		//		Badge badge = badgeRepository.findById(2L).orElseThrow(
+		//				() -> new IllegalArgumentException()
+		//		);}
+		//		memberRepository.save(member);
 		// 6회 인증
-//		if(memberCert == 18)
-//		Badge badge = badgeRepository.findById(3L).orElseThrow(
-//				() -> new IllegalArgumentException()
-//		);
-//		memberRepository.save(member);
-//		//memberbadgerep에 save
+		//		if(memberCert == 18)
+		//		Badge badge = badgeRepository.findById(3L).orElseThrow(
+		//				() -> new IllegalArgumentException()
+		//		);
+		//		memberRepository.save(member);
+		//		//memberbadgerep에 save
 		// 9회 인증
-//		if(memberCert == 27)
-//
-//		Badge badge = badgeRepository.findById(4L).orElseThrow(
-//				() -> new IllegalArgumentException()
-//		);
-//		memberRepository.save(member);
+		//		if(memberCert == 27)
+		//
+		//		Badge badge = badgeRepository.findById(4L).orElseThrow(
+		//				() -> new IllegalArgumentException()
+		//		);
+		//		memberRepository.save(member);
 
 		// response 추가
 		Optional<Likes> imsiLike = likesRepository.findByMountainIdAndMemberEmail(mountainId, email);
