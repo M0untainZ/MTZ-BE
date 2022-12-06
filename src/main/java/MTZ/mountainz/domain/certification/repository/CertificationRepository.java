@@ -15,4 +15,7 @@ public interface CertificationRepository extends JpaRepository<Certification, Lo
 
 	List<Certification> findByphoto(String mountainId);
 
+
+	Long countAllByMemberCertificationPoint(Long memberId);
+
 }

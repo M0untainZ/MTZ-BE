@@ -48,8 +48,8 @@ public class DetailPageTwoController {
 	@PostMapping("/mountain/{mountainId}/like")
 	@ApiOperation(value = "좋아요 체크(입력)", notes = "좋아요 체크(입력) API")
 	public ResponseDto<?> likeUp(@PathVariable Long mountainId,
-		@AuthenticationPrincipal UserDetails userDetails, Long memberId) {
-		return detailPageTwoService.likeUp(mountainId, userDetails.getUsername(), memberId);
+		@AuthenticationPrincipal UserDetails userDetails) {
+		return detailPageTwoService.likeUp(mountainId, userDetails.getUsername());
 	}
 
 	// 인증하기 버튼

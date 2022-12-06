@@ -113,7 +113,7 @@ public class DetailPageTwoService {
 
 	// 좋아요 체크(입력)
 	@Transactional
-	public ResponseDto<?> likeUp(Long mountainId, String email, Long memberId) {
+	public ResponseDto<?> likeUp(Long mountainId, String email) {
 		// 들어온 mountainId와 email 로 좋아요 여부 판단
 		Optional<Likes> imsiLike = likesRepository.findByMountainIdAndMemberEmail(mountainId, email);
 		Member member = getMember(email);
@@ -131,17 +131,25 @@ public class DetailPageTwoService {
 			Likes likes = new Likes(mountain, member);
 			likesRepository.save(likes);
 		}
-		//좋아요 레포에서 memberId로 된 like 뽑기
-		Long memberLike = likesRepository.countAllByMemberId(member.getId());
-		System.out.println("memberLike 확인"+ memberLike);
-		System.out.println("memberLike 3L 확인"+memberLike.equals(3L));
-		// 그 객체의 카운트가 3이면 뱃지 주기
-		if (memberLike.equals(3L)) {
+		//좋아요 1번 뱃지
+		Long memberLike1 = likesRepository.countAllByMemberId(member.getId());
+		if (memberLike1.equals(5L)) {
 			Badge badge = badgeRepository.findById(5L).orElseThrow(
 					() -> new IllegalArgumentException()
 			);
 			memberBadgeRepository.save(new MemberBadge(badge, member));
 		}
+		//좋아요 2번 뱃지
+		Long memberLike2 = likesRepository.countAllByMemberId(member.getId());
+		if (memberLike2.equals(10L)) {
+			Badge badge = badgeRepository.findById(6L).orElseThrow(
+					() -> new IllegalArgumentException()
+			);
+			memberBadgeRepository.save(new MemberBadge(badge, member));
+		}
+
+
+
 		// 해당 산의 총 좋아요 갯수
 		Long countLike = likesRepository.countAllByMountainId(mountainId);
 
@@ -193,27 +201,30 @@ public class DetailPageTwoService {
 		// member에 certificationPoint 3 증가시키기
 		member.updateCertificationPoint(3);
 
-//		Member memberCert= memberRepository.findByCertificationPoint(member.getId());
-//		// 3회 인증
-//		if(memberCert.equals(9)){
-//		Badge badge = badgeRepository.findById(2L).orElseThrow(
-//				() -> new IllegalArgumentException()
-//		);}
-//		memberRepository.save(member);
-		// 6회 인증
-//		if(memberCert == 18)
-//		Badge badge = badgeRepository.findById(3L).orElseThrow(
-//				() -> new IllegalArgumentException()
-//		);
-//		memberRepository.save(member);
-//		//memberbadgerep에 save
-		// 9회 인증
-//		if(memberCert == 27)
-//
-//		Badge badge = badgeRepository.findById(4L).orElseThrow(
-//				() -> new IllegalArgumentException()
-//		);
-//		memberRepository.save(member);
+		//인증 뱃지 1번
+		Long memberCertificationPoint1 = certificationRepository.countAllByMemberCertificationPoint(member.getId());
+		if (memberCertificationPoint1.equals(9L)) {
+			Badge badge = badgeRepository.findById(2L).orElseThrow(
+					() -> new IllegalArgumentException()
+			);
+			memberBadgeRepository.save(new MemberBadge(badge, member));
+		}
+		// 인증 뱃지 2번
+		Long memberCertificationPoint2 = certificationRepository.countAllByMemberCertificationPoint(member.getId());
+		if (memberCertificationPoint2.equals(18L)) {
+			Badge badge = badgeRepository.findById(3L).orElseThrow(
+					() -> new IllegalArgumentException()
+			);
+			memberBadgeRepository.save(new MemberBadge(badge, member));
+		}
+		// 인증 뱃지 3번
+		Long memberCertificationPoint3 = certificationRepository.countAllByMemberCertificationPoint(member.getId());
+		if (memberCertificationPoint3.equals(27L)) {
+			Badge badge = badgeRepository.findById(4L).orElseThrow(
+					() -> new IllegalArgumentException()
+			);
+			memberBadgeRepository.save(new MemberBadge(badge, member));
+		}
 
 		// response 추가
 		Optional<Likes> imsiLike = likesRepository.findByMountainIdAndMemberEmail(mountainId, email);
