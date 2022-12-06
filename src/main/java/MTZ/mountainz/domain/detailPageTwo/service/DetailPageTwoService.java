@@ -113,7 +113,7 @@ public class DetailPageTwoService {
 
 	// 좋아요 체크(입력)
 	@Transactional
-	public ResponseDto<?> likeUp(Long mountainId, String email) {
+	public ResponseDto<?> likeUp(Long mountainId, String email, Long memberId) {
 		// 들어온 mountainId와 email 로 좋아요 여부 판단
 		Optional<Likes> imsiLike = likesRepository.findByMountainIdAndMemberEmail(mountainId, email);
 		Member member = getMember(email);
@@ -131,30 +131,22 @@ public class DetailPageTwoService {
 			Likes likes = new Likes(mountain, member);
 			likesRepository.save(likes);
 		}
-
 		//좋아요 레포에서 memberId로 된 like 뽑기
-		Likes memberLike = likesRepository.countAllByMemberId(member);
+		Long memberLike = likesRepository.countAllByMemberId(memberId);
 		// 그 객체의 카운트가 3이면 뱃지 주기
-		if(memberLike.equals(3)){
+		if (memberLike.equals(3)) {
 			Badge badge = badgeRepository.findById(5L).orElseThrow(
 					() -> new IllegalArgumentException()
-			);}
-//		// 6회 인증
-//		if (memberCert >= 18)
-//
-//			Badge badge = badgeRepository.findById(3L).orElseThrow(
-//					() -> new IllegalArgumentException()
-//			);
-
-
+			);
+		}                    
 		// 해당 산의 총 좋아요 갯수
 		Long countLike = likesRepository.countAllByMountainId(mountainId);
 
 		return ResponseDto.success(
-			LikesResponseDto.builder()
-				.correctLike(correctLike)
-				.countLike(countLike)
-				.build()
+				LikesResponseDto.builder()
+						.correctLike(correctLike)
+						.countLike(countLike)
+						.build()
 		);
 	}
 
