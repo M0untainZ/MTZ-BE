@@ -138,7 +138,8 @@ public class DetailPageTwoService {
 			Badge badge = badgeRepository.findById(5L).orElseThrow(
 					() -> new IllegalArgumentException()
 			);
-		}                    
+			memberBadgeRepository.save(new MemberBadge(badge, member));
+		}
 		// 해당 산의 총 좋아요 갯수
 		Long countLike = likesRepository.countAllByMountainId(mountainId);
 
