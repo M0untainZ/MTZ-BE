@@ -240,23 +240,23 @@ public class DetailPageTwoService {
 			memberBadgeRepository.save(new MemberBadge(badge, member));
 		}
 		// 인증 뱃지 2번
-		Long memberCertificationPoint2 = certificationRepository.countAllByMemberCertificationPoint(member.getId());
-		System.out.println("인증 뱃지 2번"+ memberCertificationPoint2);
-		if (memberCertificationPoint2.equals(18L)) {
-			Badge badge = badgeRepository.findById(3L).orElseThrow(
-					() -> new IllegalArgumentException()
-			);
-			memberBadgeRepository.save(new MemberBadge(badge, member));
-		}
+//		Long memberCertificationPoint2 = certificationRepository.countAllByMemberCertificationPoint(member.getId());
+//		System.out.println("인증 뱃지 2번"+ memberCertificationPoint2);
+//		if (memberCertificationPoint2.equals(18L)) {
+//			Badge badge = badgeRepository.findById(3L).orElseThrow(
+//					() -> new IllegalArgumentException()
+//			);
+//			memberBadgeRepository.save(new MemberBadge(badge, member));
+//		}
 		// 인증 뱃지 3번
-		Long memberCertificationPoint3 = certificationRepository.countAllByMemberCertificationPoint(member.getId());
-		System.out.println("인증 뱃지 3번"+ memberCertificationPoint3);
-		if (memberCertificationPoint3.equals(27L)) {
-			Badge badge = badgeRepository.findById(4L).orElseThrow(
-					() -> new IllegalArgumentException()
-			);
-			memberBadgeRepository.save(new MemberBadge(badge, member));
-		}
+//		Long memberCertificationPoint3 = certificationRepository.countAllByMemberCertificationPoint(member.getId());
+//		System.out.println("인증 뱃지 3번"+ memberCertificationPoint3);
+//		if (memberCertificationPoint3.equals(27L)) {
+//			Badge badge = badgeRepository.findById(4L).orElseThrow(
+//					() -> new IllegalArgumentException()
+//			);
+//			memberBadgeRepository.save(new MemberBadge(badge, member));
+//		}
 		return ResponseDto.success(
 			DetailPageTwoResponseDto.builder()
 				.name(mountain.getName())
