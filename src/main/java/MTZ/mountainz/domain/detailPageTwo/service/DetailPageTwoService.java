@@ -231,6 +231,7 @@ public class DetailPageTwoService {
 //				Member member = getMember(email);
 		//인증 뱃지 1번
 		Long memberCertificationPoint1 = certificationRepository.countAllByMemberCertificationPoint(member.getId());
+		System.out.println("인증 뱃지 1번"+ memberCertificationPoint1);
 		if (memberCertificationPoint1.equals(9L)) {
 			Badge badge = badgeRepository.findById(2L).orElseThrow(
 					() -> new IllegalArgumentException()
@@ -239,6 +240,7 @@ public class DetailPageTwoService {
 		}
 		// 인증 뱃지 2번
 		Long memberCertificationPoint2 = certificationRepository.countAllByMemberCertificationPoint(member.getId());
+		System.out.println("인증 뱃지 2번"+ memberCertificationPoint2);
 		if (memberCertificationPoint2.equals(18L)) {
 			Badge badge = badgeRepository.findById(3L).orElseThrow(
 					() -> new IllegalArgumentException()
@@ -247,6 +249,7 @@ public class DetailPageTwoService {
 		}
 		// 인증 뱃지 3번
 		Long memberCertificationPoint3 = certificationRepository.countAllByMemberCertificationPoint(member.getId());
+		System.out.println("인증 뱃지 3번"+ memberCertificationPoint3);
 		if (memberCertificationPoint3.equals(27L)) {
 			Badge badge = badgeRepository.findById(4L).orElseThrow(
 					() -> new IllegalArgumentException()
