@@ -231,8 +231,9 @@ public class DetailPageTwoService {
 //				Member member = getMember(email);
 		//인증 뱃지 1번
 //		Long memberCertificationPoint1 = certificationRepository.countAllByMemberCertificationPoint(member.getId());
+		int imsiCertificationPoint1 = member.getCertificationPoint();
 //		System.out.println("인증 뱃지 1번"+ memberCertificationPoint1);
-		if (member.getCertificationPoint()==9) {
+		if (imsiCertificationPoint1==9) {
 			Badge badge = badgeRepository.findById(2L).orElseThrow(
 					() -> new IllegalArgumentException()
 			);
