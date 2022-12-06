@@ -68,32 +68,6 @@ public class DetailPageTwoService {
 			() -> new RequestException(ErrorCode.MOUNTAIN_NOT_FOUND_404)
 		);
 
-//		Member member = getMember(email);
-//
-//		//인증 뱃지 1번
-//		Long memberCertificationPoint1 = certificationRepository.countAllByMemberCertificationPoint(member.getId());
-//		if (memberCertificationPoint1.equals(9L)) {
-//			Badge badge = badgeRepository.findById(2L).orElseThrow(
-//					() -> new IllegalArgumentException()
-//			);
-//			memberBadgeRepository.save(new MemberBadge(badge, member));
-//		}
-//		// 인증 뱃지 2번
-//		Long memberCertificationPoint2 = certificationRepository.countAllByMemberCertificationPoint(member.getId());
-//		if (memberCertificationPoint2.equals(18L)) {
-//			Badge badge = badgeRepository.findById(3L).orElseThrow(
-//					() -> new IllegalArgumentException()
-//			);
-//			memberBadgeRepository.save(new MemberBadge(badge, member));
-//		}
-//		// 인증 뱃지 3번
-//		Long memberCertificationPoint3 = certificationRepository.countAllByMemberCertificationPoint(member.getId());
-//		if (memberCertificationPoint3.equals(27L)) {
-//			Badge badge = badgeRepository.findById(4L).orElseThrow(
-//					() -> new IllegalArgumentException()
-//			);
-//			memberBadgeRepository.save(new MemberBadge(badge, member));
-//		}
 
 		Optional<Likes> imsiLike = likesRepository.findByMountainIdAndMemberEmail(mountainId, email);
 
@@ -254,6 +228,31 @@ public class DetailPageTwoService {
 			);
 		}
 
+//				Member member = getMember(email);
+		//인증 뱃지 1번
+		Long memberCertificationPoint1 = certificationRepository.countAllByMemberCertificationPoint(member.getId());
+		if (memberCertificationPoint1.equals(9L)) {
+			Badge badge = badgeRepository.findById(2L).orElseThrow(
+					() -> new IllegalArgumentException()
+			);
+			memberBadgeRepository.save(new MemberBadge(badge, member));
+		}
+		// 인증 뱃지 2번
+		Long memberCertificationPoint2 = certificationRepository.countAllByMemberCertificationPoint(member.getId());
+		if (memberCertificationPoint2.equals(18L)) {
+			Badge badge = badgeRepository.findById(3L).orElseThrow(
+					() -> new IllegalArgumentException()
+			);
+			memberBadgeRepository.save(new MemberBadge(badge, member));
+		}
+		// 인증 뱃지 3번
+		Long memberCertificationPoint3 = certificationRepository.countAllByMemberCertificationPoint(member.getId());
+		if (memberCertificationPoint3.equals(27L)) {
+			Badge badge = badgeRepository.findById(4L).orElseThrow(
+					() -> new IllegalArgumentException()
+			);
+			memberBadgeRepository.save(new MemberBadge(badge, member));
+		}
 		return ResponseDto.success(
 			DetailPageTwoResponseDto.builder()
 				.name(mountain.getName())

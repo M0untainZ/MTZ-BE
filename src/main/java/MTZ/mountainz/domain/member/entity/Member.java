@@ -37,7 +37,7 @@ public class Member {
 	private String region;
 
 	@Column(name = "certificationPoint")
-	private int certificationPoint;
+	private Long certificationPoint;
 
 	@Column(name = "badgeName")
 	private String badgeName;
