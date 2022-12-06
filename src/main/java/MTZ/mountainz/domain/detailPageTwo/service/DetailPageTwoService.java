@@ -132,9 +132,11 @@ public class DetailPageTwoService {
 			likesRepository.save(likes);
 		}
 		//좋아요 레포에서 memberId로 된 like 뽑기
-		int memberLike = likesRepository.countAllByMemberId(memberId);
+		Long memberLike = likesRepository.countAllByMemberId(memberId);
+		System.out.println("memberLike 확인"+ memberLike);
+		System.out.println("memberLike 3L 확인"+memberLike.equals(3L));
 		// 그 객체의 카운트가 3이면 뱃지 주기
-		if (memberLike==3) {
+		if (memberLike.equals(3L)) {
 			Badge badge = badgeRepository.findById(5L).orElseThrow(
 					() -> new IllegalArgumentException()
 			);

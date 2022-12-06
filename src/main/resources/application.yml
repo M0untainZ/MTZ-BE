@@ -13,7 +13,7 @@ spring:
   #    username: sa
   #    password:
 
-  # mysql local
+  #mysql local
   #  datasource:
   #    driver-class-name: com.mysql.cj.jdbc.Driver
   #    url: ${DB_LOCAL_URL}

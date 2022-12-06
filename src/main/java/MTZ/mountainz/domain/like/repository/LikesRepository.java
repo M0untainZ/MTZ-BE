@@ -15,5 +15,5 @@ public interface LikesRepository extends JpaRepository<Likes, Long> {
 	// 숫자 반환 산 아이디에 해당하는 like
 	Long countAllByMountainId(Long mountainId);
 
-	int countAllByMemberId(Long memberId);
+	Long countAllByMemberId(Long memberId);
 }
