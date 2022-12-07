@@ -136,15 +136,18 @@ public class DetailPageTwoService {
 
 		Optional<MemberBadge> imsiBadgeLike5 = memberBadgeRepository.findByBadgeIdAndMemberId(5L, member.getId());
 		Optional<MemberBadge> imsiBadgeLike10 = memberBadgeRepository.findByBadgeIdAndMemberId(10L, member.getId());
+		Badge badge = null;
+		boolean correctBadge = false;
 
 		if (memberLike1.equals(5L)) {
 			if (imsiBadgeLike5.isPresent()) {
 
 			} else {
-				Badge badge = badgeRepository.findById(5L).orElseThrow(
+				badge = badgeRepository.findById(5L).orElseThrow(
 					() -> new IllegalArgumentException()
 				);
 				memberBadgeRepository.save(new MemberBadge(badge, member));
+				correctBadge = true;
 			}
 		}
 		//좋아요 2번 뱃지
@@ -153,10 +156,11 @@ public class DetailPageTwoService {
 			if (imsiBadgeLike10.isPresent()) {
 
 			} else {
-				Badge badge = badgeRepository.findById(6L).orElseThrow(
+				badge = badgeRepository.findById(6L).orElseThrow(
 					() -> new IllegalArgumentException()
 				);
 				memberBadgeRepository.save(new MemberBadge(badge, member));
+				correctBadge = true;
 			}
 		}
 
@@ -167,6 +171,8 @@ public class DetailPageTwoService {
 			LikesResponseDto.builder()
 				.correctLike(correctLike)
 				.countLike(countLike)
+				.badge(badge)
+				.correctBadge(correctBadge)
 				.build()
 		);
 	}
@@ -177,7 +183,7 @@ public class DetailPageTwoService {
 		IOException {
 		Member member = getMember(email);
 		Mountain mountain = mountainRepository.findById(mountainId).orElseThrow(
-				() -> new RequestException(ErrorCode.MOUNTAIN_NOT_FOUND_404)
+			() -> new RequestException(ErrorCode.MOUNTAIN_NOT_FOUND_404)
 		);
 		String imgUrl = "";
 
@@ -194,7 +200,7 @@ public class DetailPageTwoService {
 				ByteArrayInputStream byteArrayIs = new ByteArrayInputStream(bytes);
 
 				amazonS3Client.putObject(new PutObjectRequest(bucketName, fileName, byteArrayIs, objectMetadata)
-						.withCannedAcl(CannedAccessControlList.PublicRead));
+					.withCannedAcl(CannedAccessControlList.PublicRead));
 
 				imgUrl = amazonS3Client.getUrl(bucketName, fileName).toString();
 
@@ -233,9 +239,9 @@ public class DetailPageTwoService {
 		// 이미지 url(photo) 만 뽑은 responseDto 형태로 리스트 담기
 		for (Certification certification : certificationList) {
 			certificationResponseDtoList.add(
-					CertificationResponseDto.builder()
-							.photo(certification.getPhoto())
-							.build()
+				CertificationResponseDto.builder()
+					.photo(certification.getPhoto())
+					.build()
 			);
 		}
 		//인증 뱃지 중복 확인
@@ -249,7 +255,7 @@ public class DetailPageTwoService {
 
 			} else {
 				Badge badge = badgeRepository.findById(2L).orElseThrow(
-						() -> new IllegalArgumentException()
+					() -> new IllegalArgumentException()
 				);
 				memberBadgeRepository.save(new MemberBadge(badge, member));
 			}
@@ -261,10 +267,10 @@ public class DetailPageTwoService {
 			} else {
 				Badge badge = badgeRepository.findById(3L).orElseThrow(
 					() -> new IllegalArgumentException()
-			);
-			memberBadgeRepository.save(new MemberBadge(badge, member));
+				);
+				memberBadgeRepository.save(new MemberBadge(badge, member));
 			}
-	    }
+		}
 		//인증 뱃지 3번
 		if (imsiCertificationPoint == 27) {
 			if (CertificationBadge3.isPresent()) {
@@ -272,8 +278,8 @@ public class DetailPageTwoService {
 			} else {
 				Badge badge = badgeRepository.findById(4L).orElseThrow(
 					() -> new IllegalArgumentException()
-			);
-			memberBadgeRepository.save(new MemberBadge(badge, member));
+				);
+				memberBadgeRepository.save(new MemberBadge(badge, member));
 			}
 		}
 		return ResponseDto.success(
