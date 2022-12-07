@@ -248,16 +248,20 @@ public class DetailPageTwoService {
 		Optional<MemberBadge> CertificationBadge1 = memberBadgeRepository.findByBadgeIdAndMemberId(2L, member.getId());
 		Optional<MemberBadge> CertificationBadge2 = memberBadgeRepository.findByBadgeIdAndMemberId(3L, member.getId());
 		Optional<MemberBadge> CertificationBadge3 = memberBadgeRepository.findByBadgeIdAndMemberId(4L, member.getId());
+		Badge badge = null;
+		boolean correctBadge = false;
+
 		//인증 뱃지 1번
 		int imsiCertificationPoint = member.getCertificationPoint();
 		if (imsiCertificationPoint == 9) {
 			if (CertificationBadge1.isPresent()) {
 
 			} else {
-				Badge badge = badgeRepository.findById(2L).orElseThrow(
+				badge = badgeRepository.findById(2L).orElseThrow(
 					() -> new IllegalArgumentException()
 				);
 				memberBadgeRepository.save(new MemberBadge(badge, member));
+				correctBadge = true;
 			}
 		}
 		// 인증 뱃지 2번
@@ -265,10 +269,11 @@ public class DetailPageTwoService {
 			if (CertificationBadge2.isPresent()) {
 
 			} else {
-				Badge badge = badgeRepository.findById(3L).orElseThrow(
+				badge = badgeRepository.findById(3L).orElseThrow(
 					() -> new IllegalArgumentException()
 				);
 				memberBadgeRepository.save(new MemberBadge(badge, member));
+				correctBadge = true;
 			}
 		}
 		//인증 뱃지 3번
@@ -276,10 +281,11 @@ public class DetailPageTwoService {
 			if (CertificationBadge3.isPresent()) {
 
 			} else {
-				Badge badge = badgeRepository.findById(4L).orElseThrow(
+				badge = badgeRepository.findById(4L).orElseThrow(
 					() -> new IllegalArgumentException()
 				);
 				memberBadgeRepository.save(new MemberBadge(badge, member));
+				correctBadge = true;
 			}
 		}
 		return ResponseDto.success(
@@ -293,6 +299,7 @@ public class DetailPageTwoService {
 				.certificatedMountainList(certificationResponseDtoList)
 				.juso(mountain.getJuso())
 				.correctLike(correctLike)
+				.correctBadge(correctBadge)
 				.countLike(countLike)
 				.build()
 		);

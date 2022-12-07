@@ -34,4 +34,6 @@ public class DetailPageTwoResponseDto {
 	private boolean correctLike;
 	@ApiModelProperty(example = "좋아요 수")
 	private Long countLike;
+	@ApiModelProperty(example = "내가 인증")
+	private boolean correctBadge;
 }
