@@ -20,6 +20,8 @@ public class MyPageResponseDto {
 	String nickName;
 	@ApiModelProperty(example = "유저 지역")
 	String region;
+	@ApiModelProperty(example = "뱃지 이름")
+	String badgeName;
 	@ApiModelProperty(example = "뱃지 목록")
 	List<MemberBadgeResponseDto> badgeList;
 }

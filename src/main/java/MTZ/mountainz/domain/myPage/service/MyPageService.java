@@ -58,6 +58,7 @@ public class MyPageService {
 				.nickName(member.getNickName())
 				.region(member.getRegion())
 				.badgeList(memberBadgeResponseDtoList)
+				.badgeName(member.getBadgeName())
 				.build()
 		);
 	}
