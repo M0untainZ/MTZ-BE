@@ -135,7 +135,7 @@ public class DetailPageTwoService {
 		Long memberLike1 = likesRepository.countAllByMemberId(member.getId());
 
 		Optional<MemberBadge> imsiBadgeLike5 = memberBadgeRepository.findByBadgeIdAndMemberId(5L, member.getId());
-		Optional<MemberBadge> imsiBadgeLike10 = memberBadgeRepository.findByBadgeIdAndMemberId(10L, member.getId());
+		Optional<MemberBadge> imsiBadgeLike6 = memberBadgeRepository.findByBadgeIdAndMemberId(6L, member.getId());
 		Badge badge = null;
 		boolean correctBadge = false;
 
@@ -153,7 +153,7 @@ public class DetailPageTwoService {
 		//좋아요 2번 뱃지
 		Long memberLike2 = likesRepository.countAllByMemberId(member.getId());
 		if (memberLike2.equals(10L)) {
-			if (imsiBadgeLike10.isPresent()) {
+			if (imsiBadgeLike6.isPresent()) {
 
 			} else {
 				badge = badgeRepository.findById(6L).orElseThrow(
