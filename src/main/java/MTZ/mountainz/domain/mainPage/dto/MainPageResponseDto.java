@@ -21,6 +21,8 @@ public class MainPageResponseDto {
 
     @ApiModelProperty(example = "랭킹 순위")
     private List<String> topMembers;
+    @ApiModelProperty(example = "랭커 사진")
+    private List<String> topMembersPhoto;
     @ApiModelProperty(example = "인증 사진")
     private List<CertificationResponseDto> certificationPhoto;
     @ApiModelProperty(example = "태그 목록")
