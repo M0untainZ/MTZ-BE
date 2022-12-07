@@ -40,6 +40,7 @@ public class MainPageService {
 		if (topList.size() > 3)
 			topList = topList.subList(0, 3);
 		List<String> topMembers = topList.stream().map(Member::getNickName).collect(Collectors.toList());
+		List<String> topMembersPhoto = topList.stream().map(Member::getProfilePhoto).collect(Collectors.toList());
 
 		//태그 리스트
 		List<Tag> imsiTagList = tagRepository.findAll();
@@ -70,10 +71,11 @@ public class MainPageService {
 		}
 		return ResponseDto.success(
 			MainPageResponseDto.builder()
-				.topMembers(topMembers)
-				.certificationPhoto(certificationPhotoList)
-				.tagList(addTagList)
-				.build()
+				    .topMembers(topMembers)
+                    .topMembersPhoto(topMembersPhoto)
+				    .certificationPhoto(certificationPhotoList)
+				    .tagList(addTagList)
+				    .build()
 		);
 
 	}
