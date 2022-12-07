@@ -4,7 +4,6 @@ import static MTZ.mountainz.domain.certification.entity.QCertification.*;
 
 import java.util.List;
 
-import MTZ.mountainz.domain.certification.entity.Certification;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +15,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import MTZ.mountainz.domain.certification.dto.request.PhotoFilterRequestDto;
 import MTZ.mountainz.domain.certification.dto.response.CertificationFilterResponseDto;
+import MTZ.mountainz.domain.certification.entity.Certification;
 import MTZ.mountainz.domain.certification.repository.CertificationRepositoryCustom;
 import lombok.RequiredArgsConstructor;
 
@@ -29,12 +29,13 @@ public class CertificationRepositoryImpl implements CertificationRepositoryCusto
 	public Page<Certification> findByCertificationAll(Pageable pageable) {
 
 		List<Certification> certifications = jpaQueryFactory.selectFrom(certification)
-				.limit(pageable.getPageSize())
-				.offset(pageable.getOffset())
-				.fetch();
+			.orderBy(certification.id.desc())
+			.limit(pageable.getPageSize())
+			.offset(pageable.getOffset())
+			.fetch();
 
 		long totalSize = jpaQueryFactory.selectFrom(certification)
-				.fetch().size();
+			.fetch().size();
 
 		return new PageImpl<>(certifications, pageable, totalSize);
 	}
