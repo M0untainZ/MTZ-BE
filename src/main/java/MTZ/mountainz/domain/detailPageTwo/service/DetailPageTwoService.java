@@ -133,12 +133,12 @@ public class DetailPageTwoService {
 		}
 		//좋아요 1번 뱃지
 		Long memberLike1 = likesRepository.countAllByMemberId(member.getId());
-		// 라이크테이블에서 라이크번호 5번과 유저 번호 and 가 존재하면
-		// 이미존재하는 뱃지라고 말하고 리턴
-		Optional<MemberBadge> imsiBadgeLike = memberBadgeRepository.findByBadgeIdAndMemberId(5L, member.getId());
+
+		Optional<MemberBadge> imsiBadgeLike5 = memberBadgeRepository.findByBadgeIdAndMemberId(5L, member.getId());
+		Optional<MemberBadge> imsiBadgeLike10 = memberBadgeRepository.findByBadgeIdAndMemberId(10L, member.getId());
 
 		if (memberLike1.equals(5L)) {
-			if (imsiBadgeLike.isPresent()) {
+			if (imsiBadgeLike5.isPresent()) {
 
 			} else {
 				Badge badge = badgeRepository.findById(5L).orElseThrow(
@@ -150,7 +150,7 @@ public class DetailPageTwoService {
 		//좋아요 2번 뱃지
 		Long memberLike2 = likesRepository.countAllByMemberId(member.getId());
 		if (memberLike2.equals(10L)) {
-			if (imsiBadgeLike.isPresent()) {
+			if (imsiBadgeLike10.isPresent()) {
 
 			} else {
 				Badge badge = badgeRepository.findById(6L).orElseThrow(
