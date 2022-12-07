@@ -2,7 +2,6 @@ package MTZ.mountainz.domain.like.repository;
 
 import java.util.Optional;
 
-import MTZ.mountainz.domain.member.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,4 +15,5 @@ public interface LikesRepository extends JpaRepository<Likes, Long> {
 	Long countAllByMountainId(Long mountainId);
 
 	Long countAllByMemberId(Long memberId);
+	
 }

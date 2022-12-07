@@ -6,10 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import MTZ.mountainz.domain.badge.entity.Badge;
-import MTZ.mountainz.domain.badge.entity.MemberBadge;
-import MTZ.mountainz.domain.badge.repository.BadgeRepository;
-import MTZ.mountainz.domain.badge.repository.MemberBadgeRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -22,6 +18,10 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.util.IOUtils;
 
+import MTZ.mountainz.domain.badge.entity.Badge;
+import MTZ.mountainz.domain.badge.entity.MemberBadge;
+import MTZ.mountainz.domain.badge.repository.BadgeRepository;
+import MTZ.mountainz.domain.badge.repository.MemberBadgeRepository;
 import MTZ.mountainz.domain.certification.entity.Certification;
 import MTZ.mountainz.domain.certification.repository.CertificationRepository;
 import MTZ.mountainz.domain.detailPageTwo.dto.response.CertificationResponseDto;
@@ -67,7 +67,6 @@ public class DetailPageTwoService {
 		Mountain mountain = mountainRepository.findById(mountainId).orElseThrow(
 			() -> new RequestException(ErrorCode.MOUNTAIN_NOT_FOUND_404)
 		);
-
 
 		Optional<Likes> imsiLike = likesRepository.findByMountainIdAndMemberEmail(mountainId, email);
 
@@ -134,29 +133,41 @@ public class DetailPageTwoService {
 		}
 		//좋아요 1번 뱃지
 		Long memberLike1 = likesRepository.countAllByMemberId(member.getId());
+		// 라이크테이블에서 라이크번호 5번과 유저 번호 and 가 존재하면
+		// 이미존재하는 뱃지라고 말하고 리턴
+		Optional<MemberBadge> imsiBadgeLike = memberBadgeRepository.findByBadgeIdAndMemberId(5L, member.getId());
+
 		if (memberLike1.equals(5L)) {
-			Badge badge = badgeRepository.findById(5L).orElseThrow(
+			if (imsiBadgeLike.isPresent()) {
+
+			} else {
+				Badge badge = badgeRepository.findById(5L).orElseThrow(
 					() -> new IllegalArgumentException()
-			);
-			memberBadgeRepository.save(new MemberBadge(badge, member));
+				);
+				memberBadgeRepository.save(new MemberBadge(badge, member));
+			}
 		}
 		//좋아요 2번 뱃지
 		Long memberLike2 = likesRepository.countAllByMemberId(member.getId());
 		if (memberLike2.equals(10L)) {
-			Badge badge = badgeRepository.findById(6L).orElseThrow(
+			if (imsiBadgeLike.isPresent()) {
+
+			} else {
+				Badge badge = badgeRepository.findById(6L).orElseThrow(
 					() -> new IllegalArgumentException()
-			);
-			memberBadgeRepository.save(new MemberBadge(badge, member));
+				);
+				memberBadgeRepository.save(new MemberBadge(badge, member));
+			}
 		}
 
 		// 해당 산의 총 좋아요 갯수
 		Long countLike = likesRepository.countAllByMountainId(mountainId);
 
 		return ResponseDto.success(
-				LikesResponseDto.builder()
-						.correctLike(correctLike)
-						.countLike(countLike)
-						.build()
+			LikesResponseDto.builder()
+				.correctLike(correctLike)
+				.countLike(countLike)
+				.build()
 		);
 	}
 
@@ -228,26 +239,25 @@ public class DetailPageTwoService {
 			);
 		}
 
-
 		//인증 뱃지 1번
 		int imsiCertificationPoint = member.getCertificationPoint();
-		if (imsiCertificationPoint==9) {
+		if (imsiCertificationPoint == 9) {
 			Badge badge = badgeRepository.findById(2L).orElseThrow(
-					() -> new IllegalArgumentException()
+				() -> new IllegalArgumentException()
 			);
 			memberBadgeRepository.save(new MemberBadge(badge, member));
 		}
 		// 인증 뱃지 2번
-		if (imsiCertificationPoint==18) {
+		if (imsiCertificationPoint == 18) {
 			Badge badge = badgeRepository.findById(3L).orElseThrow(
-					() -> new IllegalArgumentException()
+				() -> new IllegalArgumentException()
 			);
 			memberBadgeRepository.save(new MemberBadge(badge, member));
 		}
-		 //인증 뱃지 3번
-		if (imsiCertificationPoint==27) {
+		//인증 뱃지 3번
+		if (imsiCertificationPoint == 27) {
 			Badge badge = badgeRepository.findById(4L).orElseThrow(
-					() -> new IllegalArgumentException()
+				() -> new IllegalArgumentException()
 			);
 			memberBadgeRepository.save(new MemberBadge(badge, member));
 		}
