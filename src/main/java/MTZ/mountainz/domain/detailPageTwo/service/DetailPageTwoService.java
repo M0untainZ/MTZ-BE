@@ -238,9 +238,10 @@ public class DetailPageTwoService {
 							.build()
 			);
 		}
-
+		//인증 뱃지 중복 확인
 		Optional<MemberBadge> CertificationBadge1 = memberBadgeRepository.findByBadgeIdAndMemberId(2L, member.getId());
-
+		Optional<MemberBadge> CertificationBadge2 = memberBadgeRepository.findByBadgeIdAndMemberId(3L, member.getId());
+		Optional<MemberBadge> CertificationBadge3 = memberBadgeRepository.findByBadgeIdAndMemberId(4L, member.getId());
 		//인증 뱃지 1번
 		int imsiCertificationPoint = member.getCertificationPoint();
 		if (imsiCertificationPoint == 9) {
@@ -253,8 +254,6 @@ public class DetailPageTwoService {
 				memberBadgeRepository.save(new MemberBadge(badge, member));
 			}
 		}
-
-		Optional<MemberBadge> CertificationBadge2 = memberBadgeRepository.findByBadgeIdAndMemberId(3L, member.getId());
 		// 인증 뱃지 2번
 		if (imsiCertificationPoint == 18) {
 			if (CertificationBadge2.isPresent()) {
@@ -266,7 +265,6 @@ public class DetailPageTwoService {
 			memberBadgeRepository.save(new MemberBadge(badge, member));
 			}
 	    }
-		Optional<MemberBadge> CertificationBadge3 = memberBadgeRepository.findByBadgeIdAndMemberId(4L, member.getId());
 		//인증 뱃지 3번
 		if (imsiCertificationPoint == 27) {
 			if (CertificationBadge3.isPresent()) {
