@@ -136,6 +136,9 @@ public class DetailPageTwoService {
 
 		Optional<MemberBadge> imsiBadgeLike5 = memberBadgeRepository.findByBadgeIdAndMemberId(5L, member.getId());
 		Optional<MemberBadge> imsiBadgeLike6 = memberBadgeRepository.findByBadgeIdAndMemberId(6L, member.getId());
+
+		System.out.println("imsi 6" + imsiBadgeLike6);
+
 		Badge badge = null;
 		boolean correctBadge = false;
 

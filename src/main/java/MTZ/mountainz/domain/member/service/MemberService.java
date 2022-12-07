@@ -15,6 +15,7 @@ import MTZ.mountainz.domain.badge.repository.MemberBadgeRepository;
 import MTZ.mountainz.domain.member.dto.request.LoginRequestDto;
 import MTZ.mountainz.domain.member.dto.request.MemberRequestDto;
 import MTZ.mountainz.domain.member.dto.response.LoginResponseDto;
+import MTZ.mountainz.domain.member.dto.response.SignupResponseDto;
 import MTZ.mountainz.domain.member.entity.Authority;
 import MTZ.mountainz.domain.member.entity.Member;
 import MTZ.mountainz.domain.member.entity.RefreshToken;
@@ -39,7 +40,7 @@ public class MemberService {
 	private final BadgeRepository badgeRepository;
 
 	@Transactional
-	public ResponseDto<String> signup(MemberRequestDto memberRequestDto) {
+	public ResponseDto<SignupResponseDto> signup(MemberRequestDto memberRequestDto) {
 
 		if (memberRepository.findByEmail(memberRequestDto.getEmail()).isPresent()) {
 			throw new RequestException(ErrorCode.EMAIL_DUPLICATION_409);
@@ -48,12 +49,20 @@ public class MemberService {
 		Member member = new Member(memberRequestDto, Authority.ROLE_USER);
 
 		memberRepository.save(member);
+
+		boolean correctBadge = true;
+
 		Badge badge = badgeRepository.findById(1L).orElseThrow(
 			() -> new IllegalArgumentException()
 		);
 
 		memberBadgeRepository.save(new MemberBadge(badge, member));
-		return ResponseDto.success("회원가입 완료");
+		return ResponseDto.success(
+			SignupResponseDto.builder()
+				.badge(badge)
+				.correctBadge(correctBadge)
+				.build()
+		);
 	}
 
 	// 로그인

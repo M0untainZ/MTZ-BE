@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
-
 import MTZ.mountainz.domain.member.dto.request.EmailConfirmDto;
 import MTZ.mountainz.domain.member.dto.request.LoginRequestDto;
 import MTZ.mountainz.domain.member.dto.request.MemberRequestDto;
 import MTZ.mountainz.domain.member.dto.request.NickNameConfirmDto;
 import MTZ.mountainz.domain.member.dto.response.LoginResponseDto;
+import MTZ.mountainz.domain.member.dto.response.SignupResponseDto;
 import MTZ.mountainz.domain.member.service.MemberService;
 import MTZ.mountainz.global.dto.ResponseDto;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -32,7 +32,7 @@ public class MemberController {
 	@PostMapping("/signup")
 	@ApiOperation(value = "회원가입", notes = "회원가입 API")
 	@ApiImplicitParam(name = "userRequestDto", value = "회원가입시 입력된 정보")
-	public ResponseDto<String> signup(@RequestBody @Valid MemberRequestDto memberRequestDto) {
+	public ResponseDto<SignupResponseDto> signup(@RequestBody @Valid MemberRequestDto memberRequestDto) {
 		return memberService.signup(memberRequestDto);
 	}
 
