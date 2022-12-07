@@ -301,6 +301,7 @@ public class DetailPageTwoService {
 				.correctLike(correctLike)
 				.correctBadge(correctBadge)
 				.countLike(countLike)
+				.badge(badge)
 				.build()
 		);
 	}

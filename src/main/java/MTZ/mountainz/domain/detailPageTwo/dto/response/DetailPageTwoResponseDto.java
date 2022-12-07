@@ -2,6 +2,7 @@ package MTZ.mountainz.domain.detailPageTwo.dto.response;
 
 import java.util.List;
 
+import MTZ.mountainz.domain.badge.entity.Badge;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,4 +37,6 @@ public class DetailPageTwoResponseDto {
 	private Long countLike;
 	@ApiModelProperty(example = "내가 인증")
 	private boolean correctBadge;
+	@ApiModelProperty(example = "인증 뱃지")
+	private Badge badge;
 }
