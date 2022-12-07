@@ -177,7 +177,7 @@ public class DetailPageTwoService {
 		IOException {
 		Member member = getMember(email);
 		Mountain mountain = mountainRepository.findById(mountainId).orElseThrow(
-			() -> new RequestException(ErrorCode.MOUNTAIN_NOT_FOUND_404)
+				() -> new RequestException(ErrorCode.MOUNTAIN_NOT_FOUND_404)
 		);
 		String imgUrl = "";
 
@@ -194,7 +194,7 @@ public class DetailPageTwoService {
 				ByteArrayInputStream byteArrayIs = new ByteArrayInputStream(bytes);
 
 				amazonS3Client.putObject(new PutObjectRequest(bucketName, fileName, byteArrayIs, objectMetadata)
-					.withCannedAcl(CannedAccessControlList.PublicRead));
+						.withCannedAcl(CannedAccessControlList.PublicRead));
 
 				imgUrl = amazonS3Client.getUrl(bucketName, fileName).toString();
 
@@ -233,33 +233,50 @@ public class DetailPageTwoService {
 		// 이미지 url(photo) 만 뽑은 responseDto 형태로 리스트 담기
 		for (Certification certification : certificationList) {
 			certificationResponseDtoList.add(
-				CertificationResponseDto.builder()
-					.photo(certification.getPhoto())
-					.build()
+					CertificationResponseDto.builder()
+							.photo(certification.getPhoto())
+							.build()
 			);
 		}
+
+		Optional<MemberBadge> CertificationBadge1 = memberBadgeRepository.findByBadgeIdAndMemberId(2L, member.getId());
 
 		//인증 뱃지 1번
 		int imsiCertificationPoint = member.getCertificationPoint();
 		if (imsiCertificationPoint == 9) {
-			Badge badge = badgeRepository.findById(2L).orElseThrow(
-				() -> new IllegalArgumentException()
-			);
-			memberBadgeRepository.save(new MemberBadge(badge, member));
+			if (CertificationBadge1.isPresent()) {
+
+			} else {
+				Badge badge = badgeRepository.findById(2L).orElseThrow(
+						() -> new IllegalArgumentException()
+				);
+				memberBadgeRepository.save(new MemberBadge(badge, member));
+			}
 		}
+
+		Optional<MemberBadge> CertificationBadge2 = memberBadgeRepository.findByBadgeIdAndMemberId(3L, member.getId());
 		// 인증 뱃지 2번
 		if (imsiCertificationPoint == 18) {
-			Badge badge = badgeRepository.findById(3L).orElseThrow(
-				() -> new IllegalArgumentException()
+			if (CertificationBadge2.isPresent()) {
+
+			} else {
+				Badge badge = badgeRepository.findById(3L).orElseThrow(
+					() -> new IllegalArgumentException()
 			);
 			memberBadgeRepository.save(new MemberBadge(badge, member));
-		}
+			}
+	    }
+		Optional<MemberBadge> CertificationBadge3 = memberBadgeRepository.findByBadgeIdAndMemberId(4L, member.getId());
 		//인증 뱃지 3번
 		if (imsiCertificationPoint == 27) {
-			Badge badge = badgeRepository.findById(4L).orElseThrow(
-				() -> new IllegalArgumentException()
+			if (CertificationBadge3.isPresent()) {
+
+			} else {
+				Badge badge = badgeRepository.findById(4L).orElseThrow(
+					() -> new IllegalArgumentException()
 			);
 			memberBadgeRepository.save(new MemberBadge(badge, member));
+			}
 		}
 		return ResponseDto.success(
 			DetailPageTwoResponseDto.builder()
