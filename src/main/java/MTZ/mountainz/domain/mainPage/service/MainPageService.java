@@ -41,6 +41,8 @@ public class MainPageService {
 			topList = topList.subList(0, 3);
 		List<String> topMembers = topList.stream().map(Member::getNickName).collect(Collectors.toList());
 		List<String> topMembersPhoto = topList.stream().map(Member::getProfilePhoto).collect(Collectors.toList());
+		List<Integer> topMembersCertificationPoint = topList.stream().map(Member::getCertificationPoint).collect(
+			Collectors.toList());
 
 		//태그 리스트
 		List<Tag> imsiTagList = tagRepository.findAll();
@@ -58,9 +60,9 @@ public class MainPageService {
 		//인증 사진 리스트
 		List<Certification> photoList = certificationRepository.findAll();
 		List<CertificationResponseDto> certificationPhotoList = new ArrayList<>();
-//		if (photoZ.size() > 10)
-//			photoZ = photoZ.subList(0, 10);
-//		List<String> photoList = photoZ.stream().map(Certification::getPhoto).collect(Collectors.toList());
+		//		if (photoZ.size() > 10)
+		//			photoZ = photoZ.subList(0, 10);
+		//		List<String> photoList = photoZ.stream().map(Certification::getPhoto).collect(Collectors.toList());
 
 		for (Certification imsiPhoto : photoList) {
 			certificationPhotoList.add(
@@ -71,11 +73,12 @@ public class MainPageService {
 		}
 		return ResponseDto.success(
 			MainPageResponseDto.builder()
-				    .topMembers(topMembers)
-                    .topMembersPhoto(topMembersPhoto)
-				    .certificationPhoto(certificationPhotoList)
-				    .tagList(addTagList)
-				    .build()
+				.topMembers(topMembers)
+				.topMembersPhoto(topMembersPhoto)
+				.certificationPhoto(certificationPhotoList)
+				.tagList(addTagList)
+				.topMembersCertificationPoint(topMembersCertificationPoint)
+				.build()
 		);
 
 	}
@@ -136,6 +139,7 @@ public class MainPageService {
 		}
 		return ResponseDto.success(mountainSeasonList);
 	}
+
 	//태그 관련 목록 불러오기(시간)
 	@Transactional(readOnly = true)
 	public ResponseDto<?> getTimeList(String time) {
@@ -145,11 +149,11 @@ public class MainPageService {
 
 		for (Mountain imsiTime : mountainList) {
 			mountainTimeList.add(
-					MountainListDto.builder()
-							.img(imsiTime.getImg())
-							.name(imsiTime.getName())
-							.time(imsiTime.getTime())
-							.build()
+				MountainListDto.builder()
+					.img(imsiTime.getImg())
+					.name(imsiTime.getName())
+					.time(imsiTime.getTime())
+					.build()
 			);
 		}
 		return ResponseDto.success(mountainTimeList);
