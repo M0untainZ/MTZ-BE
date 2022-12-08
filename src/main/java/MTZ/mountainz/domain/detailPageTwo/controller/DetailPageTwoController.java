@@ -3,9 +3,6 @@ package MTZ.mountainz.domain.detailPageTwo.controller;
 import java.io.IOException;
 import java.util.List;
 
-import io.swagger.annotations.ApiOperation;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import MTZ.mountainz.domain.detailPageTwo.service.DetailPageTwoService;
-import MTZ.mountainz.domain.member.repository.MemberRepository;
 import MTZ.mountainz.global.dto.ResponseDto;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -28,18 +25,17 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api")
 public class DetailPageTwoController {
 	private final DetailPageTwoService detailPageTwoService;
-	private final MemberRepository memberRepository;
 
 	// 상세페이지2 정보 불러오기
 	@GetMapping("/mountain/{mountainId}")
 	@ApiOperation(value = "상세페이지2 정보 불러오기", notes = "상세페이지2 정보 불러오기 API")
 	public ResponseDto<?> detailPageTwoList(@PathVariable Long mountainId) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		System.out.println("확인용 name : " + authentication.getName());
-		System.out.println("확인용 principal : " + authentication.getPrincipal().toString());
-		System.out.println("확인용 details : " + authentication.getDetails());
+		// System.out.println("확인용 name : " + authentication.getName());
+		// System.out.println("확인용 principal : " + authentication.getPrincipal().toString());
+		// System.out.println("확인용 details : " + authentication.getDetails());
 		String email = authentication.getName();
-		System.out.println("email 확인 " + email);
+		// System.out.println("email 확인 " + email);
 
 		return detailPageTwoService.detailPageTwoList(mountainId, email);
 	}
