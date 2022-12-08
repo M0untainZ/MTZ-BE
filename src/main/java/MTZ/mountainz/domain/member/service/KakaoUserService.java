@@ -42,7 +42,7 @@ public class KakaoUserService {
 	String clientId;
 	@Value("${Kakao.redirect-uri}")
 	String redirectUri;
-
+	// 카카오 로그인 테스트
 	private final PasswordEncoder passwordEncoder;
 	private final MemberRepository memberRepository;
 	private final RefreshTokenRepository refreshTokenRepository;
