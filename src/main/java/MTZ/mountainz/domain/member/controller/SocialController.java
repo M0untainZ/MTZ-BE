@@ -10,6 +10,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import MTZ.mountainz.domain.member.dto.request.KakaoUserInfoDto;
 import MTZ.mountainz.domain.member.service.KakaoUserService;
+import MTZ.mountainz.global.dto.ResponseDto;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -19,7 +20,8 @@ public class SocialController {
 
 	// 카카오 로그인
 	@GetMapping("/kakao/callback")
-	public KakaoUserInfoDto kakaoLogin(@RequestParam(name = "code") String code, HttpServletResponse response) throws
+	public ResponseDto<KakaoUserInfoDto> kakaoLogin(@RequestParam(name = "code") String code,
+		HttpServletResponse response) throws
 		JsonProcessingException {
 		return kakaoUserService.kakaoLogin(code, response);
 	}

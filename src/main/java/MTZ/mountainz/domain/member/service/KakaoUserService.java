@@ -30,6 +30,7 @@ import MTZ.mountainz.domain.member.entity.Member;
 import MTZ.mountainz.domain.member.entity.RefreshToken;
 import MTZ.mountainz.domain.member.repository.MemberRepository;
 import MTZ.mountainz.domain.member.repository.RefreshTokenRepository;
+import MTZ.mountainz.global.dto.ResponseDto;
 import MTZ.mountainz.global.dto.TokenDto;
 import MTZ.mountainz.global.jwt.JwtUtil;
 import MTZ.mountainz.global.security.UserDetailsImpl;
@@ -48,7 +49,8 @@ public class KakaoUserService {
 	private final RefreshTokenRepository refreshTokenRepository;
 	private final JwtUtil jwtUtil;
 
-	public KakaoUserInfoDto kakaoLogin(String code, HttpServletResponse response) throws JsonProcessingException {
+	public ResponseDto<KakaoUserInfoDto> kakaoLogin(String code, HttpServletResponse response) throws
+		JsonProcessingException {
 
 		// 1. "인가 코드"로 "액세스 토큰" 요청
 		String accessToken = getAccessToken(code);
@@ -75,7 +77,7 @@ public class KakaoUserService {
 		}
 		setHeader(response, tokenDto);
 		// 토큰 생성 후 tokenDto 에 저장
-		return kakaoUserInfo;
+		return ResponseDto.success(kakaoUserInfo);
 	}
 
 	// 1. "인가 코드"로 "액세스 토큰" 요청
