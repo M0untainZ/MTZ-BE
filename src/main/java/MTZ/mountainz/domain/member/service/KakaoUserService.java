@@ -136,7 +136,7 @@ public class KakaoUserService {
 	private Member signupKakaoUser(KakaoUserInfoDto kakaoUserInfo) {
 		// DB 에 중복된 email 이 있는지 확인
 		String kakaoId = kakaoUserInfo.getId().toString();
-		String nickname = kakaoUserInfo.getNickname();
+		String nickName = kakaoUserInfo.getNickName();
 		Member kakaoUser = memberRepository.findByKakaoId(kakaoId)
 			.orElse(null);
 
@@ -147,7 +147,7 @@ public class KakaoUserService {
 			String encodedPassword = passwordEncoder.encode(password);
 			String region = "카카오";
 
-			kakaoUser = new Member(kakaoId, encodedPassword, nickname, region, Authority.ROLE_USER);
+			kakaoUser = new Member(kakaoId, encodedPassword, nickName, region, Authority.ROLE_USER);
 			memberRepository.save(kakaoUser);
 		}
 		return kakaoUser;
