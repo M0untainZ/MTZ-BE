@@ -43,7 +43,7 @@ public class Member {
 	private String badgeName;
 
 	@Column(name = "profilePhoto")
-	private String profilePhoto;
+	private String profilePhoto = "https://mypengbucket.s3.ap-northeast-2.amazonaws.com/01_loginBadge.png";
 
 	@Column(unique = true)
 	private String kakaoId;
