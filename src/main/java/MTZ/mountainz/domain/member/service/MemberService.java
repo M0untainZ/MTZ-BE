@@ -99,6 +99,7 @@ public class MemberService {
 			LoginResponseDto.builder()
 				.nickName(member.getNickName())
 				.badgeName(member.getBadgeName())
+				.profilePhoto(member.getProfilePhoto())
 				.region(member.getRegion())
 				.authority(member.getAuthority())
 				.build()

@@ -40,7 +40,7 @@ public class Member {
 	private int certificationPoint;
 
 	@Column(name = "badgeName")
-	private String badgeName;
+	private String badgeName = "\uD83D\uDCAA Lv. 1 산을 알아가는 뉴비";
 
 	@Column(name = "profilePhoto")
 	private String profilePhoto = "https://mypengbucket.s3.ap-northeast-2.amazonaws.com/01_loginBadge.png";

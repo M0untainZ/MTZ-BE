@@ -21,4 +21,6 @@ public class LoginResponseDto {
 	private String region;
 	@ApiModelProperty(example = "유저 권한")
 	private Authority authority;
+
+	private String profilePhoto;
 }
