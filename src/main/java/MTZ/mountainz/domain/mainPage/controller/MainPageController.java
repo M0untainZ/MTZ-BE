@@ -34,7 +34,7 @@ public class MainPageController {
 	}
 
 	//태그 관련 목록 불러오기(난이도)
-	// @Cacheable(value = "Mountain", key = "'tagLevel'", cacheManager = "redisCacheManager")
+	@Cacheable(value = "Mountain", key = "'tagLevel'", cacheManager = "redisCacheManager")
 	@GetMapping("/mountains/level/{level}")
 	@ApiOperation(value = "태그 관련 목록 불러오기(난이도)", notes = "태그 관련 목록 불러오기(난이도) API")
 	public ResponseDto<?> getLevelList(@PathVariable String level) {
