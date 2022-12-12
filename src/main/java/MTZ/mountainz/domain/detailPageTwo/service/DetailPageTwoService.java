@@ -250,7 +250,6 @@ public class DetailPageTwoService {
 		Optional<MemberBadge> CertificationBadge2 = memberBadgeRepository.findByBadgeIdAndMemberId(3L, member.getId());
 		Optional<MemberBadge> CertificationBadge3 = memberBadgeRepository.findByBadgeIdAndMemberId(4L, member.getId());
 		Badge badge = null;
-		MemberBadge memberBadge = null;
 		boolean correctBadge = false;
 
 		//인증 뱃지 1번
@@ -304,7 +303,7 @@ public class DetailPageTwoService {
 				.correctBadge(correctBadge)
 				.countLike(countLike)
 				.badge(badge)
-				.openTime(memberBadge.getOpenTime())
+//				.openTime(memberBadge.getOpenTime())
 				.build()
 		);
 	}
