@@ -141,6 +141,8 @@ public class DetailPageTwoService {
 		Badge badge = null;
 		boolean correctBadge = false;
 		String openTime = "";
+		MemberBadge memberBadge5 = imsiBadgeLike5.get();
+		MemberBadge memberBadge6 = imsiBadgeLike6.get();
 
 		if (memberLike1.equals(5L)) {
 			if (imsiBadgeLike5.isPresent()) {
@@ -152,8 +154,7 @@ public class DetailPageTwoService {
 				memberBadgeRepository.save(new MemberBadge(badge, member));
 				correctBadge = true;
 
-				MemberBadge memberBadge = imsiBadgeLike5.get();
-				openTime = memberBadge.getOpenTime();
+				openTime = memberBadge5.getOpenTime();
 			}
 		}
 		//좋아요 2번 뱃지
@@ -168,8 +169,7 @@ public class DetailPageTwoService {
 				memberBadgeRepository.save(new MemberBadge(badge, member));
 				correctBadge = true;
 
-				MemberBadge memberBadge = imsiBadgeLike6.get();
-				openTime = memberBadge.getOpenTime();
+				openTime = memberBadge6.getOpenTime();
 			}
 		}
 
@@ -261,6 +261,10 @@ public class DetailPageTwoService {
 		Badge badge = null;
 		boolean correctBadge = false;
 		String openTime = "";
+		MemberBadge memberBadge1 = CertificationBadge1.get();
+		MemberBadge memberBadge2 = CertificationBadge2.get();
+		MemberBadge memberBadge3 = CertificationBadge3.get();
+
 
 		//인증 뱃지 1번
 		int imsiCertificationPoint = member.getCertificationPoint();
@@ -274,8 +278,7 @@ public class DetailPageTwoService {
 				memberBadgeRepository.save(new MemberBadge(badge, member));
 				correctBadge = true;
 
-				MemberBadge memberBadge = CertificationBadge1.get();
-				openTime = memberBadge.getOpenTime();
+				openTime = memberBadge1.getOpenTime();
 			}
 		}
 		// 인증 뱃지 2번
@@ -289,8 +292,7 @@ public class DetailPageTwoService {
 				memberBadgeRepository.save(new MemberBadge(badge, member));
 				correctBadge = true;
 
-				MemberBadge memberBadge = CertificationBadge2.get();
-				openTime = memberBadge.getOpenTime();
+				openTime = memberBadge2.getOpenTime();
 			}
 		}
 		//인증 뱃지 3번
@@ -304,8 +306,7 @@ public class DetailPageTwoService {
 				memberBadgeRepository.save(new MemberBadge(badge, member));
 				correctBadge = true;
 
-				MemberBadge memberBadge = CertificationBadge3.get();
-				openTime = memberBadge.getOpenTime();
+				openTime = memberBadge3.getOpenTime();
 			}
 		}
 		return ResponseDto.success(
