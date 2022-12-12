@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Getter
 @Builder
@@ -15,4 +16,7 @@ public class LikesResponseDto {
 	private Long countLike;
 	private Badge badge;
 	private boolean correctBadge;
+	@DateTimeFormat
+	private String openTime; // 뱃지 획득 시간
+
 }

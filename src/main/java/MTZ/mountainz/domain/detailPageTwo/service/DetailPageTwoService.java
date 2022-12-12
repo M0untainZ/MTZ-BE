@@ -2,6 +2,7 @@ package MTZ.mountainz.domain.detailPageTwo.service;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -139,6 +140,7 @@ public class DetailPageTwoService {
 
 		Badge badge = null;
 		boolean correctBadge = false;
+		String openTime = "";
 
 		if (memberLike1.equals(5L)) {
 			if (imsiBadgeLike5.isPresent()) {
@@ -149,6 +151,9 @@ public class DetailPageTwoService {
 				);
 				memberBadgeRepository.save(new MemberBadge(badge, member));
 				correctBadge = true;
+
+				MemberBadge memberBadge = imsiBadgeLike5.get();
+				openTime = memberBadge.getOpenTime();
 			}
 		}
 		//좋아요 2번 뱃지
@@ -162,6 +167,9 @@ public class DetailPageTwoService {
 				);
 				memberBadgeRepository.save(new MemberBadge(badge, member));
 				correctBadge = true;
+
+				MemberBadge memberBadge = imsiBadgeLike6.get();
+				openTime = memberBadge.getOpenTime();
 			}
 		}
 
@@ -174,6 +182,7 @@ public class DetailPageTwoService {
 				.countLike(countLike)
 				.badge(badge)
 				.correctBadge(correctBadge)
+				.openTime(openTime)
 				.build()
 		);
 	}
@@ -251,6 +260,7 @@ public class DetailPageTwoService {
 		Optional<MemberBadge> CertificationBadge3 = memberBadgeRepository.findByBadgeIdAndMemberId(4L, member.getId());
 		Badge badge = null;
 		boolean correctBadge = false;
+		String openTime = "";
 
 		//인증 뱃지 1번
 		int imsiCertificationPoint = member.getCertificationPoint();
@@ -263,6 +273,9 @@ public class DetailPageTwoService {
 				);
 				memberBadgeRepository.save(new MemberBadge(badge, member));
 				correctBadge = true;
+
+				MemberBadge memberBadge = CertificationBadge1.get();
+				openTime = memberBadge.getOpenTime();
 			}
 		}
 		// 인증 뱃지 2번
@@ -275,6 +288,9 @@ public class DetailPageTwoService {
 				);
 				memberBadgeRepository.save(new MemberBadge(badge, member));
 				correctBadge = true;
+
+				MemberBadge memberBadge = CertificationBadge2.get();
+				openTime = memberBadge.getOpenTime();
 			}
 		}
 		//인증 뱃지 3번
@@ -287,6 +303,9 @@ public class DetailPageTwoService {
 				);
 				memberBadgeRepository.save(new MemberBadge(badge, member));
 				correctBadge = true;
+
+				MemberBadge memberBadge = CertificationBadge3.get();
+				openTime = memberBadge.getOpenTime();
 			}
 		}
 		return ResponseDto.success(
@@ -303,7 +322,7 @@ public class DetailPageTwoService {
 				.correctBadge(correctBadge)
 				.countLike(countLike)
 				.badge(badge)
-//				.openTime(memberBadge.getOpenTime())
+				.openTime(openTime)
 				.build()
 		);
 	}
