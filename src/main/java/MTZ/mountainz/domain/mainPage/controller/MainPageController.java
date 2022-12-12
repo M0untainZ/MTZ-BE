@@ -1,6 +1,5 @@
 package MTZ.mountainz.domain.mainPage.controller;
 
-import io.swagger.annotations.ApiOperation;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import MTZ.mountainz.domain.mainPage.service.MainPageService;
 import MTZ.mountainz.global.dto.ResponseDto;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -34,7 +34,7 @@ public class MainPageController {
 	}
 
 	//태그 관련 목록 불러오기(난이도)
-	@Cacheable(value = "Mountain", key = "'tagLevel'", cacheManager = "redisCacheManager")
+	// @Cacheable(value = "Mountain", key = "'tagLevel'", cacheManager = "redisCacheManager")
 	@GetMapping("/mountains/level/{level}")
 	@ApiOperation(value = "태그 관련 목록 불러오기(난이도)", notes = "태그 관련 목록 불러오기(난이도) API")
 	public ResponseDto<?> getLevelList(@PathVariable String level) {
