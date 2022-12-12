@@ -141,8 +141,7 @@ public class DetailPageTwoService {
 		Badge badge = null;
 		boolean correctBadge = false;
 		String openTime = "";
-		MemberBadge memberBadge5 = imsiBadgeLike5.get();
-		MemberBadge memberBadge6 = imsiBadgeLike6.get();
+
 
 		if (memberLike1.equals(5L)) {
 			if (imsiBadgeLike5.isPresent()) {
@@ -154,7 +153,6 @@ public class DetailPageTwoService {
 				memberBadgeRepository.save(new MemberBadge(badge, member));
 				correctBadge = true;
 
-				openTime = memberBadge5.getOpenTime();
 			}
 		}
 		//좋아요 2번 뱃지
@@ -169,13 +167,21 @@ public class DetailPageTwoService {
 				memberBadgeRepository.save(new MemberBadge(badge, member));
 				correctBadge = true;
 
-				openTime = memberBadge6.getOpenTime();
 			}
 		}
 
 		// 해당 산의 총 좋아요 갯수
 		Long countLike = likesRepository.countAllByMountainId(mountainId);
 
+		MemberBadge memberBadge5 = imsiBadgeLike5.get();
+		MemberBadge memberBadge6 = imsiBadgeLike6.get();
+		if(imsiBadgeLike5.isPresent()) {
+			openTime = memberBadge5.getOpenTime();
+		} else if (imsiBadgeLike6.isPresent()) {
+			openTime = memberBadge6.getOpenTime();
+		} else{
+			openTime = "";
+		}
 		return ResponseDto.success(
 			LikesResponseDto.builder()
 				.correctLike(correctLike)
@@ -261,9 +267,6 @@ public class DetailPageTwoService {
 		Badge badge = null;
 		boolean correctBadge = false;
 		String openTime = "";
-		MemberBadge memberBadge1 = CertificationBadge1.get();
-		MemberBadge memberBadge2 = CertificationBadge2.get();
-		MemberBadge memberBadge3 = CertificationBadge3.get();
 
 
 		//인증 뱃지 1번
@@ -278,7 +281,6 @@ public class DetailPageTwoService {
 				memberBadgeRepository.save(new MemberBadge(badge, member));
 				correctBadge = true;
 
-				openTime = memberBadge1.getOpenTime();
 			}
 		}
 		// 인증 뱃지 2번
@@ -292,7 +294,6 @@ public class DetailPageTwoService {
 				memberBadgeRepository.save(new MemberBadge(badge, member));
 				correctBadge = true;
 
-				openTime = memberBadge2.getOpenTime();
 			}
 		}
 		//인증 뱃지 3번
@@ -305,9 +306,20 @@ public class DetailPageTwoService {
 				);
 				memberBadgeRepository.save(new MemberBadge(badge, member));
 				correctBadge = true;
-
-				openTime = memberBadge3.getOpenTime();
 			}
+		}
+
+		MemberBadge memberBadge1 = CertificationBadge1.get();
+		MemberBadge memberBadge2 = CertificationBadge2.get();
+		MemberBadge memberBadge3 = CertificationBadge3.get();
+		if(CertificationBadge1.isPresent()) {
+			openTime = memberBadge1.getOpenTime();
+		} else if (CertificationBadge2.isPresent()) {
+			openTime = memberBadge2.getOpenTime();
+		} else if (CertificationBadge3.isPresent()) {
+			openTime = memberBadge3.getOpenTime();
+		} else{
+			openTime = "";
 		}
 		return ResponseDto.success(
 			DetailPageTwoResponseDto.builder()
