@@ -17,6 +17,6 @@ public class LikesResponseDto {
 	private Badge badge;
 	private boolean correctBadge;
 	@DateTimeFormat
-	private String openTime; // 뱃지 획득 시간
+	private String openTime;
 
 }

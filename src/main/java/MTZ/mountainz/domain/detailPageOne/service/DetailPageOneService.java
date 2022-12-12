@@ -25,7 +25,7 @@ public class DetailPageOneService {
 
 	// 상세페이지1 정보 불러오기
 	public ResponseDto<?> detailPageOneList(Pageable pageable) {
-		// 산목록에서 이름, 산이미지, 산퀴즈 true/false
+
 		Page<Mountain> mountainList = mountainRepository.findByMountainAll(pageable);
 		List<DetailPageOneResponseDto> detailPageOneResponseDtoList = new ArrayList<>();
 
@@ -39,7 +39,6 @@ public class DetailPageOneService {
 					.season(mountain.getSeason())
 					.level(mountain.getLevel())
 					.time(mountain.getTime())
-					// 산 id를 받아서 좋아요 수 반환해서 산 좋아요 count에 + 해주기
 					.mountainLikeTotal(likesRepository.countAllByMountainId(mountain.getId()))
 					.build()
 			);
@@ -48,10 +47,10 @@ public class DetailPageOneService {
 		return ResponseDto.success(detailPageOneResponseDtoList);
 	}
 
-	// 키워드 검색 (산이름만 추후 queryDSL로 전체 조회할 예정)
+	// 키워드 검색
 	@Transactional
 	public ResponseDto<?> getKeywordSearch(KeywordRequestDto keywordRequestDto) {
-		// List<Mountain> mountainSearchList = mountainRepository.findByName(keywordRequestDto.getKeyword());
+
 		List<Mountain> mountainSearchList = mountainRepository.findByKeyword(keywordRequestDto.getKeyword());
 		List<DetailPageOneResponseDto> detailPageOneResponseDtoList = new ArrayList<>();
 		for (Mountain mountain : mountainSearchList) {
@@ -64,7 +63,6 @@ public class DetailPageOneService {
 					.season(mountain.getSeason())
 					.level(mountain.getLevel())
 					.time(mountain.getTime())
-					// 산 id를 받아서 좋아요 수 반환해서 산 좋아요 count에 + 해주기
 					.mountainLikeTotal(likesRepository.countAllByMountainId(mountain.getId()))
 					.build()
 			);
@@ -76,11 +74,7 @@ public class DetailPageOneService {
 	// 필터 검색
 	@Transactional
 	public ResponseDto<?> getFilterSearch(FilterRequestDto filterRequestDto) {
-		// List<Mountain> mountainFilterList = mountainRepository.findByRegionAndSeasonAndLevelAndTime(
-		// 	filterRequestDto.getRegion(), filterRequestDto.getSeason(),
-		// 	filterRequestDto.getLevel(), filterRequestDto.getTime()
-		// );
-		// 상세1의 모든 정보 넣어 보내기 res
+
 		List<Mountain> mountainFilterList = mountainRepository.findByMountainFilter(filterRequestDto);
 		List<DetailPageOneResponseDto> detailPageOneResponseDtoList = new ArrayList<>();
 
@@ -94,7 +88,6 @@ public class DetailPageOneService {
 					.season(mountain.getSeason())
 					.level(mountain.getLevel())
 					.time(mountain.getTime())
-					// 산 id를 받아서 좋아요 수 반환해서 산 좋아요 count에 + 해주기
 					.mountainLikeTotal(likesRepository.countAllByMountainId(mountain.getId()))
 					.build()
 			);

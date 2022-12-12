@@ -1,25 +1,22 @@
 package MTZ.mountainz.domain.member.repository;
 
-import java.util.List;
-import java.util.Optional;
-
+import MTZ.mountainz.domain.member.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import MTZ.mountainz.domain.member.entity.Member;
+import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long> {
-	Optional<Member> findByEmail(String email);
+    Optional<Member> findByEmail(String email);
 
-	Optional<Member> findByKakaoId(String kakaoId);
+    Optional<Member> findByKakaoId(String kakaoId);
 
-	boolean existsByEmail(String email);
+    boolean existsByEmail(String email);
 
-	boolean existsByNickName(String nickname);
+    boolean existsByNickName(String nickname);
 
-	List<Member> findByCertificationPointGreaterThanOrderByCertificationPointDesc(int i);
-
-	Member findByCertificationPoint(Long id);
+    List<Member> findByCertificationPointGreaterThanOrderByCertificationPointDesc(int i);
 
 }

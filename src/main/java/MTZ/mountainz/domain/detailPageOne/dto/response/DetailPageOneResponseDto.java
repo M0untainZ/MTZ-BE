@@ -23,7 +23,7 @@ public class DetailPageOneResponseDto {
 
 	@ApiModelProperty(example = "산 총 좋아요")
 	private Long mountainLikeTotal;
-	// 지역, 계절, 난이도, 소요시간
+
 	@ApiModelProperty(example = "산 지역")
 	private String region;
 

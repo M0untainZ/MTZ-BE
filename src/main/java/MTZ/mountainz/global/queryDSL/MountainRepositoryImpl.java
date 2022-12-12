@@ -60,7 +60,7 @@ public class MountainRepositoryImpl implements MountainRepositoryCustom {
 		return mountains;
 	}
 
-	// findByMountainFilter 메서드
+
 	private BooleanExpression eqRegion(String region) {
 		return region != null ? mountain.region.eq(region) : null;
 	}

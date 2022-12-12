@@ -28,7 +28,7 @@ public class DetailPageOneController {
 		return detailPageOneService.detailPageOneList(pageable);
 	}
 
-	// 키워드 검색 (산이름만 추후 queryDSL로 전체 조회할 예정)
+	// 키워드 검색
 	@PostMapping("/mountains/search")
 	@ApiOperation(value = "키워드 검색", notes = "키워드 검색 API")
 	public ResponseDto<?> getKeywordSearch(@RequestBody KeywordRequestDto keywordRequestDto) {

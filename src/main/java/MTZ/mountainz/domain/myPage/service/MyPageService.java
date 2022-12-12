@@ -1,11 +1,5 @@
 package MTZ.mountainz.domain.myPage.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import MTZ.mountainz.domain.badge.entity.MemberBadge;
 import MTZ.mountainz.domain.badge.repository.MemberBadgeRepository;
 import MTZ.mountainz.domain.member.entity.Member;
@@ -17,68 +11,63 @@ import MTZ.mountainz.global.dto.ResponseDto;
 import MTZ.mountainz.global.exception.ErrorCode;
 import MTZ.mountainz.global.exception.RequestException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class MyPageService {
 
-	private final MemberRepository memberRepository;
-	private final MemberBadgeRepository memberBadgeRepository;
+    private final MemberRepository memberRepository;
+    private final MemberBadgeRepository memberBadgeRepository;
 
-	private Member getMember(String email) {
-		Member member = memberRepository.findByEmail(email).orElseThrow(
-			() -> new RequestException(ErrorCode.MEMBER_NOT_FOUND_404)
-		);
-		return member;
-	}
+    private Member getMember(String email) {
+        Member member = memberRepository.findByEmail(email).orElseThrow(
+                () -> new RequestException(ErrorCode.MEMBER_NOT_FOUND_404)
+        );
+        return member;
+    }
 
-	//마이 페이지 정보 불러오기
-	@Transactional(readOnly = true)
-	public ResponseDto<?> getMyPageList(String email) {
+    //마이 페이지 정보 불러오기
+    @Transactional(readOnly = true)
+    public ResponseDto<?> getMyPageList(String email) {
 
-		Member member = getMember(email);
+        Member member = getMember(email);
 
-		List<MemberBadge> memberBadgeList = memberBadgeRepository.findAllByMemberId(member.getId());
-		List<MemberBadgeResponseDto> memberBadgeResponseDtoList = new ArrayList<>();
-		for (MemberBadge memberBadge : memberBadgeList) {
-			memberBadgeResponseDtoList.add(
-				MemberBadgeResponseDto.builder()
-					.id(memberBadge.getBadge().getId())
-					.badgeName(memberBadge.getBadge().getBadgeName())
-					.content(memberBadge.getBadge().getContent())
-					.img(memberBadge.getBadge().getImg())
-					.openTime(memberBadge.getOpenTime())
-					.build()
-			);
-		}
+        List<MemberBadge> memberBadgeList = memberBadgeRepository.findAllByMemberId(member.getId());
+        List<MemberBadgeResponseDto> memberBadgeResponseDtoList = new ArrayList<>();
+        for (MemberBadge memberBadge : memberBadgeList) {
+            memberBadgeResponseDtoList.add(
+                    MemberBadgeResponseDto.builder()
+                            .id(memberBadge.getBadge().getId())
+                            .badgeName(memberBadge.getBadge().getBadgeName())
+                            .content(memberBadge.getBadge().getContent())
+                            .img(memberBadge.getBadge().getImg())
+                            .openTime(memberBadge.getOpenTime())
+                            .build()
+            );
+        }
 
-		return ResponseDto.success(
-			MyPageResponseDto.builder()
-				.profilePhoto(member.getProfilePhoto())
-				.nickName(member.getNickName())
-				.region(member.getRegion())
-				.badgeList(memberBadgeResponseDtoList)
-				.badgeName(member.getBadgeName())
-				.build()
-		);
-	}
+        return ResponseDto.success(
+                MyPageResponseDto.builder()
+                        .profilePhoto(member.getProfilePhoto())
+                        .nickName(member.getNickName())
+                        .region(member.getRegion())
+                        .badgeList(memberBadgeResponseDtoList)
+                        .badgeName(member.getBadgeName())
+                        .build()
+        );
+    }
 
-	//마이 페이지 수정
-	@Transactional
-	public ResponseDto<?> updateMyPage(MyPageRequestDto myPageRequestDto, String email) {
-		Member member = getMember(email);
+    //마이 페이지 수정
+    @Transactional
+    public ResponseDto<?> updateMyPage(MyPageRequestDto myPageRequestDto, String email) {
+        Member member = getMember(email);
 
-		//닉네임 중복 검사, 닉네임 변경
-		//        if (!myPageRequsetDto.getNickName().equals(member.getNickName())) {
-		//            return memberService.nickNameConfirm(myPageRequsetDto.getNickName());
-		//        }
-		//        //지역구 바꾸기
-		//        Member memberRegion = memberRepository.findByMemberRegion();
-		//        //프로필 사진 바꾸기
-		//        Member memberPhoto = memberRepository.findByMemberPhoto();
-
-		member.update(myPageRequestDto);
-		//        memberRepository.save(member);
-		return ResponseDto.success("수정이 완료되었습니다.");
-	}
+        member.update(myPageRequestDto);
+        return ResponseDto.success("수정이 완료되었습니다.");
+    }
 }

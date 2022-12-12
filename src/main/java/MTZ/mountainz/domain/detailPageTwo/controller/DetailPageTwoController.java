@@ -31,11 +31,8 @@ public class DetailPageTwoController {
 	@ApiOperation(value = "상세페이지2 정보 불러오기", notes = "상세페이지2 정보 불러오기 API")
 	public ResponseDto<?> detailPageTwoList(@PathVariable Long mountainId) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		// System.out.println("확인용 name : " + authentication.getName());
-		// System.out.println("확인용 principal : " + authentication.getPrincipal().toString());
-		// System.out.println("확인용 details : " + authentication.getDetails());
+
 		String email = authentication.getName();
-		// System.out.println("email 확인 " + email);
 
 		return detailPageTwoService.detailPageTwoList(mountainId, email);
 	}

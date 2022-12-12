@@ -11,7 +11,6 @@ import MTZ.mountainz.domain.like.entity.Likes;
 public interface LikesRepository extends JpaRepository<Likes, Long> {
 	Optional<Likes> findByMountainIdAndMemberEmail(Long mountainId, String email);
 
-	// 숫자 반환 산 아이디에 해당하는 like
 	Long countAllByMountainId(Long mountainId);
 
 	Long countAllByMemberId(Long memberId);
