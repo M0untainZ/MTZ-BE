@@ -40,7 +40,7 @@ public class DetailPageTwoResponseDto {
 	private boolean correctBadge;
 	@ApiModelProperty(example = "인증 뱃지")
 	private Badge badge;
-	@DateTimeFormat
-	private String openTime; // 뱃지 획득 시간
+//	@DateTimeFormat
+//	private String openTime; // 뱃지 획득 시간
 
 }

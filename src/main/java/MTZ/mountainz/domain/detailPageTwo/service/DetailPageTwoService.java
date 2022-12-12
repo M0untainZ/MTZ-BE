@@ -140,7 +140,7 @@ public class DetailPageTwoService {
 
 		Badge badge = null;
 		boolean correctBadge = false;
-		String openTime = "";
+//		String openTime = "";
 
 
 		if (memberLike1.equals(5L)) {
@@ -173,22 +173,22 @@ public class DetailPageTwoService {
 		// 해당 산의 총 좋아요 갯수
 		Long countLike = likesRepository.countAllByMountainId(mountainId);
 
-		MemberBadge memberBadge5 = imsiBadgeLike5.get();
-		MemberBadge memberBadge6 = imsiBadgeLike6.get();
-		if(imsiBadgeLike5.isPresent()) {
-			openTime = memberBadge5.getOpenTime();
-		} else if (imsiBadgeLike6.isPresent()) {
-			openTime = memberBadge6.getOpenTime();
-		} else{
-			openTime = "";
-		}
+//		MemberBadge memberBadge5 = imsiBadgeLike5.get();
+//		MemberBadge memberBadge6 = imsiBadgeLike6.get();
+//		if(imsiBadgeLike5.isPresent()) {
+//			openTime = memberBadge5.getOpenTime();
+//		} else if (imsiBadgeLike6.isPresent()) {
+//			openTime = memberBadge6.getOpenTime();
+//		} else{
+//			openTime = "";
+//		}
 		return ResponseDto.success(
 			LikesResponseDto.builder()
 				.correctLike(correctLike)
 				.countLike(countLike)
 				.badge(badge)
 				.correctBadge(correctBadge)
-				.openTime(openTime)
+//				.openTime(openTime)
 				.build()
 		);
 	}
@@ -266,7 +266,7 @@ public class DetailPageTwoService {
 		Optional<MemberBadge> CertificationBadge3 = memberBadgeRepository.findByBadgeIdAndMemberId(4L, member.getId());
 		Badge badge = null;
 		boolean correctBadge = false;
-		String openTime = "";
+//		String openTime = "";
 
 
 		//인증 뱃지 1번
@@ -309,18 +309,18 @@ public class DetailPageTwoService {
 			}
 		}
 
-		MemberBadge memberBadge1 = CertificationBadge1.get();
-		MemberBadge memberBadge2 = CertificationBadge2.get();
-		MemberBadge memberBadge3 = CertificationBadge3.get();
-		if(CertificationBadge1.isPresent()) {
-			openTime = memberBadge1.getOpenTime();
-		} else if (CertificationBadge2.isPresent()) {
-			openTime = memberBadge2.getOpenTime();
-		} else if (CertificationBadge3.isPresent()) {
-			openTime = memberBadge3.getOpenTime();
-		} else{
-			openTime = "";
-		}
+//		MemberBadge memberBadge1 = CertificationBadge1.get();
+//		MemberBadge memberBadge2 = CertificationBadge2.get();
+//		MemberBadge memberBadge3 = CertificationBadge3.get();
+//		if(CertificationBadge1.isPresent()) {
+//			openTime = memberBadge1.getOpenTime();
+//		} else if (CertificationBadge2.isPresent()) {
+//			openTime = memberBadge2.getOpenTime();
+//		} else if (CertificationBadge3.isPresent()) {
+//			openTime = memberBadge3.getOpenTime();
+//		} else{
+//			openTime = "";
+//		}
 		return ResponseDto.success(
 			DetailPageTwoResponseDto.builder()
 				.name(mountain.getName())
@@ -335,7 +335,7 @@ public class DetailPageTwoService {
 				.correctBadge(correctBadge)
 				.countLike(countLike)
 				.badge(badge)
-				.openTime(openTime)
+//				.openTime(openTime)
 				.build()
 		);
 	}
