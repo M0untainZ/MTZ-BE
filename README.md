@@ -18,9 +18,9 @@
 
 #### 🌎 Notion Link | [Notion Link](https://www.notion.so/MTZ-251008683c60489c909a51ee189279e4)
 
-#### 🌎 PostMan API Link | https://documenter.getpostman.com/view/23686396/2s8YzUvg4o
+#### 🌎 PostMan API Link | [PostMan API로 Click!](https://documenter.getpostman.com/view/23686396/2s8YzUvg4o)
 
-#### 🌎 Swagger API Link | https://www.dongjae-bk.shop/swagger-ui.html
+#### 🌎 Swagger API Link | [Swagger API로 Click!](https://www.dongjae-bk.shop/swagger-ui.html)
 
 #### 🔑 FE Github URL | [FE GITHUB로 Click!](https://github.com/M0untainZ/MTZ-Front.git)
 
