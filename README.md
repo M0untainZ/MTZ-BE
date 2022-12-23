@@ -1,4 +1,7 @@
 # ⛺ **MTZ(마운틴즈)**
+### 🎉 마운틴즈 소개 | About Us
+![image](https://user-images.githubusercontent.com/97796338/209321894-1b1f933f-08dd-45c8-9891-6ad55a4a0c16.png)
+
 
 등산에 관심이 생긴, 취미가 등산인, 산을 정복하고 싶은 여러분 주목!<br/>
 남녀노소 누구나 '등산왕'이 될 수 있는 등산 필수앱 "MTZ"를 소개합니다!
